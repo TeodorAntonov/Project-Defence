@@ -1,4 +1,5 @@
-﻿using DataModels.Entities;
+﻿using DataModels.Constants;
+using DataModels.Entities;
 using DataModels.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -10,11 +11,13 @@ namespace ProjectDefence.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleInManager;
 
-        public UserController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public UserController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleInManager = roleInManager;
         }
 
         [HttpGet]
@@ -98,9 +101,19 @@ namespace ProjectDefence.Controllers
             return View(model);
         }
 
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
             _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> CreateRoles()
+        {
+            await _roleInManager.CreateAsync(new IdentityRole(ConstantsRoles.AdminRole));
+            await _roleInManager.CreateAsync(new IdentityRole(ConstantsRoles.ClientRole));
+            await _roleInManager.CreateAsync(new IdentityRole(ConstantsRoles.TrainerRole));
+
             return RedirectToAction("Index", "Home");
         }
     }

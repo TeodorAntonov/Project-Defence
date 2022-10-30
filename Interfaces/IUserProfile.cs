@@ -4,6 +4,6 @@ namespace Interfaces
 {
     public interface IUserProfile
     {
-        Task<ProfileViewModel> MyProfile(string id);
+        Task<ProfileViewModel> GetMyProfile(string id);
     }
 }

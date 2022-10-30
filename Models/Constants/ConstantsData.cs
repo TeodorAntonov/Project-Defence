@@ -1,6 +1,6 @@
 ﻿namespace DataModels.Constants
 {
-    public class ConstantsData
+    public static class ConstantsData
     {
         public const int MaxGenreNameLenth = 50;
         public const int MinGenreNameLenth = 5;
