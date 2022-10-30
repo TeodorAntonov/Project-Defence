@@ -1,0 +1,30 @@
+﻿@using DataModels.Models
+@model IEnumerable<TrainerViewModel>
+
+@{
+    ViewBag.Title = "All Trainers";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="text-center row">
+    @foreach (var trainer in Model)
+    {
+        <div class="card col-4" style="width: 20rem;">
+            <img class="card-img-top" style="width: 18rem;"
+             src="@trainer.ImageUrl" alt="Trainer Image">
+            <div class="card-body">
+
+                <h5 class="card-title mt-1">@trainer.Name</h5>
+                <p class="mb-0">Telephone: @trainer.Telephone</p>
+                <p class="mb-0">Email: @trainer.Email</p>
+                <p class="mb-0">Experience: @trainer.Experience</p>
+                <p class="mb-0">Can get more Clients: @trainer.IsAvailable</p>
+            </div>
+
+            <form class="input-group-sm" asp-route-trainerId="@trainer.Id" asp-controller="Trainers" method="post">
+            </form>
+        </div>
+    }
+</div>

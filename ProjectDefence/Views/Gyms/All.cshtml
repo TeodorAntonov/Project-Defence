@@ -1,0 +1,28 @@
+﻿@using DataModels.Models
+@model IEnumerable<GymViewModel>
+
+@{
+    ViewBag.Title = "All Gyms";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="text-center row">
+    @foreach (var gym in Model)
+    {
+        <div class="card col-4" style="width: 20rem;">
+            <img class="card-img-top" style="width: 18rem;"
+             src="@gym.ImageUrl" alt="Gym Image">
+            <div class="card-body">
+
+                <h5 class="card-title mt-1">@gym.Name</h5>
+                <p class="mb-0">Address: @gym.Address</p>
+            </div>
+
+            <form class="input-group-sm" asp-route-gymId="@gym.Id" asp-controller="Gyms" method="post">
+                <input type="submit" value="See All Trainers Here" class="fs-6 btn btn-success mb-3 p-2" />
+            </form>
+        </div>
+    }
+</div>
