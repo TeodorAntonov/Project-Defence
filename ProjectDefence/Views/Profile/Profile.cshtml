@@ -1,0 +1,35 @@
+﻿@using DataModels.Models
+@model ProfileViewModel
+
+@{
+    ViewBag.Title = "My Profile";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<form>
+    <div>
+        <div class="card-body">
+
+          <h5 class="card-title mt-1">Your Journey Started From Here</h5>
+          <p class="mb-0">Name: @Model.Name</p>
+          <p class="mb-0">Age: @Model.AgeStarted</p>
+          <p class="mb-0">Weight: @Model.WeightStarted</p>
+          <p class="mb-0">Height: @Model.HeightStarted</p>
+        </div>
+    </div>
+</form>
+<form>
+    <div>
+        <div class="card-body">
+
+          <h5 class="card-title mt-1">Your Current State</h5>
+          <p class="mb-0">Age: @Model.CurrentAge</p>
+          <p class="mb-0">Weight: @Model.CurrentWeight</p>
+          <p class="mb-0">Height: @Model.HeightStarted</p>
+          <p class="mb-0">Type Of Sport: @Model.TypeOfSport</p>
+          <p class="mb-0">Set Goals: @Model.SetGoals</p>
+        </div>
+    </div>
+</form>
