@@ -1,5 +1,7 @@
 ﻿using DataModels.Constants;
 using DataModels.Entities;
+using DataModels.Models;
+using Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +12,11 @@ namespace ProjectDefence.Controllers
     public class AdminController : Controller
     {
         private readonly UserManager<User> _userManager;
-        public AdminController(UserManager<User> userManager)
+        private readonly IAdminService _adminService;
+        public AdminController(UserManager<User> userManager, IAdminService adminService)
         {
             _userManager = userManager;
+            _adminService = adminService;
         }
 
         [AllowAnonymous]
@@ -23,6 +27,32 @@ namespace ProjectDefence.Controllers
             await _userManager.AddToRolesAsync(user, new string[] { ConstantsRoles.AdminRole, ConstantsRoles.ClientRole, ConstantsRoles.TrainerRole });
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AdminPanel()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult AddGymToSystem()
+        {
+            var model = new GymViewModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddGymToSystem(GymViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            await _adminService.AddGymAsync(model);
+            return RedirectToAction(nameof(AdminPanel));
         }
     }
 }

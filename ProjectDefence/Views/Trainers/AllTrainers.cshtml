@@ -23,8 +23,13 @@
                 <p class="mb-0">Can get more Clients: @trainer.IsAvailable</p>
             </div>
 
-            <form class="input-group-sm" asp-route-trainerId="@trainer.Id" asp-controller="Trainers" method="post">
-            </form>
+            <form class="input-group-sm" asp-route-trainerId="@trainer.Id" asp-controller="Trainers" method="post"> </form>
+            @if (User?.IsInRole("Administrator") ?? false)
+               {
+                  <a asp-controller="Admin" asp-action="EditTrainer" asp-route-id="@trainer.Id" class="btn btn-primary mb-3">Edit</a>
+                   <span></span>
+                  <a asp-controller="Admin" asp-action="DeleteTrainer" asp-route-id="@trainer.Id" class="btn btn-danger mb-3">Delete</a>
+               }
         </div>
     }
 </div>

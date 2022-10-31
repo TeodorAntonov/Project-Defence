@@ -9,5 +9,6 @@ namespace Interfaces
     public interface IAdminService
     {
         Task AddRolesToUsers(string email);
+        Task AddGymAsync(AddGymViewModel model);
     }
 }
