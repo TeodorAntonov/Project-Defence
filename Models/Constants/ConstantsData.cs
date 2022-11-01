@@ -22,5 +22,14 @@
 
         public const int MaxDirectorLength = 50;
         public const int MinDirectorLength = 10;
+
+        public const int MaxGymNameAndAddressLength = 50;
+        public const int MinGymNameAndAddressLength = 2;
+
+        public const int MaxTrainerNameLength = 30;
+        public const int MinTrainerNameLength = 2;
+
+        public const int MaxTelephoneLength = 20;
+        public const int MinTelephoneLength = 4;
     }
 }

@@ -44,7 +44,7 @@ namespace ProjectDefence.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddGymToSystem(GymViewModel model)
+        public async Task<IActionResult> AddGymToSystem(AddGymViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -52,6 +52,26 @@ namespace ProjectDefence.Controllers
             }
 
             await _adminService.AddGymAsync(model);
+            return RedirectToAction(nameof(AdminPanel));
+        }
+
+        [HttpGet]
+        public IActionResult AddTrainerToSystem()
+        {
+            var model = new TrainerViewModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddTrainerToSystem(AddTrainerViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            await _adminService.AddTrainerAsync(model);
             return RedirectToAction(nameof(AdminPanel));
         }
     }

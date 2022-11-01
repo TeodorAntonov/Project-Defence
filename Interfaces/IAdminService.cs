@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataModels.Models;
 
 namespace Interfaces
 {
@@ -10,5 +6,6 @@ namespace Interfaces
     {
         Task AddRolesToUsers(string email);
         Task AddGymAsync(AddGymViewModel model);
+        Task AddTrainerAsync(AddTrainerViewModel model);
     }
 }

@@ -30,6 +30,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IGymService, GymService>();
 builder.Services.AddScoped<ITrainerService, TrainerService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
 
 var app = builder.Build();
 
