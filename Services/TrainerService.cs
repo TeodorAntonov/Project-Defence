@@ -22,7 +22,7 @@ namespace Services
                 Name = g.Name,
                 Telephone = g.Telephone,
                 Email = g.Email,
-                IsAvailable = g.IsAvailable,
+                IsAvailable = g.IsAvailable ? "Yes" : "No",
                 Experience = g.Experience,
                 ImageUrl = g.ImageUrl
             });

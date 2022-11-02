@@ -8,6 +8,6 @@
         public string Telephone { get; set; }
         public string ImageUrl { get; set; }
         public string? Experience { get; set; }
-        public bool IsAvailable { get; set; }
+        public string IsAvailable { get; set; }
     }
 }

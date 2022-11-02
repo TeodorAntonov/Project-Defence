@@ -11,9 +11,10 @@ namespace Services
     {
         private readonly UserManager<User> _userManager;
         private readonly ApplicationDbContext _context;
-        public AdminService(UserManager<User> userManager)
+        public AdminService(UserManager<User> userManager, ApplicationDbContext context)
         {
             _userManager = userManager;
+            _context = context;
         }
 
         public async Task AddGymAsync(AddGymViewModel model)

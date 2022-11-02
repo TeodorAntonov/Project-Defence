@@ -12,7 +12,7 @@ namespace DataModels.Models
         [EmailAddress]
         public string Email { get; set; }
         [Required]
-        [StringLength(ConstantsData.MaxTelephoneLength, MinimumLength = ConstantsData.MaxTelephoneLength)]
+        [StringLength(ConstantsData.MaxTelephoneLength, MinimumLength = ConstantsData.MinTelephoneLength)]
         public string Telephone { get; set; }
         public string? Experience { get; set; }
         public string? ImageUrl { get; set; }

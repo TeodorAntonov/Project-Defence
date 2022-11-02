@@ -10,7 +10,7 @@
         <hr />
         <h4>Add New Gym to the System</h4>
         <div class="text-center mb-3">
-             <input class="btn btn-success" asp-controller="Admin"  asp-action="AddRoleToUser" type="submit" value="Add Gym" />
+             <input class="btn btn-success" asp-controller="Admin"  asp-action="AddGymToSystem" type="submit" value="Add Gym" />
         </div>
     </form>
      <form id="account" method="post">
@@ -24,7 +24,7 @@
          <hr />
         <h4>Add Role To a User</h4>
          <div class="text-center mb-3">
-              <input class="btn btn-warning" type="submit" value="Add Role to User" />
+              <input class="btn btn-warning" asp-controller="Admin"  asp-action="AddRoleToUser" type="submit" value="Add Role to User" />
          </div>
     </form>
 </div>
