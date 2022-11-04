@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataModels.Models
+namespace DataModels.Entities
 {
-    public class ProfileViewModel
+    public class Client
     {
         public int Id { get; set; }
+        [ForeignKey(nameof(User))]
         public string UserId { get; set; }
-        public string Name { get; set; }
-        public int AgeStarted { get; set; }
-        public double WeightStarted { get; set; }
-        public double HeightStarted { get; set; }
+        public User User { get; set; }
+        public int? AgeStarted { get; set; }
+        public double? WeightStarted { get; set; }
+        public double? HeightStarted { get; set; }
         public string? TypeOfSport { get; set; }
         public string? SetGoals { get; set; }
         public string? Trainer { get; set; }

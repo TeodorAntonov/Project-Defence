@@ -74,5 +74,24 @@ namespace ProjectDefence.Controllers
             await _adminService.AddTrainerAsync(model);
             return RedirectToAction(nameof(AdminPanel));
         }
+
+        [HttpGet]
+        public async Task< IActionResult> RoleToUser()
+        {
+            var model = new RoleToUserViewModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RoleToUser(IEnumerable<RoleToUserViewModel> model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            model = await _adminService.GetAllUsersAsync();
+            return View(model);
+        }
     }
 }

@@ -7,5 +7,6 @@ namespace Interfaces
         Task AddRolesToUsers(string email);
         Task AddGymAsync(AddGymViewModel model);
         Task AddTrainerAsync(AddTrainerViewModel model);
+        Task<IEnumerable<RoleToUserViewModel>> GetAllUsersAsync();
     }
 }

@@ -1,0 +1,37 @@
+﻿@using DataModels.Models
+@model IEnumerable<RoleToUserViewModel>
+@{
+    ViewBag.Title = "Add Role To User";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="text-center row">
+        @foreach(var user in Model)
+        {   
+            <div class="card col-4" style="width: 20rem;">
+                <p><h5>User ID:</h5>@user.Id</p>
+                <p><h5>Username:</h5>@user.UserName</p>
+                <hr />
+                <p><h5>Full Name:</h5>@user.FullName</p>
+                <hr />
+                <p><h5>Email:</h5>@user.Email</p>
+                <hr />
+                <h5>Roles:</h5>
+                    @foreach(var role in user.Roles)
+                    {
+                        <text>| @role | </text>
+                    }
+                
+                 <a class="btn btn-sm btn-primary">Update</a>
+                 <a class="btn btn-sm btn-danger">Delete</a>
+                 <hr />
+           </div>
+        }
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
