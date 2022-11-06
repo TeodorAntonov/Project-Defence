@@ -6,6 +6,6 @@ namespace Interfaces
     public interface IProfileService
     {
         Task<ProfileViewModel> GetUserProfile(User user);
-        Task UpdateUserProfile(User user);
+        Task UpdateUserProfile(User user, ProfileViewModel model);
     }
 }

@@ -56,6 +56,37 @@ namespace Services
             };
         }
 
+        public async Task UpdateUserProfile(User user, ProfileViewModel model)
+        {
+            if (user == null)
+            {
+                throw new Exception("Something went wrong with you profile");
+            }
 
+            var client = await _context.Clients.Include(c => c.User).FirstOrDefaultAsync(cl => cl.UserId == user.Id);
+
+
+            if (client == null)
+            {
+                throw new Exception("Something went wrong with you client profile");
+            }
+
+            client.CurrentAge = model.CurrentAge;
+            client.CurrentWeight = model.CurrentWeight;
+            client.CurrentHeight = model.CurrentHeight;
+            client.ClientNotes = model.ClientNotes;
+            client.TypeOfSport = model.TypeOfSport;
+            client.Trainer = model.Trainer;
+            client.WorkoutPlan = model.WorkoutPlan;
+
+            await _context.SaveChangesAsync();
+        }
+
+        private IEnumerable<SportViewModel> GetSports()
+        => this._context.Sports.Select(s => new SportViewModel()
+        {
+            Id = s.Id,
+            Name = s.Name,
+        });
     }
 }

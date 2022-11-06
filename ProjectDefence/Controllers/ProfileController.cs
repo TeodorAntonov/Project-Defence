@@ -35,15 +35,17 @@ namespace ProjectDefence.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> MyProfile(ProfileViewModel model)
+        public async Task<IActionResult> MyProfile(string userId, ProfileViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            var resultModel = await _profileService.GetUserProfile(model);
-            return View(resultModel);
+            var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
+            await _profileService.UpdateUserProfile(user, model);
+
+            return RedirectToAction("MyProfile", "Profile");
         }
     }
 }

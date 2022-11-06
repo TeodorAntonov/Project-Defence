@@ -21,6 +21,12 @@ namespace ProjectDefence.Data
         private Exercise Exercise4 { get; set; }
         private Exercise Exercise5 { get; set; }
 
+        private Sport Sport1 { get; set; }
+        private Sport Sport2 { get; set; }
+        private Sport Sport3 { get; set; }
+        private Sport Sport4 { get; set; }
+        private Sport Sport5 { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -31,6 +37,7 @@ namespace ProjectDefence.Data
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<WorkOutExercise> WorkOutExercises { get; set; }
+        public DbSet<Sport> Sports { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -44,7 +51,10 @@ namespace ProjectDefence.Data
             builder.Entity<Gym>().HasData(Gym1, Gym2, Gym3);
 
             SeedExercises();
-            builder.Entity<Exercise>().HasData(Exercise1, Exercise2, Exercise3, Exercise4, Exercise5);             
+            builder.Entity<Exercise>().HasData(Exercise1, Exercise2, Exercise3, Exercise4, Exercise5);
+
+            SeedSports();
+            builder.Entity<Sport>().HasData(Sport1, Sport2, Sport3, Sport4, Sport5);
 
             base.OnModelCreating(builder);
         }
@@ -152,6 +162,40 @@ namespace ProjectDefence.Data
             {
                 Id = 5,
                 Name = "Pull ups"
+            };
+        }
+
+        private void SeedSports()
+        {
+            Sport1 = new Sport()
+            {
+                Id = 1,
+                Name = "Fitness",
+
+            };
+
+            Sport2 = new Sport()
+            {
+                Id = 2,
+                Name = "Crossfit"
+            };
+
+            Sport3 = new Sport()
+            {
+                Id = 3,
+                Name = "Climbing"
+            };
+
+            Sport4 = new Sport()
+            {
+                Id = 4,
+                Name = "Box"
+            };
+
+            Sport5 = new Sport()
+            {
+                Id = 5,
+                Name = "Swiming"
             };
         }
     }
