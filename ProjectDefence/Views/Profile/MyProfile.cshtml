@@ -16,25 +16,52 @@
 
           <h5 class="card-title mt-1">Your Journey Started From Here</h5>
           <p class="mb-0">Name: @Model.Name</p>
-          <p class="mb-0">Age: @Model.AgeStarted</p>
-          <p class="mb-0">Weight: @Model.WeightStarted</p>
-          <p class="mb-0">Height: @Model.HeightStarted</p>
+          <p class="mb-0">Age: @Model.AgeStarted years</p>
+          <p class="mb-0">Weight: @Model.WeightStarted kg</p>
+          <p class="mb-0">Height: @Model.HeightStarted cm</p>
         </div>
     </div>
 </form>
 </div>
 
-<div class="card col-4" style="width: 20rem; bottom: 290px; left: 60%">
+<div class="card col-4" style="width: 30rem; bottom: 290px; left: 60%">
     <form>
     <div>
         <div class="card-body">
 
           <h5 class="card-title mt-1">Your Current State</h5>
-          <p class="mb-0">Age: @Model.CurrentAge</p>
-          <p class="mb-0">Weight: @Model.CurrentWeight</p>
-          <p class="mb-0">Height: @Model.HeightStarted</p>
+          <p class="mb-0">Age: @Model.CurrentAge years | Update Your Age: <input style="width: 50px; height: 20px"/></p>
+          <p class="mb-0">Weight: @Model.CurrentWeight kg  | Update Your Weight: <input style="width: 50px; height: 20px"/></p></p>
+          <p class="mb-0">Height: @Model.CurrentHeight cm  | Update Your Height: <input style="width: 50px; height: 20px"/></p></p>
           <p class="mb-0">Type Of Sport: @Model.TypeOfSport</p>
           <p class="mb-0">Set Goals: @Model.SetGoals</p>
+        </div>
+    </div>
+</form>
+</div>
+
+<div class="card col-4" style="width: 20rem; bottom: 230px; left: 40%">
+    <input class="btn btn-success btn-lg" type="submit" value="Save" />
+</div>
+
+<div class="card col-10" style="width: 20rem; bottom: 150px; left: 10%">
+    <form>
+    <div>
+        <div class="card-body">
+          <h5 class="card-title mt-1">Your Fitness Diary</h5>
+          <textarea name="textarea" rows="20" cols="60" aria-required="true" asp-for="@Model.SetGoals"> </textarea>
+        </div>
+    </div>
+</form>
+</div>
+
+
+<div class="card col-3" style="width: 20rem; bottom: 700px; left: 60%">
+    <form>
+    <div>
+        <div class="card-body">
+          <h5 class="card-title mt-1">Workout Plan</h5>
+          <textarea name="textarea" rows="10" cols="40" aria-required="true" asp-for="@Model.SetGoals"> </textarea>
         </div>
     </div>
 </form>

@@ -4,6 +4,7 @@ using Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ProjectDefence.Controllers
 {
@@ -20,11 +21,14 @@ namespace ProjectDefence.Controllers
         }
 
         [HttpGet]
-        public IActionResult MyProfile()
+        public async Task<IActionResult> MyProfile()
         {
             if (User?.Identity?.IsAuthenticated ?? false)
             {
-                var model = new ProfileViewModel();
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
+                var model = await _profileService.GetUserProfile(user);
+               
                 return View(model);
             }
             return RedirectToAction("Index", "Home");
@@ -38,8 +42,8 @@ namespace ProjectDefence.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            await _profileService.GetUserProfile(model);
-            return View(model);
+            var resultModel = await _profileService.GetUserProfile(model);
+            return View(resultModel);
         }
     }
 }

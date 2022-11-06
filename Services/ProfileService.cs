@@ -2,6 +2,7 @@
 using DataModels.Models;
 using Interfaces;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using ProjectDefence.Data;
 using System;
 using System.Collections.Generic;
@@ -22,9 +23,39 @@ namespace Services
             _userManager = userManager;
         }
 
-        public async Task GetUserProfile(ProfileViewModel model)
+        public async Task<ProfileViewModel> GetUserProfile(User user)
         {
-            var user = _userManager.Users.FirstOrDefault(u => u.Id == model.UserId);
+            if (user == null)
+            {
+                throw new Exception("Something went wrong with you profile");
+            }
+
+            var client = await _context.Clients.Include(c => c.User).FirstOrDefaultAsync(cl => cl.UserId == user.Id);
+
+            if (client == null)
+            {
+                throw new Exception("Something went wrong with you client profile");
+            }
+
+            return new ProfileViewModel()
+            {
+                Id = client.Id,
+                UserId = client.UserId,
+                Name = $"{client.User.FirstName} {client.User.LastName}",
+                AgeStarted = client.AgeStarted.HasValue ? client.AgeStarted.Value : 0,
+                WeightStarted = client.WeightStarted.HasValue ? client.WeightStarted.Value : 1,
+                HeightStarted = client.HeightStarted.HasValue ? client.HeightStarted.Value : 0,
+                TypeOfSport = client.TypeOfSport,
+                SetGoals = client.SetGoals,
+                Trainer = client.Trainer,
+                WorkoutPlan = client.WorkoutPlan,
+                CurrentAge = client.CurrentAge,
+                CurrentHeight = client.CurrentHeight,
+                CurrentWeight = client.CurrentWeight,
+                ClientNotes = client.ClientNotes,
+            };
         }
+
+
     }
 }
