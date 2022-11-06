@@ -100,5 +100,15 @@ namespace ProjectDefence.Controllers
             };
             return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> SetMyProfile(SetMyProfileViewModel model)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
+            await _profileService.SetUserProfile(user, model);
+
+            return RedirectToAction("MyProfile", "Profile");
+        }
     }
 }

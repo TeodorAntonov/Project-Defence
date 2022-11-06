@@ -94,5 +94,28 @@ namespace Services
             Id = s.Id,
             Name = s.Name,
         });
+
+        public async Task SetUserProfile(User user, SetMyProfileViewModel model)
+        {
+
+            if (user == null)
+            {
+                throw new Exception("Something went wrong with you profile");
+            }
+
+            var client = await _context.Clients.Include(c => c.User).FirstOrDefaultAsync(cl => cl.UserId == user.Id);
+
+
+            if (client == null)
+            {
+                throw new Exception("Something went wrong with you client profile");
+            }
+
+            client.AgeStarted = model.Age;
+            client.WeightStarted = model.Weight;
+            client.HeightStarted = model.Height;
+
+            await _context.SaveChangesAsync();
+        }
     }
 }
