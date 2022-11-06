@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectDefence.Data;
 
@@ -11,9 +12,10 @@ using ProjectDefence.Data;
 namespace ProjectDefence.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221106121206_ClientAdminSetDirectly")]
+    partial class ClientAdminSetDirectly
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,13 +74,6 @@ namespace ProjectDefence.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Clients");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            UserId = "66d57c86-b900-4152-baf0-38d1a6c7a213"
-                        });
                 });
 
             modelBuilder.Entity("DataModels.Entities.Exercise", b =>
@@ -361,9 +356,9 @@ namespace ProjectDefence.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "66d57c86-b900-4152-baf0-38d1a6c7a213",
+                            Id = "29edcca3-2453-4e57-848a-a5456e0c357b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9a0b1232-ecdf-4766-98c6-595aadf9ddcc",
+                            ConcurrencyStamp = "fa68493a-126e-4852-a3a0-e521c8654f4a",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -371,9 +366,9 @@ namespace ProjectDefence.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMINISTRATOR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMHSLtGdb1U4QCdkMi/jLDl4ACvGty6PI8ViPvKgJS6Qz9kuG0EEdVWSThdwJSUw0g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHVDVlBWfpcvUwj7El3u3+rKPZDDSgeiIFsBTD/i5K27n3Mg6oEfoSy0unTh7QWoCQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "08a196df-3d65-4e15-8b28-e1241a193aaa",
+                            SecurityStamp = "3bcf339e-9b85-4996-98a5-3db829b6c395",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });

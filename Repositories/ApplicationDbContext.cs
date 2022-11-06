@@ -20,7 +20,7 @@ namespace ProjectDefence.Data
         private Exercise Exercise3 { get; set; }
         private Exercise Exercise4 { get; set; }
         private Exercise Exercise5 { get; set; }
-
+        private Client Client1 { get; set; }
         private Sport Sport1 { get; set; }
         private Sport Sport2 { get; set; }
         private Sport Sport3 { get; set; }
@@ -43,6 +43,9 @@ namespace ProjectDefence.Data
         {
             SeedAdmin();
             builder.Entity<User>().HasData(AdminUser);
+
+            SeedClient(AdminUser);
+            builder.Entity<Client>().HasData(Client1);
 
             SeedTrainers();
             builder.Entity<Trainer>().HasData(Trainer1, Trainer2, Trainer3);
@@ -196,6 +199,15 @@ namespace ProjectDefence.Data
             {
                 Id = 5,
                 Name = "Swiming"
+            };
+        }
+
+        private void SeedClient(User user)
+        {
+            Client1 = new Client()
+            {
+                Id = 1,
+                UserId = user.Id,
             };
         }
     }

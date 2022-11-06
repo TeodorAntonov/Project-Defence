@@ -4,6 +4,7 @@ using Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ProjectDefence.Data;
 using System.Security.Claims;
 
 namespace ProjectDefence.Controllers
@@ -13,11 +14,13 @@ namespace ProjectDefence.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly IProfileService _profileService;
+        private readonly ApplicationDbContext _context;
 
-        public ProfileController(UserManager<User> userManager, IProfileService profileService)
+        public ProfileController(UserManager<User> userManager, IProfileService profileService, ApplicationDbContext context)
         {
             _userManager = userManager;
             _profileService = profileService;
+            _context = context;
         }
 
         [HttpGet]
@@ -28,24 +31,74 @@ namespace ProjectDefence.Controllers
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
                 var model = await _profileService.GetUserProfile(user);
-               
+
                 return View(model);
             }
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> MyProfile(string userId, ProfileViewModel model)
+        [HttpGet]
+        public async Task<IActionResult> UpdateMyProfile()
         {
-            if (!ModelState.IsValid)
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
+            if (user == null)
             {
-                return RedirectToAction("Index", "Home");
+                return BadRequest();
             }
 
+            var client = _context.Clients.FirstOrDefault(c => c.UserId == user.Id);
+            if (client == null)
+            {
+                return BadRequest();
+            }
+
+            UpdateMyProfileViewModel model = new UpdateMyProfileViewModel()
+            {
+                Age = client.CurrentAge,
+                Weight = client.CurrentWeight,
+                Height = client.CurrentHeight,
+                SetGoals = client.SetGoals,
+                Trainer = client.Trainer,
+                TypeOfSports = _profileService.GetSports(),
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateMyProfile(UpdateMyProfileViewModel model)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
             await _profileService.UpdateUserProfile(user, model);
 
             return RedirectToAction("MyProfile", "Profile");
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> SetMyProfile()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
+            if (user == null)
+            {
+                return BadRequest();
+            }
+
+            var client = _context.Clients.FirstOrDefault(c => c.UserId == user.Id);
+            if (client == null)
+            {
+                return BadRequest();
+            }
+
+            SetMyProfileViewModel model = new SetMyProfileViewModel()
+            {
+                Age = client.AgeStarted,
+                Weight = client.WeightStarted,
+                Height = client.HeightStarted,
+            };
+            return View(model);
         }
     }
 }

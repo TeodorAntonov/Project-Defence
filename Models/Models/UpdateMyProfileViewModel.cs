@@ -19,6 +19,7 @@ namespace DataModels.Models
         public string? SetGoals { get; set; }
         public string? Trainer { get; set; }
         public string? WorkoutPlan { get; set; }
+        public int TypeOfSportId { get; set; }
         public IEnumerable<SportViewModel>? TypeOfSports { get; set; }
 
     }

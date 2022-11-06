@@ -43,7 +43,7 @@ namespace Services
                 UserId = client.UserId,
                 Name = $"{client.User.FirstName} {client.User.LastName}",
                 AgeStarted = client.AgeStarted.HasValue ? client.AgeStarted.Value : 0,
-                WeightStarted = client.WeightStarted.HasValue ? client.WeightStarted.Value : 1,
+                WeightStarted = client.WeightStarted.HasValue ? client.WeightStarted.Value : 0,
                 HeightStarted = client.HeightStarted.HasValue ? client.HeightStarted.Value : 0,
                 TypeOfSport = client.TypeOfSport,
                 SetGoals = client.SetGoals,
@@ -56,7 +56,7 @@ namespace Services
             };
         }
 
-        public async Task UpdateUserProfile(User user, ProfileViewModel model)
+        public async Task UpdateUserProfile(User user, UpdateMyProfileViewModel model)
         {
             if (user == null)
             {
@@ -71,18 +71,24 @@ namespace Services
                 throw new Exception("Something went wrong with you client profile");
             }
 
-            client.CurrentAge = model.CurrentAge;
-            client.CurrentWeight = model.CurrentWeight;
-            client.CurrentHeight = model.CurrentHeight;
-            client.ClientNotes = model.ClientNotes;
-            client.TypeOfSport = model.TypeOfSport;
+            if (!GetSports().Any(s => s.Id == model.TypeOfSportId))
+            {
+                throw new Exception ("Sport does not exist.");
+            }
+
+            client.CurrentAge = model.Age;
+            client.CurrentWeight = model.Weight;
+            client.CurrentHeight = model.Height;
+            client.TypeOfSport = GetSports().FirstOrDefault(s => s.Id == model.TypeOfSportId).Name ?? null;
             client.Trainer = model.Trainer;
             client.WorkoutPlan = model.WorkoutPlan;
+            client.SetGoals = model.SetGoals;
+            client.ClientNotes = client.ClientNotes + Environment.NewLine + "|| RECORD ON " + DateTime.UtcNow.ToString("dd/mm/yyy")+ ": " + model.Notes;
 
             await _context.SaveChangesAsync();
         }
 
-        private IEnumerable<SportViewModel> GetSports()
+        public IEnumerable<SportViewModel> GetSports()
         => this._context.Sports.Select(s => new SportViewModel()
         {
             Id = s.Id,

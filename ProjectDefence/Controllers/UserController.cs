@@ -4,6 +4,7 @@ using DataModels.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ProjectDefence.Data;
 
 namespace ProjectDefence.Controllers
 {
@@ -12,12 +13,17 @@ namespace ProjectDefence.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly RoleManager<IdentityRole> _roleInManager;
+        private readonly ApplicationDbContext _context;
 
-        public UserController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleInManager)
+        public UserController(UserManager<User> userManager, 
+                              SignInManager<User> signInManager, 
+                              RoleManager<IdentityRole> roleInManager,
+                              ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleInManager = roleInManager;
+            _context = context;
         }
 
         [HttpGet]
@@ -90,6 +96,14 @@ namespace ProjectDefence.Controllers
 
             if (result.Succeeded)
             {
+                var client = new Client()
+                {
+                    UserId = user.Id,
+                };
+
+                await _context.Clients.AddAsync(client);
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction("Login", "User");
             }
 
