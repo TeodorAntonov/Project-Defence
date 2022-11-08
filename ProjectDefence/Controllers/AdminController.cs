@@ -56,6 +56,52 @@ namespace ProjectDefence.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> EditGym(int gymId)
+        {
+            var model = await _adminService.GetGymById(gymId);
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditGym(int gymId, AddGymViewModel model)
+        {
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            if (gymId == null)
+            {
+                return NotFound();
+            }
+
+            bool isSuccess = await _adminService.EditGymAsync(gymId, model);
+
+            if (isSuccess)
+            {
+                return RedirectToAction("All", "Gyms");
+            }
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> DeleteGym(int gymId)
+        {
+            if (gymId == null)
+            {
+                return BadRequest("There is no such a Gym. Go Back.");
+            }
+            await _adminService.DeleteGymAsync(gymId);
+
+            return RedirectToAction("All", "Gyms");
+        }
+
+        [HttpGet]
         public IActionResult AddTrainerToSystem()
         {
             var model = new TrainerViewModel();
@@ -73,6 +119,52 @@ namespace ProjectDefence.Controllers
 
             await _adminService.AddTrainerAsync(model);
             return RedirectToAction(nameof(AdminPanel));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditTrainer(int trainerId)
+        {
+            var model = await _adminService.GetTrainerById(trainerId);
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditTrainer(int trainerId, AddTrainerViewModel model)
+        {
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            if (trainerId == null)
+            {
+                return NotFound();
+            }
+
+            bool isSuccess = await _adminService.EditTrainerAsync(trainerId, model);
+
+            if (isSuccess)
+            {
+                return RedirectToAction("AllTrainers", "Trainers");
+            }
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> DeleteTrainer(int trainerId)
+        {
+            if (trainerId == null)
+            {
+                return BadRequest("There is no such a Gym. Go Back.");
+            }
+            await _adminService.DeleteTrainerAsync(trainerId);
+
+            return RedirectToAction("AllTrainers", "Trainers");
         }
 
         [HttpGet]

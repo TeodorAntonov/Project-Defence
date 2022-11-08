@@ -75,7 +75,7 @@ namespace ProjectDefence.Data
                 FirstName = "Admin",
                 LastName = "User"
             };
-
+            
             AdminUser.PasswordHash = hasher.HashPassword(AdminUser, "Admin1!");
         }
 

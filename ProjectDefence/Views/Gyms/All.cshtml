@@ -25,9 +25,9 @@
             </form>
              @if (User?.IsInRole("Administrator") ?? false)
                {
-                  <a asp-controller="Admin" asp-action="EditGym" asp-route-id="@gym.Id" class="btn btn-primary mb-3">Edit</a>
+                  <a asp-controller="Admin" asp-action="EditGym" asp-route-gymId="@gym.Id" class="btn btn-primary mb-3">Edit</a>
                    <span></span>
-                  <a asp-controller="Admin" asp-action="DeleteGym" asp-route-id="@gym.Id" class="btn btn-danger mb-3">Delete</a>
+                  <a asp-controller="Admin" asp-action="DeleteGym" asp-route-gymId="@gym.Id" class="btn btn-danger mb-3">Delete</a>
                }
         </div>
     }

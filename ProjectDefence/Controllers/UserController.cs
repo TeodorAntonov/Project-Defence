@@ -131,6 +131,7 @@ namespace ProjectDefence.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        //TO SET THE ADMIN USER ROLE FIRST TURN ON THE PROJECT. THEN ADD TO THE URL /User/AddAdminUser AND PRESS ENTER 
         [AllowAnonymous]
         public async Task<IActionResult> AddAdminUser()
         {
