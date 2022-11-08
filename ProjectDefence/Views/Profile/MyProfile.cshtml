@@ -11,16 +11,16 @@
 
 <div class="card col-4" style="width: 20rem; margin-bottom:100px; left: 10%">
     <form>
-    <div>
-        <div class="card-body">
+        <div>
+            <div class="card-body">
 
-          <h5 class="card-title mt-1">Your Journey Started From Here</h5>
-          <p class="mb-0">Name: @Model.Name</p><p></p>
-          <p class="mb-0">Age: @Model.AgeStarted years</p><p></p>
-          <p class="mb-0">Weight: @Model.WeightStarted kg</p><p></p>
-          <p class="mb-0">Height: @Model.HeightStarted cm</p><p></p>
+                <h5 class="card-title mt-1">Your Journey Started From Here</h5>
+                <p class="mb-0">Name: @Model.Name</p><p></p>
+                <p class="mb-0">Age: @Model.AgeStarted years</p><p></p>
+                <p class="mb-0">Weight: @Model.WeightStarted kg</p><p></p>
+                <p class="mb-0">Height: @Model.HeightStarted cm</p><p></p>
+            </div>
         </div>
-    </div>
     </form>
 </div>
 
@@ -33,21 +33,21 @@
 
 <div class="card col-4" style="width: 30rem; bottom: 290px; left: 60%">
     <form>
-    <div>
-        <div class="card-body">
+        <div>
+            <div class="card-body">
 
-          <h5 class="card-title mt-1">Your Current State:</h5>
-          <p class="mb-0">Age: @Model.CurrentAge years</p><p></p>
-          <p class="mb-0">Weight: @Model.CurrentWeight kg</p><p></p>
-          <p class="mb-0">Height: @Model.CurrentHeight cm</p><p></p>
-          <p class="mb-0">Type Of Sport: @Model.TypeOfSport</p><p></p>
-          <p class="mb-0">Set Goals: @Model.SetGoals</p>
+                <h5 class="card-title mt-1">Your Current State:</h5>
+                <p class="mb-0">Age: @Model.CurrentAge years</p><p></p>
+                <p class="mb-0">Weight: @Model.CurrentWeight kg</p><p></p>
+                <p class="mb-0">Height: @Model.CurrentHeight cm</p><p></p>
+                <p class="mb-0">Type Of Sport: @Model.TypeOfSport</p><p></p>
+                <p class="mb-0">Set Goals: @Model.SetGoals</p>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
 </div>
 
-@if(@Model.AgeStarted > 0 && @Model.WeightStarted > 0 && @Model.HeightStarted > 0)
+@if (@Model.AgeStarted > 0 && @Model.WeightStarted > 0 && @Model.HeightStarted > 0)
 {
     <div class="card col-4" style="width: 20rem; bottom: 230px; left: 40%">
         <a class="btn btn-success btn-lg" asp-controller="Profile" asp-action="UpdateMyProfile">Update My Profile</a>
@@ -56,24 +56,27 @@
 
 <div class="card col-10" style="width: 20rem; bottom: 150px; left: 10%">
     <form>
-    <div>
-        <div class="card-body">
-          <h5 class="card-title mt-1">Your Fitness Diary</h5>
-          <text name="textarea" rows="20" cols="60" aria-required="true">@Model.ClientNotes</text>
+        <div>
+            <div class="card-body">
+                <h5 class="card-title mt-1">Your Fitness Diary</h5>
+                <text name="textarea" rows="20" cols="60" aria-required="true">@Model.ClientNotes</text>
+            </div>
         </div>
-    </div>
-</form>
+        <div class="card col-4" style="width: 10rem; bottom: 2px; left: 1%">
+            <a class="btn btn-warning btn-lg" asp-controller="Profile" asp-action="ClearYourNotes">Clear All Your Notes</a>
+        </div>
+    </form>
 </div>
 
 
 <div class="card col-3" style="width: 20rem; bottom: 350px; left: 60%">
     <form>
-    <div>
-        <div class="card-body">
-          <h5 class="card-title mt-1">Workout Plan</h5>
-          <textarea name="textarea" rows="10" cols="40" aria-required="true" asp-for="@Model.WorkoutPlan"> </textarea>
+        <div>
+            <div class="card-body">
+                <h5 class="card-title mt-1">Workout Plan</h5>
+                <textarea name="textarea" rows="10" cols="40" aria-required="true" asp-for="@Model.WorkoutPlan"> </textarea>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
 </div>
 

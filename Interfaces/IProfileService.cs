@@ -9,5 +9,7 @@ namespace Interfaces
         Task UpdateUserProfile(User user, UpdateMyProfileViewModel model);
         Task SetUserProfile(User user, SetMyProfileViewModel model);
         IEnumerable<SportViewModel> GetSports();
+
+        Task ClearAllNotes(Client client);
     }
 }

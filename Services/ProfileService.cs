@@ -117,5 +117,11 @@ namespace Services
 
             await _context.SaveChangesAsync();
         }
+
+        public async Task ClearAllNotes(Client client)
+        {
+            client.ClientNotes = string.Empty;
+            await _context.SaveChangesAsync();
+        }
     }
 }

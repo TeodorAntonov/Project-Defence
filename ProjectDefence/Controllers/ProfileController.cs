@@ -110,5 +110,24 @@ namespace ProjectDefence.Controllers
 
             return RedirectToAction("MyProfile", "Profile");
         }
+
+        public async Task<ActionResult> ClearYourNotes(string confirm_value)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var client = _context.Clients.FirstOrDefault(c => c.UserId == user.Id);
+            if (client == null)
+            {
+                return BadRequest();
+            }
+            await _profileService.ClearAllNotes(client);
+
+            return RedirectToAction("MyProfile", "Profile");
+        }
     }
 }
