@@ -5,6 +5,7 @@ using Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ProjectDefence.Controllers
 {
@@ -156,6 +157,60 @@ namespace ProjectDefence.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> EditUser(string userId)
+        {
+            var model = await _adminService.GetUserById(userId);
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditUser(string userId, EditUserViewModel model)
+        {
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            if (userId == null)
+            {
+                return NotFound();
+            }
+
+            bool isSuccess = await _adminService.EditUserAsync(userId, model);
+
+            if (isSuccess)
+            {
+                return RedirectToAction("AdminPanel", "Admin");
+            }
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> DeleteUser(string userId)
+        {
+            var userIdAdmin = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (userId == userIdAdmin)
+            {
+                return BadRequest("You Can't Delete Yourself!");
+            }
+
+            if (userId == null)
+            {
+                return BadRequest("There is no such a User. Go Back.");
+            }
+
+            await _adminService.DeleteUserAsync(userId);
+
+            return RedirectToAction("AdminPanel", "Admin");
+        }
+
         public async Task<IActionResult> DeleteTrainer(int trainerId)
         {
             if (trainerId == null)
@@ -168,7 +223,7 @@ namespace ProjectDefence.Controllers
         }
 
         [HttpGet]
-        public async Task< IActionResult> RoleToUser()
+        public async Task<IActionResult> RoleToUser()
         {
             var model = new RoleToUserViewModel();
 

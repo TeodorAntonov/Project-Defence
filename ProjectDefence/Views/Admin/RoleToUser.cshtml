@@ -1,7 +1,7 @@
 ﻿@using DataModels.Models
 @model IEnumerable<RoleToUserViewModel>
 @{
-    ViewBag.Title = "Add Role To User";
+    ViewBag.Title = "All Users";
 }
 
 <h2 class="text-center">@ViewBag.Title</h2>
@@ -24,8 +24,8 @@
                         <text>| @role | </text>
                     }
                 
-                 <a class="btn btn-sm btn-primary">Update</a>
-                 <a class="btn btn-sm btn-danger">Delete</a>
+                 <a class="btn btn-sm btn-primary" asp-controller="Admin"  asp-action="EditUser" asp-route-userId="@user.Id">Update</a>
+                 <a class="btn btn-sm btn-danger" asp-controller="Admin"  asp-action="DeleteUser" asp-route-userId="@user.Id">Delete</a>
                  <hr />
            </div>
         }

@@ -176,5 +176,74 @@ namespace Services
                 ImageUrl = gym.ImageUrl,
             };
         }
+
+        public async Task<EditUserViewModel> GetUserById(string userId)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            var client = await _context.Clients.FirstOrDefaultAsync(c => c.UserId == user.Id);
+
+            return new EditUserViewModel()
+            {
+                Name = $"{user.FirstName} {user.LastName}",
+                AgeStarted = client.AgeStarted,
+                Email = user.Email,
+                CurrentAge = client.CurrentAge,
+                WeightCurrent = client.CurrentWeight,
+                WeightStarted = client.WeightStarted,
+                HeightStarted = client.HeightStarted,
+                HeightCurrent = client.CurrentHeight,
+                Notes = client.ClientNotes,
+                SetGoals = client.SetGoals,
+                Trainer = client.Trainer,
+                WorkoutPlan = client.WorkoutPlan,
+                TypeOfSport = client.TypeOfSport,
+            };
+        }
+
+        public async Task<bool> EditUserAsync(string userId, EditUserViewModel model)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            var client = await _context.Clients.FirstOrDefaultAsync(c => c.UserId == user.Id);
+            if (user != null || client != null)
+            {
+                user.Email = model.Email;
+                client.AgeStarted = model.AgeStarted;
+                client.CurrentAge = model.CurrentAge;
+                client.WeightStarted = model.WeightStarted;
+                client.CurrentWeight = model.WeightCurrent;
+                client.HeightStarted = model.HeightStarted;
+                client.CurrentHeight = model.HeightCurrent;
+                client.SetGoals = model.SetGoals;
+                client.Trainer = model.Trainer;
+                client.WorkoutPlan = model.WorkoutPlan;
+                client.TypeOfSport= model.TypeOfSport;
+                client.ClientNotes= model.Notes;
+
+                await _context.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
+        }
+
+        public async Task DeleteUserAsync(string userId)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            var client = await _context.Clients.FirstOrDefaultAsync(c => c.UserId == user.Id);
+
+            if (user == null)
+            {
+                throw new ArgumentException("No such user Id.");
+            }
+
+            if (client == null)
+            {
+                throw new ArgumentException("No such trainer Id.");
+            }
+
+            _context.Clients.Remove(client);
+            await _userManager.DeleteAsync(user);
+            await _context.SaveChangesAsync();
+        }
     }
 }

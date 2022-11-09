@@ -1,0 +1,83 @@
+﻿@using DataModels.Models
+@model EditUserViewModel
+@{
+    ViewBag.Title = "Watching User's Profile";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="mb-3">
+                <label asp-for="@Model.Name" class="form-label">Full Name</label>
+                <input asp-for="@Model.Name" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Email" class="form-label">Email</label>
+                <input asp-for="@Model.Email" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.AgeStarted" class="form-label">Age Of Beginning:</label>
+                <input asp-for="@Model.AgeStarted" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.AgeStarted" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.CurrentAge" class="form-label">Age Now:</label>
+                <input asp-for="@Model.CurrentAge" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.CurrentAge" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.WeightStarted" class="form-label">Weight When The Client Started:</label>
+                <input asp-for="@Model.WeightStarted" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.WeightStarted" class="text-danger"></span>
+            </div>
+             <div class="mb-3">
+                <label asp-for="@Model.WeightCurrent" class="form-label">Weight Now:</label>
+                <input asp-for="@Model.WeightCurrent" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.WeightCurrent" class="text-danger"></span>
+            </div>
+             <div class="mb-3">
+                <label asp-for="@Model.HeightStarted" class="form-label">Height When The Client Started:</label>
+                <input asp-for="@Model.HeightStarted" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.HeightStarted" class="text-danger"></span>
+            </div>
+             <div class="mb-3">
+                <label asp-for="@Model.HeightCurrent" class="form-label">Height Now:</label>
+                <input asp-for="@Model.HeightCurrent" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.HeightCurrent" class="text-danger"></span>
+            </div>
+             <div class="mb-3">
+                <label asp-for="@Model.Notes" class="form-label">Client's Fitness Diary:</label>
+                <input asp-for="@Model.Notes" class="form-control" aria-required="true" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.SetGoals" class="form-label">Client's Goals:</label>
+                <input asp-for="@Model.SetGoals" class="form-control" aria-required="true" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Trainer" class="form-label">Trainer:</label>
+                <input asp-for="@Model.Trainer" class="form-control" aria-required="true" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.WorkoutPlan" class="form-label">Workout Plan:</label>
+                <input asp-for="@Model.WorkoutPlan" class="form-control" aria-required="true" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.TypeOfSport" class="form-label">Type Of Sport:</label>
+                <input asp-for="@Model.TypeOfSport" class="form-control" aria-required="true" />
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-success" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
