@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectDefence.Data;
 
@@ -11,9 +12,10 @@ using ProjectDefence.Data;
 namespace ProjectDefence.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221110125252_AddedUserIdtoClientEntity")]
+    partial class AddedUserIdtoClientEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,40 +23,6 @@ namespace ProjectDefence.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("DataModels.Entities.Application", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsChecked")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telephone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Applications");
-                });
 
             modelBuilder.Entity("DataModels.Entities.Client", b =>
                 {
@@ -399,9 +367,9 @@ namespace ProjectDefence.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "922b5208-4e92-47db-9255-4e3154246f4b",
+                            Id = "502ad5c1-e534-4c05-9adf-d47d6bd7aa65",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "07a00b63-661c-414e-bef8-c9753ed1df76",
+                            ConcurrencyStamp = "ea08e008-4900-461b-9c37-0c046225df22",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -409,9 +377,9 @@ namespace ProjectDefence.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMINISTRATOR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDFqLy4aIkL7zEwNI7/Nf5n2EheIPvqff5asV4p9x/IUi5RGdiLuaiWY8Lv6t9rjqQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEkQpNzr8ZoBq/smmn5OxE7oYRJsMw3vVJV/TnKqjJUdb/6HpgpQ/I0PS3E54uNYBw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bc3419cc-030b-4d5e-9ea8-108984e3277f",
+                            SecurityStamp = "6dbe732a-6b01-4cc0-a97a-8045f4f295df",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });
@@ -597,17 +565,6 @@ namespace ProjectDefence.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("DataModels.Entities.Application", b =>
-                {
-                    b.HasOne("DataModels.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DataModels.Entities.Client", b =>

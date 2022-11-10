@@ -1,5 +1,31 @@
-﻿@{
+﻿@using DataModels.Entities
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> userManager
+@inject SignInManager<User> SignInManager
+@{
     ViewData["Title"] = "Home Page";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    if ((User?.IsInRole("Administrator") ?? false) && (User?.IsInRole("Client") ?? false))
+    {
+        <div class="card col-4" style="width: 20rem; margin-bottom:100px; Left: 90%">
+            <a class="btn btn-sm btn-warning" asp-controller="TrainerApplication" asp-action="ApplicationFormForTrainers">Wanna be Trainer? Join Us Now!</a>
+        </div>
+    }
+    else if ((User?.IsInRole("Client") ?? false) && (!User?.IsInRole("Trainer") == false))
+    {
+        <div class="card col-4" style="width: 20rem; margin-bottom:100px; Left: 90%">
+            <a class="btn btn-sm btn-warning" asp-controller="Admin" asp-action="EditUser">Wanna be Trainer? Join Us Now!</a>
+        </div>
+    }
+    else
+    {
+        <div class="card col-4" style="width: 20rem; margin-bottom:100px; Left: 90%">
+            <a class="btn btn-sm btn-warning">You are a Trainer!</a>
+        </div>
+    }
 }
 
 <div class="text-center">

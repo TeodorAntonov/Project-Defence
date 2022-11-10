@@ -38,6 +38,7 @@ namespace ProjectDefence.Data
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<WorkOutExercise> WorkOutExercises { get; set; }
         public DbSet<Sport> Sports { get; set; }
+        public DbSet<Application> Applications { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

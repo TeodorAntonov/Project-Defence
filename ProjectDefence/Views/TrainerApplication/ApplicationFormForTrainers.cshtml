@@ -1,0 +1,43 @@
+﻿@using DataModels.Models
+@model ApplicationFormForTrainersViewModel
+
+@{
+    ViewBag.Title = "Apply For a Trainer Position";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+<div class="row">
+    <h6 style="background-color: yellow">
+        IMPORTANT! To Become a Trainer you need to send us your professional Name/Nickname; your professional Email; your professional Telephome;
+        Please wright a motivantionl letter about your reason to become a trainer and Please Include your experience in it.
+        If You are approved it will appear a yellow mark with text "You are a Trainer!" under your profile button.
+    </h6>
+    <hr />
+    <hr />
+</div>
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form asp-action="ApplicationFormForTrainers">
+            <div class="mb-3">
+                <label asp-for="@Model.Name" class="form-label">Enter Your Professional Name:</label>
+                <input asp-for="@Model.Name" class="form-control" aria-required="true" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Email" class="form-label">Enter Your Professional Email</label>
+                <input asp-for="@Model.Email" class="form-control" aria-required="true" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Telephone" class="form-label">Enter Your Professional Telephone</label>
+                <input asp-for="@Model.Telephone" class="form-control" aria-required="true" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Description" class="form-label">Enter Motivational Letter</label>
+                <textarea asp-for="@Model.Description" class="form-control" aria-required="true" rows="20" cols="60"></textarea>
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>

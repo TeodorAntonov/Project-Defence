@@ -41,8 +41,9 @@ namespace Services
                 Experience = model.Experience,
                 IsAvailable = model.IsAvailable == "Yes" ? true : false,
                 ImageUrl = model.ImageUrl ?? null,
-
+                UserId = model.UserId ?? null,
             };
+
             await _context.Trainers.AddAsync(trainer);
             await _context.SaveChangesAsync();
         }
@@ -129,7 +130,8 @@ namespace Services
                 Experience = trainer.Experience, 
                 ImageUrl = trainer.ImageUrl,
                 Telephone = trainer.Telephone,
-                IsAvailable = trainer.IsAvailable ? "Yes" : "No"
+                IsAvailable = trainer.IsAvailable ? "Yes" : "No",
+                UserId = trainer.UserId ?? null,
             };
         }
 
@@ -145,6 +147,7 @@ namespace Services
                 trainer.Experience = model.Experience;
                 trainer.Telephone = model.Telephone;
                 trainer.IsAvailable = model.IsAvailable == "Yes"? true : false;
+                trainer.UserId = trainer.UserId ?? null;
 
                 await _context.SaveChangesAsync();
                 return true;

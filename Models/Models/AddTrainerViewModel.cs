@@ -17,5 +17,6 @@ namespace DataModels.Models
         public string? Experience { get; set; }
         public string? ImageUrl { get; set; }
         public string IsAvailable { get; set; } = "Yes";
+        public string? UserId { get; set; }
     }
 }

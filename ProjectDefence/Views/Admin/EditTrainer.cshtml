@@ -40,6 +40,10 @@
                 <input asp-for="@Model.IsAvailable" class="form-control" aria-required="true" />
                 <span asp-validation-for="IsAvailable" class="text-danger"></span>
             </div>
+             <div class="mb-3">
+                <label asp-for="@Model.UserId" class="form-label">Fill User's Id Who wants to be Trainer:</label>
+                <input asp-for="@Model.UserId" class="form-control" aria-required="true" />
+            </div>
             <div class="mb-3">
                 <input class="btn btn-primary" type="submit" value="Save" />
             </div>
