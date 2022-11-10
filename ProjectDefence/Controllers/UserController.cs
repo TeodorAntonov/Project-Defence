@@ -96,6 +96,7 @@ namespace ProjectDefence.Controllers
 
             if (result.Succeeded)
             {
+                await _userManager.AddToRolesAsync(user, new string[] { ConstantsRoles.ClientRole});
                 var client = new Client()
                 {
                     UserId = user.Id,
@@ -121,6 +122,7 @@ namespace ProjectDefence.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        //T0 INSERT THE ROLES INTO THE DATABASE YOU NEED MANUALY ENTER THIS ENDPOINT IN THE MAIN as /User/CreateRoles PAGE WITH NO LOGGED USER 
         [AllowAnonymous]
         public async Task<IActionResult> CreateRoles()
         {
@@ -135,8 +137,17 @@ namespace ProjectDefence.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> AddAdminUser()
         {
-            var email = "Administrator";
-            var user = await _userManager.FindByNameAsync(email);
+            var name = "Administrator";
+            var user = await _userManager.FindByNameAsync(name);
+
+            var Client1 = new Client()
+            {
+                UserId = user.Id,
+            };
+
+            await _context.Clients.AddAsync(Client1);
+            await _context.SaveChangesAsync();
+
             await _userManager.AddToRolesAsync(user, new string[] { ConstantsRoles.AdminRole, ConstantsRoles.ClientRole, ConstantsRoles.TrainerRole });
 
             return RedirectToAction("Index", "Home");

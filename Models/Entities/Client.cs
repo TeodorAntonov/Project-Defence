@@ -24,5 +24,7 @@ namespace DataModels.Entities
         public double? CurrentWeight { get; set; }
         public double? CurrentHeight { get; set; }
         public string? ClientNotes { get; set; }
+        public bool IsTrainer { get; set; }
+        public bool IsAdministrator { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectDefence.Data;
 
@@ -11,9 +12,10 @@ using ProjectDefence.Data;
 namespace ProjectDefence.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221109213408_RolesCheckersAdded")]
+    partial class RolesCheckersAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,6 +80,15 @@ namespace ProjectDefence.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Clients");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IsAdministrator = false,
+                            IsTrainer = false,
+                            UserId = "6042d310-87e9-4b1a-8195-963d67c69dce"
+                        });
                 });
 
             modelBuilder.Entity("DataModels.Entities.Exercise", b =>
@@ -360,9 +371,9 @@ namespace ProjectDefence.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8749f9a1-25ad-4072-bb61-725e2d03a44c",
+                            Id = "6042d310-87e9-4b1a-8195-963d67c69dce",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d4031e7f-39f4-46a9-acf0-96369158473e",
+                            ConcurrencyStamp = "29adc20a-bb0e-4188-8d90-2366939a33ce",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -370,9 +381,9 @@ namespace ProjectDefence.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMINISTRATOR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEILYEGcUNXcblCq1Awv+8tADHWP6pA6/JeKAlbyyw21h4J6grwbBt3N6eAGFTCMRqQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPCPWvAIx7i6gtoMxxC48OhOZuJnOKb1YhM0Dg/5X+q+jLmj3cBFy0MzNOzF9+LhTw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "91adaee9-3b6d-402e-a85e-7a837fcc6565",
+                            SecurityStamp = "4a81c4d5-0c2d-43b0-a566-ed93fae6eed5",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });

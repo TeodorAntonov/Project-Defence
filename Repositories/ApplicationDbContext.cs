@@ -44,8 +44,8 @@ namespace ProjectDefence.Data
             SeedAdmin();
             builder.Entity<User>().HasData(AdminUser);
 
-            SeedClient(AdminUser);
-            builder.Entity<Client>().HasData(Client1);
+            //SeedClient(AdminUser);
+            //builder.Entity<Client>().HasData(Client1);
 
             SeedTrainers();
             builder.Entity<Trainer>().HasData(Trainer1, Trainer2, Trainer3);
@@ -202,13 +202,13 @@ namespace ProjectDefence.Data
             };
         }
 
-        private void SeedClient(User user)
-        {
-            Client1 = new Client()
-            {
-                Id = 1,
-                UserId = user.Id,
-            };
-        }
+        //private void SeedClient(User user)
+        //{
+        //    Client1 = new Client()
+        //    {
+        //        Id = 1,
+        //        UserId = user.Id,
+        //    };
+        //}
     }
 }

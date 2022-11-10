@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -25,6 +26,8 @@ namespace DataModels.Models
         public string? Trainer { get; set; }
         public string? WorkoutPlan { get; set; }
         public string? TypeOfSport { get; set; }
+        public bool IsTrainer { get; set; }
+        public bool IsAdministrator { get; set; }
         public IEnumerable<SportViewModel>? TypeOfSports { get; set; }
     }
 }

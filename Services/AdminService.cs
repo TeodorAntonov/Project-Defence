@@ -197,6 +197,8 @@ namespace Services
                 Trainer = client.Trainer,
                 WorkoutPlan = client.WorkoutPlan,
                 TypeOfSport = client.TypeOfSport,
+                IsAdministrator = client.IsAdministrator,
+                IsTrainer = client.IsTrainer,
             };
         }
 
@@ -217,7 +219,27 @@ namespace Services
                 client.Trainer = model.Trainer;
                 client.WorkoutPlan = model.WorkoutPlan;
                 client.TypeOfSport= model.TypeOfSport;
-                client.ClientNotes= model.Notes;
+                client.ClientNotes = model.Notes;
+                client.IsAdministrator = model.IsAdministrator;
+                client.IsTrainer = model.IsTrainer;
+
+                if (client.IsAdministrator)
+                {
+                    await _userManager.AddToRolesAsync(user, new string[] { ConstantsRoles.AdminRole, ConstantsRoles.TrainerRole });
+                }
+                else
+                {
+                    await _userManager.RemoveFromRolesAsync(user, new string[] { ConstantsRoles.AdminRole, ConstantsRoles.TrainerRole });
+                }
+
+                if (client.IsTrainer)
+                {
+                    await _userManager.AddToRoleAsync(user, ConstantsRoles.TrainerRole );
+                }
+                else
+                {
+                    await _userManager.RemoveFromRoleAsync(user, ConstantsRoles.TrainerRole);
+                }
 
                 await _context.SaveChangesAsync();
                 return true;
@@ -236,12 +258,11 @@ namespace Services
                 throw new ArgumentException("No such user Id.");
             }
 
-            if (client == null)
+            if (client != null)
             {
-                throw new ArgumentException("No such trainer Id.");
+                _context.Clients.Remove(client);
             }
 
-            _context.Clients.Remove(client);
             await _userManager.DeleteAsync(user);
             await _context.SaveChangesAsync();
         }
