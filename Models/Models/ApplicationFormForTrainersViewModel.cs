@@ -10,6 +10,8 @@ namespace DataModels.Models
 {
     public class ApplicationFormForTrainersViewModel
     {
+        public string UserId { get; set; }
+        public string Username { get; set; }
         [Required]
         [StringLength(ConstantsData.MaxTrainerNameLenth, MinimumLength = ConstantsData.MinTrainerNameLenth)]
         public string Name { get; set; }

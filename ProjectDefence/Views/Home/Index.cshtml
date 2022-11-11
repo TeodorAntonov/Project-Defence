@@ -14,10 +14,10 @@
             <a class="btn btn-sm btn-warning" asp-controller="TrainerApplication" asp-action="ApplicationFormForTrainers">Wanna be Trainer? Join Us Now!</a>
         </div>
     }
-    else if ((User?.IsInRole("Client") ?? false) && (!User?.IsInRole("Trainer") == false))
+    else if ((User?.IsInRole("Client") ?? false) && (User?.IsInRole("Trainer") == false))
     {
         <div class="card col-4" style="width: 20rem; margin-bottom:100px; Left: 90%">
-            <a class="btn btn-sm btn-warning" asp-controller="Admin" asp-action="EditUser">Wanna be Trainer? Join Us Now!</a>
+            <a class="btn btn-sm btn-warning" asp-controller="TrainerApplication" asp-action="ApplicationFormForTrainers">Wanna be Trainer? Join Us Now!</a>
         </div>
     }
     else

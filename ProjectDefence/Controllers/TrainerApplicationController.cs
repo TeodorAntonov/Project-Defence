@@ -8,7 +8,7 @@ using System.Security.Claims;
 
 namespace ProjectDefence.Controllers
 {
-    [Authorize(Roles = "Administrator, Client")]
+    [Authorize(Roles = "Client")]
     public class TrainerApplicationController : Controller
     {
         private readonly IApplicationFormService _applicationForm;
@@ -34,11 +34,7 @@ namespace ProjectDefence.Controllers
         [HttpPost]
         public async Task<IActionResult> ApplicationFormForTrainers(ApplicationFormForTrainersViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
+            
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             await _applicationForm.CreateApplicationAsync(model, userId);

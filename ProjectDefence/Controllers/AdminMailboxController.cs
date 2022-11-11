@@ -1,5 +1,6 @@
 ﻿using DataModels.Entities;
 using DataModels.Models;
+using Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,18 +10,18 @@ namespace ProjectDefence.Controllers
     [Authorize]
     public class AdminMailboxController : Controller
     {
-        private readonly UserManager<User> _userManager;
-        public AdminMailboxController(UserManager<User> userManager)
+        private readonly IAdminMailboxService _adminMailboxService;
+        public AdminMailboxController(IAdminMailboxService adminMailboxService)
         {
-            _userManager = userManager;
+            _adminMailboxService = adminMailboxService;
         }
 
         [HttpGet]
-        public IActionResult AdminMailbox()
+        public async Task<IActionResult> GetAdminMailbox()
         {
             if (User?.Identity?.IsAuthenticated ?? false)
             {
-                var model = new AdminMailboxViewModel();
+                var model = await _adminMailboxService.GetAllApplicationsAsync();
                 return View(model);
             }
 

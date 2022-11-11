@@ -9,7 +9,7 @@
         @if (User?.IsInRole("Administrator") ?? false)
         {
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-controller="Admin" asp-action="AdminMailbox">Admin Mailbox</a>
+                <a class="nav-link text-dark" asp-controller="AdminMailbox" asp-action="GetAdminMailbox">Admin Mailbox</a>
             </li>
         }
         <li class="nav-item">
