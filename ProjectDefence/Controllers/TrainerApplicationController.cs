@@ -42,7 +42,13 @@ namespace ProjectDefence.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             await _applicationForm.CreateApplicationAsync(model, userId);
-            return RedirectToAction();
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult CancelForm()
+        {
+            return RedirectToAction("Index", "Home");
         }
     }
 }
