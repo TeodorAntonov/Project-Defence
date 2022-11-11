@@ -9,6 +9,9 @@ namespace Interfaces
 {
     public interface IAdminMailboxService
     {
-        Task<AdminMailboxViewModel> GetAllApplicationsAsync();
+        Task<AdminMailboxViewModel> GetunCkeckedApplicationsAsync();
+        Task<AdminMailboxViewModel> GetCheckedApplicationsAsync();
+        Task MoveToJunkAsync(int applicationId);
+        Task DeleteApplicationAsync(int applicationId);
     }
 }

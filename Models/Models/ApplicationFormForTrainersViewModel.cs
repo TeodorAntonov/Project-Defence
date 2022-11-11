@@ -10,6 +10,7 @@ namespace DataModels.Models
 {
     public class ApplicationFormForTrainersViewModel
     {
+        public int Id { get; set; }
         public string UserId { get; set; }
         public string Username { get; set; }
         [Required]
