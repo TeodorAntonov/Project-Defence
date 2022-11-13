@@ -10,6 +10,6 @@ namespace Interfaces
 {
     public interface IClientService
     {
-
+        Task<bool> ApplyingForTrainerAsync(User user, int trainerId);
     }
 }

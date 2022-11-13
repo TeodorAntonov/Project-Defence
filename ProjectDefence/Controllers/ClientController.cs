@@ -4,10 +4,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace ProjectDefence.Controllers
 {
-    [Authorize("Trainer")]
+    [Authorize]
     public class ClientController : Controller
     {
         private readonly UserManager<User> _userManager;
@@ -19,14 +20,27 @@ namespace ProjectDefence.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> ApplyForTrainer(string userId, int trainerId)
+        public async Task<ActionResult> ApplyForTrainer(int trainerId)
         {
-            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
             if (user == null)
             {
                 throw new Exception("There is no such user! Go Back!");
             }
-           // var model = await _clientService.GetClientsAsync(user);
+            var result = await _clientService.ApplyingForTrainerAsync(user, trainerId);
+
+            if (result)
+            {
+                return RedirectToAction("AlreadyApplied", "Clients");
+            }
+
+            return RedirectToAction("AllTrainers", "Trainers");
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> AlreadyApplied()
+        {
             return View();
         }
     }
