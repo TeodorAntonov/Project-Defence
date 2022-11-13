@@ -22,7 +22,10 @@
                 <p class="mb-0">Experience: @trainer.Experience</p>
                 <p class="mb-0">Can get more Clients: @trainer.IsAvailable</p>
             </div>
-
+            @if (@trainer.IsAvailable == "Yes")
+            {
+                 <a asp-controller="Client" asp-action="ApplyForTrainer" asp-route-trainerId="@trainer.Id" class="btn btn-danger mb-3">Apply for trainer</a>
+            }
             <form class="input-group-sm" asp-route-trainerId="@trainer.Id" asp-controller="Trainers" method="post"> </form>
             @if (User?.IsInRole("Administrator") ?? false)
                {

@@ -35,6 +35,7 @@ builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<IApplicationFormService, ApplicationFormService>();
 builder.Services.AddScoped<IAdminMailboxService, AdminMailboxService>();
 builder.Services.AddScoped<IExerciseService, ExerciseService>();
+builder.Services.AddScoped<IClientService, ClientService>();
 
 var app = builder.Build();
 

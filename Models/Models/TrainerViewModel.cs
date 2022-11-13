@@ -1,4 +1,6 @@
-﻿namespace DataModels.Models
+﻿using DataModels.Entities;
+
+namespace DataModels.Models
 {
     public class TrainerViewModel
     {
@@ -9,5 +11,6 @@
         public string ImageUrl { get; set; }
         public string? Experience { get; set; }
         public string IsAvailable { get; set; }
+        public int CientsRequestCount { get; set; } = 0;
     }
 }
