@@ -34,5 +34,7 @@
 
         public const int MaxDescriptionLength = 4000;
         public const int MinDescriptionLength = 1;
+
+        public const int MinPartialDescriptionLength = 15;
     }
 }

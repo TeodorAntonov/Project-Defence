@@ -141,31 +141,35 @@ namespace ProjectDefence.Data
             {
                 Id = 1,
                 Name = "Bench Press",
-
+                Description = "Push the bar while laying on a benech. You need to put your back streigth and tide on the bench."
             };
 
             Exercise2 = new Exercise()
             {
                 Id = 2,
-                Name = "Deadlift"
+                Name = "Deadlift",
+                Description= "Put your feet under the bar then grab the bar and lift it from the ground. Dont be in hurry!"
             };
 
             Exercise3 = new Exercise()
             {
                 Id = 3,
-                Name = "Squat"
+                Name = "Squat",
+                Description = "Put your shoulders under the bar then grab the bar and and get it out of the rack and sqaut. Dont be in hurry!"
             };
 
             Exercise4 = new Exercise()
             {
                 Id = 4,
-                Name = "Boxing"
+                Name = "Boxing",
+                Description = "Try to defence yourself while the opponent is beating. When you see a chance fight back."
             };
 
             Exercise5 = new Exercise()
             {
                 Id = 5,
-                Name = "Pull ups"
+                Name = "Pull ups",
+                Description = "Jump and and grab the bar however you like, just try to pull yourself as high as possible."
             };
         }
 

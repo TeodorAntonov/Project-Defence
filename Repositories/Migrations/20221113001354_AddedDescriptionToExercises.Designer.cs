@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectDefence.Data;
 
@@ -11,9 +12,10 @@ using ProjectDefence.Data;
 namespace ProjectDefence.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221113001354_AddedDescriptionToExercises")]
+    partial class AddedDescriptionToExercises
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,31 +142,26 @@ namespace ProjectDefence.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Description = "Push the bar while laying on a benech. You need to put your back streigth and tide on the bench.",
                             Name = "Bench Press"
                         },
                         new
                         {
                             Id = 2,
-                            Description = "Put your feet under the bar then grab the bar and lift it from the ground. Dont be in hurry!",
                             Name = "Deadlift"
                         },
                         new
                         {
                             Id = 3,
-                            Description = "Put your shoulders under the bar then grab the bar and and get it out of the rack and sqaut. Dont be in hurry!",
                             Name = "Squat"
                         },
                         new
                         {
                             Id = 4,
-                            Description = "Try to defence yourself while the opponent is beating. When you see a chance fight back.",
                             Name = "Boxing"
                         },
                         new
                         {
                             Id = 5,
-                            Description = "Jump and and grab the bar however you like, just try to pull yourself as high as possible.",
                             Name = "Pull ups"
                         });
                 });
@@ -407,9 +404,9 @@ namespace ProjectDefence.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8e925af2-06a6-483b-aa01-ce13c3c7b73a",
+                            Id = "856ddbb8-39e4-4b81-ae53-47d35b405a1e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bb7238ac-ac39-4e8a-8a4b-155041d0f2a9",
+                            ConcurrencyStamp = "1e8b80e0-acbc-4ffd-80a9-823c2fb2c005",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -417,9 +414,9 @@ namespace ProjectDefence.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMINISTRATOR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEABrrsLcVO6+5bB2CDxQN9PdUK9Vx7vNtA0gFYsTRwyQNuz40jacgGkkku8Cur7XvQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHVphScis5BpP/z+oNP1wVyz2AEgddVbzsKUwAHudjdpzyXiOXBNaHMcNjg3RKsteA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "47c3d1e7-cd16-48bf-92a3-7a9cb6b51cee",
+                            SecurityStamp = "46be8c88-ccd3-4454-8181-6a2491eb06c5",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });

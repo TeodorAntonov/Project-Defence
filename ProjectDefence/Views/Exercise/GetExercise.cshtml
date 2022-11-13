@@ -1,0 +1,17 @@
+﻿@using DataModels.Models
+@model ExerciseViewModel
+
+<h2 class="text-center">@Model.Name</h2>
+<hr />
+
+<div class="text-center row">
+        <img class="card-img-top" style="width: 18rem;"
+             src="@Model.ImageUrl" alt="Exercise Image">
+        <div class="card-body">
+            <hr />
+            <text>@Model.Description</text>
+        </div>
+       @* <form class="input-group-sm"  asp-controller="Exercise" method="post">
+            <input type="submit" value="Check More Here" class="fs-6 btn btn-success mb-3 p-2" />
+        </form>*@
+</div>

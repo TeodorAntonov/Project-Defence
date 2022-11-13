@@ -1,0 +1,28 @@
+﻿@using DataModels.Models
+@model IEnumerable<ExerciseViewModel>
+
+@{
+    ViewBag.Title = "All Exercises";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="text-center row">
+    @foreach (var exercise in Model)
+    {
+        <div class="card col-4" style="width: 20rem;">
+            <img class="card-img-top" style="width: 18rem;"
+             src="@exercise.ImageUrl" alt="Exercise Image">
+            <div class="card-body">
+
+                <h5 class="card-title mt-1">@exercise.Name</h5>
+                <hr />
+                <text>@exercise.PartialDescription</text>
+            </div>
+            <form class="input-group-sm" asp-controller="Exercise" asp-action="GetExercise" asp-route-exerciseId="@exercise.Id">
+                <input type="submit" value="Check More Here" class="fs-6 btn btn-success mb-3 p-2" />
+            </form>
+        </div>
+    }
+</div>

@@ -9,6 +9,7 @@ namespace Interfaces
 {
     public interface IExerciseService
     {
-        Task<IEnumerable<ExerciseViewModel>> GetAllExercies();
+        Task<IEnumerable<ExerciseViewModel>> GetAllExercisesAsync();
+        Task<ExerciseViewModel> GetExerciseAsync(int exerciseId);
     }
 }

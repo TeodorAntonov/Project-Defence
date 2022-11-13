@@ -11,9 +11,17 @@ namespace ProjectDefence.Controllers
             _exerciseService = exerciseService;
         }
 
-        public IActionResult GetAllExercies()
+        [HttpGet]
+        public async Task<IActionResult> AllExercises()
         {
-            var model = _exerciseService.GetAllExercies();
+            var model = await _exerciseService.GetAllExercisesAsync();
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetExercise(int exerciseId)
+        {
+            var model = await _exerciseService.GetExerciseAsync(exerciseId);
             return View(model);
         }
     }
