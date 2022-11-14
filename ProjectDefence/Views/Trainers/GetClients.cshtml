@@ -1,0 +1,38 @@
+﻿@using DataModels.Models
+@model IEnumerable<ClientViewModel>
+
+@{
+    ViewBag.Title = "Check Your Clients";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="text-center row">
+    @foreach (var application in Model.Applications)
+    {
+        <div class="card col-4" style="width: 20rem;">
+            <div class="card-body">
+                <p class="mb-0" style="color: darkblue">This is the user's Id and Name in the system If you decide to give any rights as trainer:</p>
+                <hr />
+                <p class="mb-0" style="border-style: double;">@application.UserId</p>
+                <br>User's Full Name:<br>
+                <p class="mb-0" style="border-style: double;">@application.Username</p>
+                <hr />
+                <hr />
+                <p class="mb-0">Applicant Professional Name: @application.Name</p>
+                <hr />
+                <p class="mb-0">Email: @application.Email</p>
+                <hr />
+                <p class="mb-0">Telephone: @application.Telephone</p>
+                <hr />
+                <h5 style="color: darkred; text-decoration: underline;">Motivational Letter:</h5>
+                <text class="mb-0">@application.Description</text>
+            </div>
+            <hr />
+            <div style="width: 30rem;">
+                <a asp-controller="AdminMailbox" asp-action="MoveToJunk" asp-route-applicationId="@application.Id" class="btn btn-danger mb-3">Move To Junk</a>
+            </div>
+        </div>
+    }
+</div>

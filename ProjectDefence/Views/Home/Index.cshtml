@@ -17,15 +17,13 @@
     else if ((User?.IsInRole("Client") ?? false) && (User?.IsInRole("Trainer") == false))
     {
         <div class="card col-4" style="width: 20rem; margin-bottom:100px; Left: 90%;">
-            <a class="btn btn-sm btn-warning" style="font-size: 20px" asp-controller="TrainerApplication" asp-action="ApplicationFormForTrainers">You are a Trainer! Check Your Clients</a>
+            <a class="btn btn-sm btn-warning" asp-controller="TrainerApplication" asp-action="ApplicationFormForTrainers">Wanna be Trainer? Join Us Now!</a>
         </div>
     }
     else
     {
         <div class="card col-4" style="width: 20rem; margin-bottom:100px; Left: 90%">
-            <a class="btn btn-sm btn-warning">You are a Trainer!</a>
-            <br>
-            <a class="btn btn-sm btn-info" asp-controller="Client" asp-action="CheckYourClients" style='font-size:20px'>Check Your Clients! <i class='far fa-handshake'></i></a>
+            <a class="btn btn-sm btn-info" asp-controller="Trainers" asp-action="GetClients" style='font-size:20px'>You are a Trainer! Check Your Clients! <i class='far fa-handshake'></i></a>
         </div>
     }
 }

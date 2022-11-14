@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace ProjectDefence.Controllers
 {
@@ -26,9 +27,10 @@ namespace ProjectDefence.Controllers
         }
 
         [HttpGet]
-        [Authorize("Trainer")]
-        public async Task<ActionResult> GetClients(string userId)
+        [Authorize(Roles ="Trainer")]
+        public async Task<ActionResult> GetClients()
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
             if (user == null)
             {
@@ -39,9 +41,10 @@ namespace ProjectDefence.Controllers
         }
 
         [HttpGet]
-        [Authorize("Trainer")]
-        public async Task<ActionResult> GetClientsRequests(string userId)
+        [Authorize(Roles = "Trainer")]
+        public async Task<ActionResult> GetClientsRequests()
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
             if (user == null)
             {
