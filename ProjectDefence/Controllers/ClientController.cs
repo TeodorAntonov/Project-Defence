@@ -30,9 +30,9 @@ namespace ProjectDefence.Controllers
             }
             var result = await _clientService.ApplyingForTrainerAsync(user, trainerId);
 
-            if (result)
+            if (!result)
             {
-                return RedirectToAction("AlreadyApplied", "Clients");
+                return RedirectToAction("AlreadyApplied", "Client");
             }
 
             return RedirectToAction("AllTrainers", "Trainers");
