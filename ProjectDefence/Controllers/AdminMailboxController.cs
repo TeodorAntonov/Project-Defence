@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ProjectDefence.Controllers
 {
-    [Authorize("Administrator")]
+    [Authorize(Roles = "Administrator")]
     public class AdminMailboxController : Controller
     {
         private readonly IAdminMailboxService _adminMailboxService;

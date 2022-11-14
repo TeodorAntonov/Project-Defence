@@ -9,7 +9,7 @@ using System.Security.Claims;
 
 namespace ProjectDefence.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class AdminController : Controller
     {
         private readonly UserManager<User> _userManager;
