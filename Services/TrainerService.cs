@@ -43,6 +43,7 @@ namespace Services
                 Id = c.Id,
                 ClientName = $"{c.User.FirstName} {c.User.LastName}",
                 Age = c.CurrentAge,
+                Email = c.User.Email,
                 Weight = c.CurrentWeight,
                 Height = c.CurrentHeight,
                 TypeOfSport = c.TypeOfSport,
@@ -63,6 +64,7 @@ namespace Services
             {
                 Id = c.Id,
                 ClientName = $"{c.User.FirstName} {c.User.LastName}",
+                Email = c.User.Email,
                 Age = c.CurrentAge,
                 Weight = c.CurrentWeight,
                 Height = c.CurrentHeight,
