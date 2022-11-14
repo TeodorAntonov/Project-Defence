@@ -31,7 +31,7 @@ namespace Services
 
         public async Task<IEnumerable<ClientViewModel>> GetClientsAsync(User user)
         {
-            var trainer = await _context.Trainers.FirstOrDefaultAsync(t => t.UserId == user.Id);
+            var trainer = await _context.Trainers.FirstOrDefaultAsync(t => t.User.Id == user.Id);
 
             if (trainer == null)
             {
