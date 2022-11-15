@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectDefence.Data;
 
@@ -11,9 +12,10 @@ using ProjectDefence.Data;
 namespace ProjectDefence.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221115143858_CollectionsMadeToNullable")]
+    partial class CollectionsMadeToNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,7 +93,7 @@ namespace ProjectDefence.Data.Migrations
                     b.Property<string>("SetGoals")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TrainerId")
+                    b.Property<int>("TrainerId")
                         .HasColumnType("int");
 
                     b.Property<int?>("TrainerId1")
@@ -409,9 +411,9 @@ namespace ProjectDefence.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "28dadbe7-013a-4ac0-9a86-03f82bdb93f1",
+                            Id = "47d8cdfd-3402-408a-9370-9f721b48b60f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cb68a4d7-a35e-4be6-9add-17f054341978",
+                            ConcurrencyStamp = "9d9bc4ed-2651-434d-9add-6b4645593ed5",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -419,9 +421,9 @@ namespace ProjectDefence.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMINISTRATOR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEALnxpiKCXi9x0LeqaVsY5hMqR0GIAp5EUJ58frp5yBtKIcg9QIlHW6yn6CXuJ1yiA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEL4NKxPmNtfvOaNIo5DxGL56SMypvm3aWBV3x8/oKJ7mwcmZLYkD/bPmDTOQaIaPww==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e18357e4-bf33-45a9-ba15-1caa176a071f",
+                            SecurityStamp = "dade3bdd-d421-42ec-b7b9-2adfcaa5e1b6",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });
@@ -624,7 +626,9 @@ namespace ProjectDefence.Data.Migrations
                 {
                     b.HasOne("DataModels.Entities.Trainer", "Trainer")
                         .WithMany("ClientsApplications")
-                        .HasForeignKey("TrainerId");
+                        .HasForeignKey("TrainerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DataModels.Entities.Trainer", null)
                         .WithMany("Clients")

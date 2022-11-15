@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectDefence.Data;
 
@@ -11,9 +12,10 @@ using ProjectDefence.Data;
 namespace ProjectDefence.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221115141243_ClientValueToBeChanged")]
+    partial class ClientValueToBeChanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,7 +93,7 @@ namespace ProjectDefence.Data.Migrations
                     b.Property<string>("SetGoals")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TrainerId")
+                    b.Property<int>("TrainerId")
                         .HasColumnType("int");
 
                     b.Property<int?>("TrainerId1")
@@ -305,7 +307,7 @@ namespace ProjectDefence.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 2,
+                            Id = 1,
                             Email = "ronnie@test.com",
                             Experience = "+20 years",
                             IsAvailable = true,
@@ -314,7 +316,7 @@ namespace ProjectDefence.Data.Migrations
                         },
                         new
                         {
-                            Id = 3,
+                            Id = 2,
                             Email = "lee.bruce@test.com",
                             Experience = "15 years",
                             IsAvailable = true,
@@ -323,7 +325,7 @@ namespace ProjectDefence.Data.Migrations
                         },
                         new
                         {
-                            Id = 4,
+                            Id = 3,
                             Email = "rockybalboa@test.com",
                             Experience = "10 years",
                             IsAvailable = true,
@@ -409,9 +411,9 @@ namespace ProjectDefence.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "28dadbe7-013a-4ac0-9a86-03f82bdb93f1",
+                            Id = "4785b614-9a1f-4eff-923b-91849601b420",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cb68a4d7-a35e-4be6-9add-17f054341978",
+                            ConcurrencyStamp = "8b6d785c-fdcf-4e37-b781-28d319bf053f",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -419,9 +421,9 @@ namespace ProjectDefence.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMINISTRATOR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEALnxpiKCXi9x0LeqaVsY5hMqR0GIAp5EUJ58frp5yBtKIcg9QIlHW6yn6CXuJ1yiA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPGVqSrgs3CQHjRGOlYtObGq8yk0jsR4rjCEdWc/JSBsfLc8DDFmqJ9Myr36JDLHYw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e18357e4-bf33-45a9-ba15-1caa176a071f",
+                            SecurityStamp = "6c3f807f-40fb-4846-b994-d09114f2b8cd",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });
@@ -624,7 +626,9 @@ namespace ProjectDefence.Data.Migrations
                 {
                     b.HasOne("DataModels.Entities.Trainer", "Trainer")
                         .WithMany("ClientsApplications")
-                        .HasForeignKey("TrainerId");
+                        .HasForeignKey("TrainerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DataModels.Entities.Trainer", null)
                         .WithMany("Clients")

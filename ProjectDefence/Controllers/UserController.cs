@@ -100,6 +100,7 @@ namespace ProjectDefence.Controllers
                 var client = new Client()
                 {
                     UserId = user.Id,
+                    User = user,
                 };
 
                 await _context.Clients.AddAsync(client);

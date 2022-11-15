@@ -12,13 +12,15 @@ namespace DataModels.Entities
         public int Id { get; set; }
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
         public int? AgeStarted { get; set; }
         public double? WeightStarted { get; set; }
         public double? HeightStarted { get; set; }
         public string? TypeOfSport { get; set; }
         public string? SetGoals { get; set; }
-        public string? Trainer { get; set; }
+        [ForeignKey(nameof(Trainer))]
+        public int? TrainerId { get; set; }
+        public Trainer? Trainer { get; set; }
         public string? WorkoutPlan { get; set; }
         public int? CurrentAge { get; set; }
         public double? CurrentWeight { get; set; }

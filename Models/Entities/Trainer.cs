@@ -14,8 +14,8 @@ namespace DataModels.Entities
         [ForeignKey(nameof(User))]
         public string? UserId { get; set; }
         public virtual User? User { get; set; }
-        public virtual ICollection<Client> Clients { get; set; } = new HashSet<Client>();
-        public virtual ICollection<Client> ClientsApplications { get; set; } = new HashSet<Client>();
-        public virtual ICollection<Gym> Gyms { get; set; } = new HashSet<Gym>();
+        public virtual ICollection<Client>? Clients { get; set; } = new HashSet<Client>();
+        public virtual ICollection<Client>? ClientsApplications { get; set; } = new HashSet<Client>();
+        public virtual ICollection<Gym>? Gyms { get; set; } = new HashSet<Gym>();
     }
 }

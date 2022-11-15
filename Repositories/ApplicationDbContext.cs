@@ -9,9 +9,9 @@ namespace ProjectDefence.Data
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         private User AdminUser { get; set; }
-        private Trainer Trainer1 { get; set; }
         private Trainer Trainer2 { get; set; }
         private Trainer Trainer3 { get; set; }
+        private Trainer Trainer4 { get; set; }
         private Gym Gym1 { get; set; }
         private Gym Gym2 { get; set; }
         private Gym Gym3 { get; set; }
@@ -42,6 +42,8 @@ namespace ProjectDefence.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Client>().HasOne(c => c.Trainer).WithMany(t => t.ClientsApplications);
+
             SeedAdmin();
             builder.Entity<User>().HasData(AdminUser);
 
@@ -49,7 +51,7 @@ namespace ProjectDefence.Data
             //builder.Entity<Client>().HasData(Client1);
 
             SeedTrainers();
-            builder.Entity<Trainer>().HasData(Trainer1, Trainer2, Trainer3);
+            builder.Entity<Trainer>().HasData(Trainer2, Trainer3, Trainer4);
 
             SeedGyms();
             builder.Entity<Gym>().HasData(Gym1, Gym2, Gym3);
@@ -82,9 +84,9 @@ namespace ProjectDefence.Data
 
         private void SeedTrainers()
         {
-            this.Trainer1 = new Trainer()
+            this.Trainer2 = new Trainer()
             {
-                Id = 1,
+                Id = 2,
                 Name = "Ronnie Colman",
                 Email = "ronnie@test.com",
                 Telephone = "0888777666",
@@ -92,18 +94,18 @@ namespace ProjectDefence.Data
                 IsAvailable = true,
             };
 
-            this.Trainer2 = new Trainer()
+            this.Trainer3 = new Trainer()
             {
-                Id = 2,
+                Id = 3,
                 Name = "Bruce Lee",
                 Email = "lee.bruce@test.com",
                 Telephone = "0809777111",
                 Experience = "15 years",
                 IsAvailable = true,
             };
-            this.Trainer3 = new Trainer()
+            this.Trainer4 = new Trainer()
             {
-                Id = 3,
+                Id = 4,
                 Name = "Rocky Balboa",
                 Email = "rockybalboa@test.com",
                 Telephone = "0899555222",

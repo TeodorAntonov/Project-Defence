@@ -47,7 +47,7 @@ namespace Services
                 HeightStarted = client.HeightStarted.HasValue ? client.HeightStarted.Value : 0,
                 TypeOfSport = client.TypeOfSport,
                 SetGoals = client.SetGoals,
-                Trainer = client.Trainer,
+                //Trainer = client.Trainer,
                 WorkoutPlan = client.WorkoutPlan,
                 CurrentAge = client.CurrentAge,
                 CurrentHeight = client.CurrentHeight,
@@ -80,7 +80,7 @@ namespace Services
             client.CurrentWeight = model.Weight;
             client.CurrentHeight = model.Height;
             client.TypeOfSport = GetSports().FirstOrDefault(s => s.Id == model.TypeOfSportId).Name ?? null;
-            client.Trainer = model.Trainer;
+            //client.Trainer = model.Trainer;
             client.WorkoutPlan = model.WorkoutPlan;
             client.SetGoals = model.SetGoals;
             client.ClientNotes = client.ClientNotes + Environment.NewLine + "|| RECORD ON " + DateTime.UtcNow.ToString("dd/mm/yyy")+ ": " + model.Notes;

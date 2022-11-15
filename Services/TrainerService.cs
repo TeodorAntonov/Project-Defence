@@ -60,6 +60,8 @@ namespace Services
                 throw new Exception("There is no such Trainer! Go Back!");
             }
 
+            trainer.ClientsApplications = await _context.Clients.Include(c =>c.User).Where(c => c.TrainerId == trainer.Id).ToListAsync();
+
             return trainer.ClientsApplications.Select(c => new ClientViewModel() 
             {
                 Id = c.Id,

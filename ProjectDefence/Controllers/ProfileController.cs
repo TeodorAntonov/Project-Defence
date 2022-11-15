@@ -59,7 +59,7 @@ namespace ProjectDefence.Controllers
                 Weight = client.CurrentWeight,
                 Height = client.CurrentHeight,
                 SetGoals = client.SetGoals,
-                Trainer = client.Trainer,
+                //Trainer = client.Trainer,
                 TypeOfSports = _profileService.GetSports(),
             };
             return View(model);

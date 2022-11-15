@@ -197,7 +197,7 @@ namespace Services
                 HeightCurrent = client.CurrentHeight,
                 Notes = client.ClientNotes,
                 SetGoals = client.SetGoals,
-                Trainer = client.Trainer,
+                //Trainer = client.Trainer,
                 WorkoutPlan = client.WorkoutPlan,
                 TypeOfSport = client.TypeOfSport,
                 IsAdministrator = client.IsAdministrator,
@@ -219,7 +219,7 @@ namespace Services
                 client.HeightStarted = model.HeightStarted;
                 client.CurrentHeight = model.HeightCurrent;
                 client.SetGoals = model.SetGoals;
-                client.Trainer = model.Trainer;
+                //client.Trainer = model.Trainer;
                 client.WorkoutPlan = model.WorkoutPlan;
                 client.TypeOfSport= model.TypeOfSport;
                 client.ClientNotes = model.Notes;
