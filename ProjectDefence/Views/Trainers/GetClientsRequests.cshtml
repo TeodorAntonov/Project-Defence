@@ -30,9 +30,9 @@
                 <hr />
             </div>
             <hr />
-            <div style="width: 30rem;">
-                <a asp-controller="AdminMailbox" asp-action="MoveToJunk" asp-route-applicationId="@client.Id" class="btn btn-danger mb-3">Add Client To Yours</a>
-                <a asp-controller="AdminMailbox" asp-action="MoveToJunk" asp-route-applicationId="@client.Id" class="btn btn-danger mb-3">Add Delete</a>
+            <div class="btn-group">
+                <a asp-controller="Trainers" asp-action="AddClient" asp-route-clientId="@client.Id" class="btn btn-info mb-3">Add Client</a>
+                <a asp-controller="Trainers" asp-action="DeleteRequest" asp-route-clientId="@client.Id" class="btn btn-danger mb-3">Delete Request</a>
             </div>
         </div>
     }

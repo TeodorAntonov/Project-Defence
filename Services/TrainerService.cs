@@ -13,6 +13,7 @@ namespace Services
         {
             _context = context;
         }
+
         public async Task<IEnumerable<TrainerViewModel>> GetAllTrainersAsync()
         {
             var trainers = await _context.Trainers.ToListAsync();
@@ -31,12 +32,14 @@ namespace Services
 
         public async Task<IEnumerable<ClientViewModel>> GetClientsAsync(User user)
         {
-            var trainer = await _context.Trainers.FirstOrDefaultAsync(t => t.User.Id == user.Id);
+            var trainer = await _context.Trainers.FirstOrDefaultAsync(t => t.UserId == user.Id);
 
             if (trainer == null)
             {
                 throw new Exception("There is no such Trainer! Go Back!");
             }
+
+            trainer.Clients = await _context.Clients.Include(c => c.User).Where(c => c.TrainerId == trainer.Id).ToListAsync();
 
             return trainer.Clients.Select(c => new ClientViewModel()
             {
@@ -60,9 +63,9 @@ namespace Services
                 throw new Exception("There is no such Trainer! Go Back!");
             }
 
-            trainer.ClientsApplications = await _context.Clients.Include(c =>c.User).Where(c => c.TrainerId == trainer.Id).ToListAsync();
+            trainer.ClientsApplications = await _context.Clients.Include(c => c.User).Where(c => c.TrainerId == trainer.Id).ToListAsync();
 
-            return trainer.ClientsApplications.Select(c => new ClientViewModel() 
+            return trainer.ClientsApplications.Select(c => new ClientViewModel()
             {
                 Id = c.Id,
                 ClientName = $"{c.User.FirstName} {c.User.LastName}",
@@ -71,6 +74,58 @@ namespace Services
                 Weight = c.CurrentWeight,
                 Height = c.CurrentHeight,
             });
+        }
+        public async Task DeleteRequestAsync(User user, int clientId)
+        {
+            var trainer = await _context.Trainers.FirstOrDefaultAsync(t => t.UserId == user.Id);
+
+            if (trainer == null)
+            {
+                throw new ArgumentException("No such trainer Id.");
+            }
+
+            var client = await _context.Clients.FindAsync(clientId);
+
+            if (client == null)
+            {
+                throw new ArgumentException("No such client Id.");
+            }
+
+            if (trainer.ClientsApplications.Any())
+            {
+                client.Trainer = null;
+                client.TrainerId = null;
+                trainer.ClientsApplications.Remove(client);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task AddClientAsync(User user, int clientId)
+        {
+            var trainer = await _context.Trainers.FirstOrDefaultAsync(t => t.UserId == user.Id);
+
+            if (trainer == null)
+            {
+                throw new ArgumentException("No such trainer Id.");
+            }
+
+            var client = await _context.Clients.FindAsync(clientId);
+
+            if (client == null)
+            {
+                throw new ArgumentException("No such client Id.");
+            }
+
+            if (trainer.ClientsApplications != null)
+            {
+                client.Trainer = trainer;
+                client.TrainerId = trainer.Id;
+
+                trainer.Clients.Add(client);
+                trainer.ClientsApplications.Remove(client);
+
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

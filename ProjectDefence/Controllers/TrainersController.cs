@@ -27,7 +27,7 @@ namespace ProjectDefence.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles ="Trainer")]
+        [Authorize(Roles = "Trainer")]
         public async Task<ActionResult> GetClients()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -52,6 +52,47 @@ namespace ProjectDefence.Controllers
             }
             var model = await _trainerService.GetClientsRequestsAsync(user);
             return View(model);
+        }
+
+        [Authorize(Roles = "Trainer")]
+        public async Task<ActionResult> DeleteRequest(int clientId)
+        {
+            if (clientId == null)
+            {
+                return RedirectToAction("GetClientsRequests", "Trainers");
+            }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user == null)
+            {
+                throw new Exception("There is no such user! Go Back!");
+            }
+
+            await _trainerService.DeleteRequestAsync(user, clientId);
+            return RedirectToAction("GetClientsRequests", "Trainers");
+        }
+
+        [Authorize(Roles = "Trainer")]
+        public async Task<ActionResult> AddClient(int clientId)
+        {
+            if (clientId == null)
+            {
+                return RedirectToAction("GetClientsRequests", "Trainers");
+            }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user == null)
+            {
+                throw new Exception("There is no such user! Go Back!");
+            }
+
+            await _trainerService.AddClientAsync(user, clientId);
+
+            return RedirectToAction("GetClientsRequests", "Trainers");
         }
     }
 }
