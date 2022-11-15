@@ -39,7 +39,9 @@ namespace Services
                 throw new Exception("There is no such Trainer! Go Back!");
             }
 
-            trainer.Clients = await _context.Clients.Include(c => c.User).Where(c => c.TrainerId == trainer.Id).ToListAsync();
+            var clientsWithTrainerId1s = await _context.Clients.Include(c => c.User).Where(c => EF.Property<int?>(c, "TrainerId1") == trainer.Id).ToListAsync();
+
+            trainer.Clients = clientsWithTrainerId1s;
 
             return trainer.Clients.Select(c => new ClientViewModel()
             {
