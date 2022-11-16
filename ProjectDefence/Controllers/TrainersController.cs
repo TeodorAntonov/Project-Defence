@@ -94,5 +94,40 @@ namespace ProjectDefence.Controllers
 
             return RedirectToAction("GetClientsRequests", "Trainers");
         }
+
+        [Authorize(Roles = "Trainer")]
+        public async Task<ActionResult> DeleteClient(int clientId)
+        {
+            if (clientId == null)
+            {
+                return RedirectToAction("GetClientsRequests", "Trainers");
+            }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user == null)
+            {
+                throw new Exception("There is no such user! Go Back!");
+            }
+
+            await _trainerService.DeleteClientAsync(user, clientId);
+
+            return RedirectToAction("GetClients", "Trainers");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Trainer")]
+        public async Task<ActionResult> CreateWorkout(int clientId)
+        {
+            //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            //if (user == null)
+            //{
+            //    throw new Exception("There is no such user! Go Back!");
+            //}
+            //var model = await _trainerService.CreateWorkoutAsync(user);
+            return View();
+        }
     }
 }

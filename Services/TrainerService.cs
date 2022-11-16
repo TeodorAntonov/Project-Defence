@@ -129,5 +129,27 @@ namespace Services
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task DeleteClientAsync(User user, int clientId)
+        {
+            var trainer = await _context.Trainers.FirstOrDefaultAsync(t => t.UserId == user.Id);
+
+            if (trainer == null)
+            {
+                throw new ArgumentException("No such trainer Id.");
+            }
+
+            var client = await _context.Clients.FindAsync(clientId);
+
+            if (client == null)
+            {
+                throw new ArgumentException("No such client Id.");
+            }
+
+            client.Trainer = null;
+            client.TrainerId = null;
+            trainer.Clients.Remove(client);
+            await _context.SaveChangesAsync();
+        }
     }
 }

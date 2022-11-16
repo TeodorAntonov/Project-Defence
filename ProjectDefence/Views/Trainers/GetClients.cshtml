@@ -35,9 +35,10 @@
                 <p class="mb-0">@client.WorkoutPlan</p>
             </div>
             <hr />
-            @*<div style="width: 30rem;">
-                <a asp-controller="AdminMailbox" asp-action="MoveToJunk" asp-route-applicationId="@application.Id" class="btn btn-danger mb-3">Move To Junk</a>
-            </div>*@
+            <div class="btn-group">
+                <a asp-controller="Trainers" asp-action="CreateWorkout" asp-route-clientId="@client.Id" class="btn btn-info mb-3">Create Workout</a>
+                <a asp-controller="Trainers" asp-action="DeleteClient" asp-route-clientId="@client.Id" class="btn btn-danger mb-3">Delete Client</a>
+            </div>
         </div>
     }
 </div>

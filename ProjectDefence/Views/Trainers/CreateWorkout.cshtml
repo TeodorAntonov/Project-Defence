@@ -1,0 +1,40 @@
+﻿@using DataModels.Models
+@model IEnumerable<ClientViewModel>
+
+@{
+    ViewBag.Title = "Create Workout";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Exercise</th>
+            <th>Sets/Rounds</th>
+            <th>Reps</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td><input type="button" value="Add New Exercise" id="newrows"/></td>
+        </tr>
+    </tfoot>
+</table>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#newrows").click(function(){
+            var addNewExercisRow = "<tr>"
+                 addNewExercisRow += "<td><input type='text' name='exerciseName' ></td>"
+                 addNewExercisRow += "<td><input type='text' name='SetRound' ></td>"
+                 addNewExercisRow += "<td><input type='text' name='Rep' ></td>"
+                    addNewExercisRow +="</tr>";
+                    $("table tbody").append(addNewExercisRow);
+        });
+});
+</script>

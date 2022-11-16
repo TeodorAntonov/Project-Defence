@@ -9,6 +9,7 @@ namespace Interfaces
         Task<IEnumerable<ClientViewModel>> GetClientsAsync(User user);
         Task<IEnumerable<ClientViewModel>> GetClientsRequestsAsync(User user);
         Task DeleteRequestAsync(User user, int clientId);
+        Task DeleteClientAsync(User user, int clientId);
         Task AddClientAsync(User user, int clientId);
     }
 }
