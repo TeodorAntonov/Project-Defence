@@ -1,5 +1,5 @@
 ﻿@using DataModels.Models
-@model IEnumerable<ClientViewModel>
+@model ClientViewModel
 
 @{
     ViewBag.Title = "Create Workout";
@@ -8,33 +8,21 @@
 <h2 class="text-center">@ViewBag.Title</h2>
 <hr />
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>Exercise</th>
-            <th>Sets/Rounds</th>
-            <th>Reps</th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-    <tfoot>
-        <tr>
-            <td><input type="button" value="Add New Exercise" id="newrows"/></td>
-        </tr>
-    </tfoot>
-</table>
+<div>
+    <h1 style="color: cadetblue; font-size: 30px; text-decoration: underline;">Client Name: @Model.ClientName</h1>
+</div>
+<br />
 
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#newrows").click(function(){
-            var addNewExercisRow = "<tr>"
-                 addNewExercisRow += "<td><input type='text' name='exerciseName' ></td>"
-                 addNewExercisRow += "<td><input type='text' name='SetRound' ></td>"
-                 addNewExercisRow += "<td><input type='text' name='Rep' ></td>"
-                    addNewExercisRow +="</tr>";
-                    $("table tbody").append(addNewExercisRow);
-        });
-});
-</script>
+<table>
+    <form method="post">
+        <div>
+            <label asp-for="@Model.WorkoutPlan" class="form-label" style="font-size: 20px;" >Create Workout:</label>
+            <textarea asp-for="@Model.WorkoutPlan" class="form-control" aria-required="true" rows="10" cols="30"></textarea>
+            <span asp-validation-for="WorkoutPlan" class="text-danger"></span>
+        </div>
+
+        <div class="btn-group">
+            <input asp-route-clientId="@Model.Id" class="btn btn-success" asp-controller="Trainers"  asp-action="SaveWorkout" type="submit" value="Save Workout" />
+        </div>
+    </form>
+</table>

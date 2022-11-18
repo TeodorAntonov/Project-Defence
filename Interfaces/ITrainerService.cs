@@ -11,5 +11,7 @@ namespace Interfaces
         Task DeleteRequestAsync(User user, int clientId);
         Task DeleteClientAsync(User user, int clientId);
         Task AddClientAsync(User user, int clientId);
+        Task<ClientViewModel> CreateWorkoutAsync(User user, int clientId);
+        Task SaveWorkoutAsync(int clientId, ClientViewModel model);
     }
 }

@@ -1,0 +1,47 @@
+﻿@using DataModels.Models
+@*@using DataModels.Models
+@model ClientViewModel
+@using (Html.BeginForm("AddExercise"))
+{
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Exercise</th>
+                <th>Sets/Rounds</th>
+                <th>Reps</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < @Model.WorkoutPlan.Count; i++)
+            {
+                <tr>
+                    <td><input type='text' name='exerciseName' asp-for="@Model.WorkoutPlan[i].ExerciseName" placeholder='Exercise'></td>
+                    <td><input type='text' name='SetRound' asp-for="@Model.WorkoutPlan[i].SetRound" placeholder='Set/Round'></td>
+                    <td><input type='text' name='Rep' asp-for="@Model.WorkoutPlan[i].Rep" placeholder='Reps'></td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td><a type="button" asp-controller="Trainers" asp-action="AddExercise">Add New Exercise</a>Add New Exercise</td>
+            </tr>
+        </tfoot>
+    </table>
+    <hr />
+    <br />
+    <div>
+        <a class="btn btn-info btn-lg" id="sendworkout" name="WorkoutPlanInCreation" onclick="sendWokout()"
+       asp-controller="Trainers" asp-action="SendWorkout" asp-route-clientId="@Model.Id">Send Workout</a>
+    </div>
+}*@
+
+@model CreateExerciseViewModel
+@using(Html.BeginForm("SaveExercise", "Trainers"))
+{
+    <div>
+        @Html.EditorFor(x => x.ExerciseName);
+        @Html.EditorFor(x => x.SetRound);
+        @Html.EditorFor(x => x.Rep);
+        <input type="submit" value="Save Exercise">
+    </div>
+}

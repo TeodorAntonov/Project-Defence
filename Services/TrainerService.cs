@@ -151,5 +151,41 @@ namespace Services
             trainer.Clients.Remove(client);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<ClientViewModel> CreateWorkoutAsync(User user, int clientId)
+        {
+            var trainer = await _context.Trainers.FirstOrDefaultAsync(t => t.UserId == user.Id);
+
+            if (trainer == null)
+            {
+                throw new ArgumentException("No such trainer Id.");
+            }
+
+            var client = await _context.Clients.Include(c => c.User).FirstOrDefaultAsync(c => c.Id == clientId);
+
+            if (client == null)
+            {
+                throw new ArgumentException("No such client Id.");
+            }
+
+            return new ClientViewModel()
+            { 
+                Id = clientId,
+                ClientName = $"{client.User.FirstName} {client.User.LastName}"
+            };
+        }
+
+        public async Task SaveWorkoutAsync(int clientId, ClientViewModel model)
+        {
+            var client = await _context.Clients.Include(c => c.User).FirstOrDefaultAsync(c => c.Id == clientId);
+
+            if (client == null)
+            {
+                throw new ArgumentException("No such client Id.");
+            }
+
+            client.WorkoutPlan = model.WorkoutPlan;
+            await _context.SaveChangesAsync();
+        }
     }
 }
