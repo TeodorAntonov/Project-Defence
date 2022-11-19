@@ -81,7 +81,6 @@ namespace Services
             client.CurrentHeight = model.Height;
             client.TypeOfSport = GetSports().FirstOrDefault(s => s.Id == model.TypeOfSportId).Name ?? null;
             //client.Trainer = model.Trainer;
-            client.WorkoutPlan = model.WorkoutPlan;
             client.SetGoals = model.SetGoals;
             client.ClientNotes = client.ClientNotes + Environment.NewLine + "|| RECORD ON " + DateTime.UtcNow.ToString("dd/mm/yyy")+ ": " + model.Notes;
 
