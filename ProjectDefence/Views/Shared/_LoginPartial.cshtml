@@ -15,10 +15,15 @@
         }
         @if (User?.IsInRole("Trainer") ?? false)
         {
-
-            <li class="nav-item">
+            @if (!User?.IsInRole("Administrator") ?? false)
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-controller="Trainers" asp-action="GetClientsRequests">Requests Mails <i style='font-size:24px' class='fas'>&#xf199;</i></a>
+                </li>
+            }
+            @*  <li class="nav-item">
                 <a class="nav-link text-dark" asp-controller="Trainers" asp-action="GetClientsRequests">Requests Mails <i style='font-size:24px' class='fas'>&#xf199;</i></a>
-            </li>
+                </li>*@
 
         }
         <li class="nav-item">
