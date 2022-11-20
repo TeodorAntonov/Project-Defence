@@ -13,5 +13,6 @@ namespace Interfaces
         Task<IEnumerable<PostViewModel>> GetLastFourPosts();
         Task AddPostAsync(PostViewModel model);
         Task<PostViewModel> GetFullPostAsync(int postId);
+        Task DeletePostAsync(int postId);
     }
 }

@@ -20,7 +20,14 @@
                 <p class="mb-0">@post.Text</p>
             </div>
 
-            <form class="input-group-sm" asp-controller="Post" asp-action="GetAllArticles" >
+            @if (User?.IsInRole("Writer") ?? false)
+            {
+                <div class="nav-item">
+                    <a class="fs-6 btn btn-danger mb-3 p-2" asp-area="Writer" asp-controller="Writer" asp-action="DeletePost" asp-route-postId="@post.Id">Delete</a>
+                </div>
+            }
+
+            <form class="input-group-sm" asp-controller="Post" asp-action="GetFullPost" asp-route-postId="@post.Id">
                 <input type="submit" value="Read More" class="fs-6 btn btn-success mb-3 p-2" />
             </form>
         </div>

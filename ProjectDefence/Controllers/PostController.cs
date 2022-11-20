@@ -19,7 +19,7 @@ namespace ProjectDefence.Controllers
             return View(model);
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> GetAllArticles()
         {
             var model = await _postService.GetAllPosts();

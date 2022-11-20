@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ProjectDefence.Areas.Writer.Controllers
 {
-    //[Authorize]
+    [Authorize(Roles = "Writer")]
     [Area("Writer")]
     [Route("Writer/[controller]/[action]")]
     public class WriterController : Controller
@@ -37,6 +37,17 @@ namespace ProjectDefence.Areas.Writer.Controllers
                 return View(model);
             }
             await _postService.AddPostAsync(model);
+            return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> DeletePost(int postId)
+        {
+            if (postId == null)
+            {
+                return BadRequest("There is no such a Post. Go Back.");
+            }
+            await _postService.DeletePostAsync(postId);
+
             return RedirectToAction("Index", "Home");
         }
     }

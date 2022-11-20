@@ -36,8 +36,8 @@ namespace Services
         {
             var posts = await _context.Posts.ToListAsync();
 
-            return posts.Select(p => new PostViewModel() 
-            { 
+            return posts.Select(p => new PostViewModel()
+            {
                 Id = p.Id,
                 Title = p.Title,
                 Text = p.Text,
@@ -69,8 +69,21 @@ namespace Services
                 Text = p.Text != null ? $"{p.Text.Substring(0, 1)}..." : null,
                 DatePublishedOn = p.DatePublishedOn.ToString("dd/MM/yyyy")
             })
-            
+            .Take(4)
             .ToList();
+        }
+
+        public async Task DeletePostAsync(int postId)
+        {
+            var post = await _context.Posts.FindAsync(postId);
+
+            if (post == null)
+            {
+                throw new ArgumentException("No such post Id.");
+            }
+
+            _context.Posts.Remove(post);
+            await _context.SaveChangesAsync();
         }
     }
 }

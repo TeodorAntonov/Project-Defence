@@ -36,5 +36,7 @@
         public const int MinDescriptionLength = 1;
 
         public const int MinPartialDescriptionLength = 15;
+
+        public const int MinPostLength = 10;
     }
 }

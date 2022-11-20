@@ -11,9 +11,9 @@ namespace DataModels.Models
     public class PostViewModel
     {
         public int Id { get; set; }
-        [StringLength(ConstantsData.MaxDescriptionLength, MinimumLength = ConstantsData.MinPartialDescriptionLength)]
+        [StringLength(ConstantsData.MaxDescriptionLength, MinimumLength = ConstantsData.MinPostLength)]
         public string? Title { get; set; }
-        [StringLength(ConstantsData.MaxDescriptionLength, MinimumLength = ConstantsData.MinPartialDescriptionLength)]
+        [StringLength(ConstantsData.MaxDescriptionLength, MinimumLength = ConstantsData.MinDescriptionLength)]
         public string? Text { get; set; }
         public string? DatePublishedOn { get; set; }
     }
