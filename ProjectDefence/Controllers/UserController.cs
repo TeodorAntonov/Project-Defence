@@ -127,9 +127,19 @@ namespace ProjectDefence.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> CreateRoles()
         {
-            await _roleInManager.CreateAsync(new IdentityRole(ConstantsRoles.AdminRole));
-            await _roleInManager.CreateAsync(new IdentityRole(ConstantsRoles.ClientRole));
-            await _roleInManager.CreateAsync(new IdentityRole(ConstantsRoles.TrainerRole));
+            if (_roleInManager.Roles.Any(r => r.Name == ConstantsRoles.AdminRole
+             || r.Name == ConstantsRoles.ClientRole
+             || r.Name == ConstantsRoles.TrainerRole))
+            {
+                await _roleInManager.CreateAsync(new IdentityRole(ConstantsRoles.WriterRole));
+            }
+            else
+            {
+                await _roleInManager.CreateAsync(new IdentityRole(ConstantsRoles.AdminRole));
+                await _roleInManager.CreateAsync(new IdentityRole(ConstantsRoles.ClientRole));
+                await _roleInManager.CreateAsync(new IdentityRole(ConstantsRoles.TrainerRole));
+                await _roleInManager.CreateAsync(new IdentityRole(ConstantsRoles.WriterRole));
+            }
 
             return RedirectToAction("Index", "Home");
         }

@@ -33,6 +33,7 @@ namespace ProjectDefence.Data
 
         }
         public DbSet<Gym> Gyms { get; set; }
+        public DbSet<Post> Posts { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<Exercise> Exercises { get; set; }

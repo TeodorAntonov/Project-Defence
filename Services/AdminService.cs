@@ -202,6 +202,7 @@ namespace Services
                 TypeOfSport = client.TypeOfSport,
                 IsAdministrator = client.IsAdministrator,
                 IsTrainer = client.IsTrainer,
+                IsWriter = client.IsWriter,
             };
         }
 
@@ -225,6 +226,7 @@ namespace Services
                 client.ClientNotes = model.Notes;
                 client.IsAdministrator = model.IsAdministrator;
                 client.IsTrainer = model.IsTrainer;
+                client.IsWriter = model.IsWriter;
 
                 if (client.IsAdministrator)
                 {
@@ -237,11 +239,20 @@ namespace Services
 
                 if (client.IsTrainer)
                 {
-                    await _userManager.AddToRoleAsync(user, ConstantsRoles.TrainerRole );
+                    await _userManager.AddToRoleAsync(user, ConstantsRoles.TrainerRole);
                 }
                 else
                 {
                     await _userManager.RemoveFromRoleAsync(user, ConstantsRoles.TrainerRole);
+                }
+
+                if (client.IsWriter)
+                {
+                    await _userManager.AddToRoleAsync(user, ConstantsRoles.WriterRole);
+                }
+                else
+                {
+                    await _userManager.RemoveFromRoleAsync(user, ConstantsRoles.WriterRole);
                 }
 
                 await _context.SaveChangesAsync();
