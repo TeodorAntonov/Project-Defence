@@ -1,0 +1,29 @@
+﻿@using DataModels.Models
+@model PostViewModel
+
+@{
+    ViewBag.Title = "Create New Post";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<table>
+    <form method="post">
+
+        <div class="text-center mb-3">
+            <label asp-for="@Model.Title">Title</label>
+            <textarea asp-for="@Model.Title" class="form-control" rows="1" cols="15"></textarea>
+        </div>
+        <br />
+        <div>
+            <label asp-for="@Model.Text" class="form-label" style="font-size: 20px;">Enter Text:</label>
+            <textarea asp-for="@Model.Text" class="form-control" rows="10" cols="30"></textarea>
+            <span asp-validation-for="Text" class="text-danger"></span>
+        </div>
+
+        <div class="btn-group">
+            <input class="btn btn-success" asp-area="Writer" asp-controller="Writer" asp-action="CreatePost" type="submit" value="Add Post" />
+        </div>
+    </form>
+</table>

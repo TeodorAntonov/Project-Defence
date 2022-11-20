@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using ProjectDefence.Models;
 using System.Diagnostics;
 
@@ -7,15 +8,18 @@ namespace ProjectDefence.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IPostService _postService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IPostService postService)
         {
             _logger = logger;
+            _postService = postService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = await _postService.GetLastFourPosts();
+            return View(model);
         }
 
         public IActionResult Privacy()

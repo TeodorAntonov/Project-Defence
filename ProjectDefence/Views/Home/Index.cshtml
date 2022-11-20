@@ -1,7 +1,9 @@
 ﻿@using DataModels.Entities
+@using DataModels.Models
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<User> userManager
 @inject SignInManager<User> SignInManager
+@model IEnumerable<PostViewModel>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -28,9 +30,39 @@
     }
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h1 class="text-center">Welcome To Fitness App PROJECT DEFENCE</h1>
+<hr />
+
+<div class="text-center row">
+
+    <br>
+    <br>
+    <div class="text-center row">
+        @foreach (var post in Model)
+        {
+            <div class="card col-4" style="width: 20rem; margin-right: 20px;">
+                <div class="card-body">
+
+                    <h5 class="card-title mt-1">@post.Title</h5>
+                    <p class="mb-0">Published On: @post.DatePublishedOn</p>
+                    <hr />
+                    <p class="mb-0">@post.Text</p>
+                </div>
+
+                <form class="input-group-sm" asp-controller="Post" asp-action="GetFullPost" asp-route-postId="@post.Id">
+                    <input type="submit" value="Read More" class="fs-6 btn btn-success mb-3 p-2" />
+                </form>
+            </div>
+            <br>
+            <br>
+        }
+    </div>
+</div>
+
+<div class="text-center row" style="margin-top: 30%">
+    <form class="input-group-sm" asp-controller="Post" asp-action="GetAllArticles">
+        <input type="submit" value="Load All Articles" class="fs-6 btn btn-link mb-3 p-2" />
+    </form>
 </div>
 
 @*Icon Source:https://www.w3schools.com/icons/tryit.asp?icon=fas_fa-handshake&unicon=f2b5 *@

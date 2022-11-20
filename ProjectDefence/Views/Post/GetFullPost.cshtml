@@ -1,0 +1,13 @@
+﻿@using DataModels.Models
+@model PostViewModel
+
+<h2 class="text-center">@Model.Title</h2>
+<hr />
+
+<div class="text-center row">
+    <div class="card-body">
+        <text>Published On: @Model.DatePublishedOn </text>
+        <hr />
+        <text>@Model.Text</text>
+    </div>
+</div>

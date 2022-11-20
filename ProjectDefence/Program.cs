@@ -36,6 +36,7 @@ builder.Services.AddScoped<IApplicationFormService, ApplicationFormService>();
 builder.Services.AddScoped<IAdminMailboxService, AdminMailboxService>();
 builder.Services.AddScoped<IExerciseService, ExerciseService>();
 builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<IPostService, PostService>();
 
 var app = builder.Build();
 
