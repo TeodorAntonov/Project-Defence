@@ -11,15 +11,16 @@ using Interfaces;
 using Microsoft.Data.Sqlite;
 using System.Data.Common;
 using DataModels.Models;
+using System;
 
 namespace UnitTests
 {
-    public class UnitTest1
+    public class TrainerServiceTests
     {
         private TrainerService service;
         ApplicationDbContext context;
 
-        public UnitTest1()
+        public TrainerServiceTests()
         {
             context = TestDataBaseContext.GetDatabase();
             service = new TrainerService(context);
@@ -270,6 +271,191 @@ namespace UnitTests
 
             Assert.NotNull(result);
             Assert.Equal(result, "Test Workout");
+        }
+
+        [Fact]
+        public async Task CreateWorkoutModelView_ShouldReturnClientNameViewAsInTheModel_Postive()
+        {
+            User user = new User() { Id = "test", FirstName = "Test", LastName = "Testov" };
+            User user2 = new User() { Id = "testClient", FirstName = "First Name", LastName = "Last Name" };
+            User user3 = new User() { Id = "testClient2", FirstName = "testClient2", LastName = "testClient2" };
+
+            Trainer trainer = new Trainer()
+            {
+                Id = 1,
+                Name = "Name",
+                Email = "Test@mail.com",
+                Telephone = "12321311",
+                IsAvailable = true,
+                UserId = "test",
+                User = user,
+                Clients = new List<Client>()
+                         {
+                            new Client() { Id = 1, User = user2, UserId = "testClient"},
+                            new Client() { Id = 2, User = user2, UserId = "testClient2"}
+                         },
+            };
+
+            context.Users.Add(user);
+            context.Users.Add(user2);
+            context.Users.Add(user3);
+            context.Trainers.Add(trainer);
+            context.SaveChanges();
+
+            var result = await service.CreateWorkoutAsync(user, 1);
+
+            Assert.NotNull(result);
+            Assert.Equal(result.ClientName, "First Name Last Name");
+            Assert.Equal(result.Id, 1);
+        }
+
+        [Fact]
+        public async Task DeleteRequest_ShouldReturnTheCountMinusOne_PostiveCase()
+        {
+            User user = new User() { Id = "test", FirstName = "Test", LastName = "Testov" };
+            User user2 = new User() { Id = "testClient", FirstName = "First Name", LastName = "Last Name" };
+            User user3 = new User() { Id = "testClient2", FirstName = "testClient2", LastName = "testClient2" };
+            User user4 = new User() { Id = "testClient3", FirstName = "testClient3", LastName = "testClient3" };
+
+            Trainer trainer = new Trainer()
+            {
+                Id = 1,
+                Name = "Name",
+                Email = "Test@mail.com",
+                Telephone = "12321311",
+                IsAvailable = true,
+                UserId = "test",
+                User = user,
+                ClientsApplications = new List<Client>()
+                         {
+                            new Client() { Id = 1, User = user2, UserId = "testClient"},
+                            new Client() { Id = 2, User = user3, UserId = "testClient2"},
+                            new Client() { Id = 3, User = user4, UserId = "testClient3" }
+                         }
+            };
+
+            context.Users.Add(user);
+            context.Users.Add(user2);
+            context.Users.Add(user3);
+            context.Users.Add(user4);
+            context.Trainers.Add(trainer);
+            context.SaveChanges();
+
+            var beforeDeletion = trainer.ClientsApplications.Count;
+            Assert.Equal(beforeDeletion, 3);
+
+            await service.DeleteRequestAsync(user, 3);
+
+            var afterDeletion = trainer.ClientsApplications.Count;
+            Assert.Equal(afterDeletion, 2);
+        }
+
+        [Fact]
+        public async Task DeleteClient_ShouldReturnNoneCases_PostiveCase()
+        {
+            User user = new User() { Id = "test", FirstName = "Test", LastName = "Testov" };
+            User user2 = new User() { Id = "testClient", FirstName = "First Name", LastName = "Last Name" };
+            User user3 = new User() { Id = "testClient2", FirstName = "testClient2", LastName = "testClient2" };
+            User user4 = new User() { Id = "testClient3", FirstName = "testClient3", LastName = "testClient3" };
+
+            Trainer trainer = new Trainer()
+            {
+                Id = 1,
+                Name = "Name",
+                Email = "Test@mail.com",
+                Telephone = "12321311",
+                IsAvailable = true,
+                UserId = "test",
+                User = user,
+                ClientsApplications = new List<Client>()
+                         {
+                            new Client() { Id = 1, User = user2, UserId = "testClient"},
+                         }
+            };
+
+            context.Users.Add(user);
+            context.Users.Add(user2);
+            context.Users.Add(user3);
+            context.Users.Add(user4);
+            context.Trainers.Add(trainer);
+            context.SaveChanges();
+
+            var beforeDeletion = trainer.ClientsApplications;
+            Assert.NotNull(beforeDeletion);
+            Assert.Single(beforeDeletion);
+
+            await service.DeleteRequestAsync(user, 1);
+
+            var afterDeletion = trainer.ClientsApplications.Count;
+            Assert.Empty(beforeDeletion);
+            Assert.Equal(afterDeletion, 0);
+        }
+
+        [Fact]
+        public async Task AddClient_ShouldReturnCountOne_PostiveCase()
+        {
+            User user = new User() { Id = "test", FirstName = "Test", LastName = "Testov" };
+            User user2 = new User() { Id = "testClient", FirstName = "First Name", LastName = "Last Name" };
+            User user3 = new User() { Id = "testClient2", FirstName = "testClient2", LastName = "testClient2" };
+            Client client = new Client() { Id = 1, User = user3, UserId = "testClient2" };
+
+            Trainer trainer = new Trainer()
+            {
+                Id = 1,
+                Name = "Name",
+                Email = "Test@mail.com",
+                Telephone = "12321311",
+                IsAvailable = true,
+                UserId = "test",
+                User = user,
+                ClientsApplications = new List<Client>()
+            };
+
+            context.Users.Add(user);
+            context.Users.Add(user2);
+            context.Users.Add(user3);
+            context.Trainers.Add(trainer);
+            context.Clients.Add(client);
+            context.SaveChanges();
+
+            var beforeDeletion = trainer.ClientsApplications;
+            Assert.Empty(beforeDeletion);
+
+            await service.AddClientAsync(user, 1);
+
+            var afterDeletion = trainer.ClientsApplications.Count;
+            Assert.Single(beforeDeletion);
+            Assert.Equal(afterDeletion, 1);
+        }
+
+        [Fact]
+        public async Task ThrowErrorException_ThereIsNoSuchClient()
+        {
+            User user = new User() { Id = "test", FirstName = "Test", LastName = "Testov" };
+            User user2 = new User() { Id = "testClient", FirstName = "First Name", LastName = "Last Name" };
+            User user3 = new User() { Id = "testClient2", FirstName = "testClient2", LastName = "testClient2" };
+            Client client = new Client() { Id = 2, User = user3, UserId = "testClient2" };
+
+            Trainer trainer = new Trainer()
+            {
+                Id = 1,
+                Name = "Name",
+                Email = "Test@mail.com",
+                Telephone = "12321311",
+                IsAvailable = true,
+                UserId = "test",
+                User = user,
+                ClientsApplications = new List<Client>()
+            };
+
+            context.Users.Add(user);
+            context.Users.Add(user2);
+            context.Users.Add(user3);
+            context.Trainers.Add(trainer);
+            context.Clients.Add(client);
+            context.SaveChanges();
+
+            Assert.ThrowsAsync<ArgumentException>(async () => await service.AddClientAsync(user, 1));
         }
     }
 }
