@@ -15,12 +15,12 @@ namespace Services
     public class ProfileService : IProfileService
     {
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<User> _userManager;
+        //private readonly UserManager<User> _userManager;
 
-        public ProfileService(ApplicationDbContext context, UserManager<User> userManager)
+        public ProfileService(ApplicationDbContext context)
         {
             _context = context;
-            _userManager = userManager;
+            //_userManager = userManager;
         }
 
         public async Task<ProfileViewModel> GetUserProfile(User user)
@@ -81,7 +81,10 @@ namespace Services
             client.CurrentHeight = model.Height;
             client.TypeOfSport = GetSports().FirstOrDefault(s => s.Id == model.TypeOfSportId).Name ?? null;
             //client.Trainer = model.Trainer;
-            client.SetGoals = model.SetGoals;
+            if (model.SetGoals != null)
+            {
+                client.SetGoals = model.SetGoals;
+            }         
             client.ClientNotes = client.ClientNotes + Environment.NewLine + "|| RECORD ON " + DateTime.UtcNow.ToString("dd/mm/yyy")+ ": " + model.Notes;
 
             await _context.SaveChangesAsync();

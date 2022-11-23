@@ -13,7 +13,6 @@ using System.Data.Common;
 using DataModels.Models;
 using System;
 
-
 namespace UnitTests
 {
     public class AdminMailboxServiceTests
