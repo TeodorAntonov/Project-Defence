@@ -147,7 +147,7 @@ namespace Services
                 trainer.Experience = model.Experience;
                 trainer.Telephone = model.Telephone;
                 trainer.IsAvailable = model.IsAvailable == "Yes"? true : false;
-                trainer.UserId = trainer.UserId ?? null;
+                trainer.UserId = model.UserId ?? null;
 
                 await _context.SaveChangesAsync();
                 return true;
