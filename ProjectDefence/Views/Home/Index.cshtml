@@ -38,9 +38,11 @@
     <br>
     <br>
     <div class="text-center row">
+        <br>
+        <br>
         @foreach (var post in Model)
         {
-            <div class="card col-4" style="width: 20rem; margin-right: 20px;">
+            <div class="card col-4" style="width: 19rem; margin-right: 20px;">
                 <div class="card-body">
 
                     <h5 class="card-title mt-1">@post.Title</h5>
@@ -53,7 +55,6 @@
                     <input type="submit" value="Read More" class="fs-6 btn btn-success mb-3 p-2" />
                 </form>
             </div>
-            <br>
             <br>
         }
     </div>

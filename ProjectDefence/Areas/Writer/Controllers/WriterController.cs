@@ -29,7 +29,6 @@ namespace ProjectDefence.Areas.Writer.Controllers
             return View(model);
         }
 
-        [HttpPost]
         public async Task<IActionResult> CreatePost(PostViewModel model)
         {
             if (!ModelState.IsValid)
