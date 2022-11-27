@@ -22,7 +22,7 @@ namespace Services
                 Id = g.Id,
                 Name = g.Name,
                 Address = g.Address,
-                ImageUrl = g.ImageUrl
+                ImageUrl = g.ImageUrl != null ? $"/UploadedFiles/{g.ImageUrl}" : $"/UploadedFiles/empty_fitness.png"
             });
         }
     }

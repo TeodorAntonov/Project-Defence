@@ -29,7 +29,7 @@ namespace Services
             {
                 Name = model.Name,
                 Address = model.Address,
-                ImageUrl = model.ImageUrl ?? null,
+                ImageUrl = UploadedFileGym(model),
             };
             await _context.Gyms.AddAsync(gym);
             await _context.SaveChangesAsync();
@@ -43,7 +43,7 @@ namespace Services
                 Telephone = model.Telephone,
                 Experience = model.Experience,
                 IsAvailable = model.IsAvailable == "Yes" ? true : false,
-                ImageUrl = UploadeFile(model),
+                ImageUrl = UploadeFileTrainer(model),
                 UserId = model.UserId ?? null,
             };
 
@@ -98,7 +98,10 @@ namespace Services
 
             if (gym != null)
             {
-                gym.ImageUrl = model.ImageUrl;
+                if (gym.ImageUrl == null)
+                {
+                    gym.ImageUrl = UploadedFileGym(model);
+                }
                 gym.Name = model.Name;
                 gym.Address = model.Address;
 
@@ -147,7 +150,7 @@ namespace Services
             {
                 if (trainer.ImageUrl == null)
                 {
-                    trainer.ImageUrl = UploadeFile(model);
+                    trainer.ImageUrl = UploadeFileTrainer(model);
                 }
                 trainer.Name = model.Name;
                 trainer.Email = model.Email;
@@ -183,7 +186,8 @@ namespace Services
             {
                 Name = gym.Name,
                 Address = gym.Address,
-                ImageUrl = gym.ImageUrl,
+                HasImageUrl = gym.ImageUrl == $"/UploadedFiles/no_profile_img.png" || gym.ImageUrl == null ? true : false,
+                //ImageUrl = gym.ImageUrl,
             };
         }
 
@@ -288,7 +292,7 @@ namespace Services
             await _context.SaveChangesAsync();
         }
 
-        private string UploadeFile(AddTrainerViewModel trainer)
+        private string UploadeFileTrainer(AddTrainerViewModel trainer)
         {
             string fileName = null;
 
@@ -301,6 +305,25 @@ namespace Services
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
                     trainer.ImageUrl.CopyTo(fileStream);
+                }
+            }
+
+            return fileName;
+        }
+
+        private string UploadedFileGym(AddGymViewModel gym)
+        {
+            string fileName = null;
+
+            if (gym.ImageUrl != null)
+            {
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "UploadedFiles");
+                fileName = Guid.NewGuid().ToString() + "_" + gym.ImageUrl.FileName;
+                string filePath = Path.Combine(uploadsFolder, fileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    gym.ImageUrl.CopyTo(fileStream);
                 }
             }
 
