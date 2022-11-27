@@ -131,6 +131,7 @@ namespace Services
                 Name = trainer.Name,
                 Email = trainer.Email,
                 Experience = trainer.Experience,
+                HasImageUrl = trainer.ImageUrl == $"/UploadedFiles/no_profile_img.png" || trainer.ImageUrl == null ? true : false,
                 // ImageUrl = trainer.ImageUrl,
                 Telephone = trainer.Telephone,
                 IsAvailable = trainer.IsAvailable ? "Yes" : "No",
@@ -144,7 +145,10 @@ namespace Services
 
             if (trainer != null)
             {
-                //trainer.ImageUrl = model.ImageUrl;
+                if (trainer.ImageUrl == null)
+                {
+                    trainer.ImageUrl = UploadeFile(model);
+                }
                 trainer.Name = model.Name;
                 trainer.Email = model.Email;
                 trainer.Experience = model.Experience;

@@ -29,7 +29,7 @@ namespace Services
                 Email = t.Email,
                 IsAvailable = t.IsAvailable ? "Yes" : "No",
                 Experience = t.Experience,
-                ImageUrl = $"/UploadedFiles/{t.ImageUrl}"
+                ImageUrl = t.ImageUrl != null ? $"/UploadedFiles/{t.ImageUrl}" : $"/UploadedFiles/no_profile_img.png"
             });
         }
 
