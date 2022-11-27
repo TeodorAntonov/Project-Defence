@@ -1,4 +1,5 @@
 ﻿using DataModels.Entities;
+using Microsoft.AspNetCore.Http;
 
 namespace DataModels.Models
 {
@@ -8,7 +9,7 @@ namespace DataModels.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string Telephone { get; set; }
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
         public string? Experience { get; set; }
         public string IsAvailable { get; set; }
         public int CientsRequestCount { get; set; } = 0;

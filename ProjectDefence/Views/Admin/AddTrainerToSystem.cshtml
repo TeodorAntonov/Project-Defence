@@ -9,11 +9,21 @@
 
 <div class="row">
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
-        <form method="post">
-             <div class="mb-3">
-                <label asp-for="@Model.ImageUrl" class="form-label">Image URL</label>
-                <input asp-for="@Model.ImageUrl" class="form-control" aria-required="true" />
+        @*        <form method="post" enctype="multipart/form-data" asp-controller="File" asp-action="Upload">
+            <input type="file" name="file" />
+            <br /> <br /> <br /> <br />
+            <button type="submit">Upload Picture</button>
+            </form>*@
+        <form enctype="multipart/form-data" method="post">
+            <div class="mb-3">
+                <label asp-for="@Model.ImageUrl" class="form-label"></label>
+                <div class="custom-file">
+                    <input asp-for="@Model.ImageUrl" class="custom-file-input" aria-required="true" 
+                   onchange="document.getElementById('FrontImagePrv').src = window.URL.createObjectURL(this.files[0])"/>
+                    <label class="custom-file-label"></label>
+                </div>
                 <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                <img id="FrontImagePrv" src="" alt="Logo Image" width="250" height="250" style="border:1px; margin-top:20px; margin-left:120px"/>
             </div>
             <div class="mb-3">
                 <label asp-for="@Model.Name" class="form-label">Trainer Name:</label>
@@ -30,17 +40,17 @@
                 <input asp-for="@Model.Telephone" class="form-control" aria-required="true" />
                 <span asp-validation-for="Telephone" class="text-danger"></span>
             </div>
-             <div class="mb-3">
+            <div class="mb-3">
                 <label asp-for="@Model.Experience" class="form-label">Experience:</label>
                 <input asp-for="@Model.Experience" class="form-control" aria-required="true" />
                 <span asp-validation-for="Experience" class="text-danger"></span>
             </div>
-             <div class="mb-3">
+            <div class="mb-3">
                 <label asp-for="@Model.IsAvailable" class="form-label">Available:</label>
                 <input asp-for="@Model.IsAvailable" class="form-control" aria-required="true" />
                 <span asp-validation-for="IsAvailable" class="text-danger"></span>
             </div>
-              <div class="mb-3">
+            <div class="mb-3">
                 <label asp-for="@Model.UserId" class="form-label">Fill User's Id Who wants to be Trainer:</label>
                 <input asp-for="@Model.UserId" class="form-control" aria-required="true" />
             </div>
@@ -51,7 +61,14 @@
     </div>
 </div>
 
-
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+<partial name="_ValidationScriptsPartial" />
+
+<script type="text/javascript">
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
+
 }

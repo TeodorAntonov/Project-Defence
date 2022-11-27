@@ -13,6 +13,7 @@ using System.Data.Common;
 using DataModels.Models;
 using System;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Hosting;
 
 namespace UnitTests
 {
@@ -22,11 +23,12 @@ namespace UnitTests
         ApplicationDbContext context;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<User> userManager;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         public AdminServiceTests()
         {
             context = TestDataBaseContext.GetDatabase();
-            service = new AdminService(userManager, context, roleManager);
+            service = new AdminService(userManager, context, roleManager, _webHostEnvironment);
         }
 
         [Fact]

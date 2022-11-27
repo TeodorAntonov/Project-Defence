@@ -1,6 +1,8 @@
 ﻿using DataModels.Entities;
 using DataModels.Models;
 using Interfaces;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using ProjectDefence.Data;
 
@@ -9,7 +11,8 @@ namespace Services
     public class TrainerService : ITrainerService
     {
         private readonly ApplicationDbContext _context;
-        public TrainerService(ApplicationDbContext context)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public TrainerService(ApplicationDbContext context, IWebHostEnvironment _webHostEnvironment)
         {
             _context = context;
         }
@@ -18,15 +21,15 @@ namespace Services
         {
             var trainers = await _context.Trainers.ToListAsync();
 
-            return trainers.Select(g => new TrainerViewModel()
+            return trainers.Select(t => new TrainerViewModel()
             {
-                Id = g.Id,
-                Name = g.Name,
-                Telephone = g.Telephone,
-                Email = g.Email,
-                IsAvailable = g.IsAvailable ? "Yes" : "No",
-                Experience = g.Experience,
-                ImageUrl = g.ImageUrl
+                Id = t.Id,
+                Name = t.Name,
+                Telephone = t.Telephone,
+                Email = t.Email,
+                IsAvailable = t.IsAvailable ? "Yes" : "No",
+                Experience = t.Experience,
+                ImageUrl = $"/UploadedFiles/{t.ImageUrl}"
             });
         }
 
@@ -169,7 +172,7 @@ namespace Services
             }
 
             return new ClientViewModel()
-            { 
+            {
                 Id = clientId,
                 ClientName = $"{client.User.FirstName} {client.User.LastName}"
             };
@@ -187,5 +190,18 @@ namespace Services
             client.WorkoutPlan = model.WorkoutPlan;
             await _context.SaveChangesAsync();
         }
+
+        //private FormFile? GetUploadeFile(Trainer trainer)
+        //{
+
+        //    string filePath = "..\\ProjectDefence\\wwwroot\\UploadedFiles\\" + trainer.ImageUrl;
+
+        //    string webRootPath = _webHostEnvironment.WebRootPath;
+        //    string newPath = Path.Combine(webRootPath, filePath);
+                                                                 
+        //    string envpath = folderName + "/" + fileName;
+
+        //    trainer.ImageUrl = envpath;
+        //}
     }
 }

@@ -2,6 +2,7 @@
 using DataModels.Entities;
 using DataModels.Models;
 using Interfaces;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProjectDefence.Data;
@@ -13,11 +14,13 @@ namespace Services
         private readonly UserManager<User> _userManager;
         private readonly ApplicationDbContext _context;
         private readonly RoleManager<IdentityRole> _roleManager;
-        public AdminService(UserManager<User> userManager, ApplicationDbContext context, RoleManager<IdentityRole> roleManager)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public AdminService(UserManager<User> userManager, ApplicationDbContext context, RoleManager<IdentityRole> roleManager, IWebHostEnvironment webHostEnvironment)
         {
             _userManager = userManager;
             _context = context;
             _roleManager = roleManager;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public async Task AddGymAsync(AddGymViewModel model)
@@ -40,7 +43,7 @@ namespace Services
                 Telephone = model.Telephone,
                 Experience = model.Experience,
                 IsAvailable = model.IsAvailable == "Yes" ? true : false,
-                ImageUrl = model.ImageUrl ?? null,
+                ImageUrl = UploadeFile(model),
                 UserId = model.UserId ?? null,
             };
 
@@ -127,8 +130,8 @@ namespace Services
             {
                 Name = trainer.Name,
                 Email = trainer.Email,
-                Experience = trainer.Experience, 
-                ImageUrl = trainer.ImageUrl,
+                Experience = trainer.Experience,
+                // ImageUrl = trainer.ImageUrl,
                 Telephone = trainer.Telephone,
                 IsAvailable = trainer.IsAvailable ? "Yes" : "No",
                 UserId = trainer.UserId ?? null,
@@ -141,12 +144,12 @@ namespace Services
 
             if (trainer != null)
             {
-                trainer.ImageUrl = model.ImageUrl;
+                //trainer.ImageUrl = model.ImageUrl;
                 trainer.Name = model.Name;
                 trainer.Email = model.Email;
                 trainer.Experience = model.Experience;
                 trainer.Telephone = model.Telephone;
-                trainer.IsAvailable = model.IsAvailable == "Yes"? true : false;
+                trainer.IsAvailable = model.IsAvailable == "Yes" ? true : false;
                 trainer.UserId = model.UserId ?? null;
 
                 await _context.SaveChangesAsync();
@@ -222,7 +225,7 @@ namespace Services
                 client.SetGoals = model.SetGoals;
                 //client.Trainer = model.Trainer;
                 client.WorkoutPlan = model.WorkoutPlan;
-                client.TypeOfSport= model.TypeOfSport;
+                client.TypeOfSport = model.TypeOfSport;
                 client.ClientNotes = model.Notes;
                 client.IsAdministrator = model.IsAdministrator;
                 client.IsTrainer = model.IsTrainer;
@@ -279,6 +282,25 @@ namespace Services
 
             await _userManager.DeleteAsync(user);
             await _context.SaveChangesAsync();
+        }
+
+        private string UploadeFile(AddTrainerViewModel trainer)
+        {
+            string fileName = null;
+
+            if (trainer.ImageUrl != null)
+            {
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "UploadedFiles");
+                fileName = Guid.NewGuid().ToString() + "_" + trainer.ImageUrl.FileName;
+                string filePath = Path.Combine(uploadsFolder, fileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    trainer.ImageUrl.CopyTo(fileStream);
+                }
+            }
+
+            return fileName;
         }
     }
 }

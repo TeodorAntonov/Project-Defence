@@ -1,5 +1,7 @@
 ﻿using DataModels.Constants;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataModels.Models
 {
@@ -15,7 +17,10 @@ namespace DataModels.Models
         [StringLength(ConstantsData.MaxTelephoneLength, MinimumLength = ConstantsData.MinTelephoneLength)]
         public string Telephone { get; set; }
         public string? Experience { get; set; }
-        public string? ImageUrl { get; set; }
+        [NotMapped]
+        [Required(ErrorMessage = "Please choose image")]
+        public IFormFile? ImageUrl { get; set; }
+        public string? ImageUrlSaved { get; set; }
         public string IsAvailable { get; set; } = "Yes";
         public string? UserId { get; set; }
     }
