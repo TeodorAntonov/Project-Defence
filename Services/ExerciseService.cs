@@ -37,6 +37,19 @@ namespace Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task DeleteExerciseAsync(int exerciseId)
+        {
+            var exercise = await _context.Exercises.FindAsync(exerciseId);
+
+            if (exercise == null)
+            {
+                throw new ArgumentException("No such exercise Id.");
+            }
+
+            _context.Exercises.Remove(exercise);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<ExerciseViewModel>> GetAllExercisesAsync()
         {
             var exercies = await _context.Exercises.OrderBy(e => e.Name).ToListAsync();

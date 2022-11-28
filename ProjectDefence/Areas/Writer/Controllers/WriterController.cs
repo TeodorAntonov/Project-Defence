@@ -72,5 +72,16 @@ namespace ProjectDefence.Areas.Writer.Controllers
             await _exerciseService.AddExerciseAsync(model);
             return RedirectToAction("AllExercises", "Exercise");
         }
+
+        public async Task<IActionResult> DeleteExercise(int exerciseId)
+        {
+            if (exerciseId == null)
+            {
+                return BadRequest("There is no such a Exercise. Go Exercise.");
+            }
+            await _exerciseService.DeleteExerciseAsync(exerciseId);
+
+            return RedirectToAction("AllExercises", "Exercise");
+        }
     }
 }

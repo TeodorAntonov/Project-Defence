@@ -25,7 +25,7 @@
             </form>
             @if (User?.IsInRole("Writer") ?? false)
             {
-                <a asp-controller="Writer" asp-action="DeleteExercise" asp-route-exerciseId="@exercise.Id" class="btn btn-danger mb-3">Delete</a>
+                <a asp-area="Writer" asp-controller="Writer" asp-action="DeleteExercise" asp-route-exerciseId="@exercise.Id" class="btn btn-danger mb-3">Delete</a>
             }
         </div>
     }
