@@ -9,11 +9,11 @@ namespace DataModels.Models
 {
     public class UpdateMyProfileViewModel
     {
-        [Range(1, 150)]
+        [Range(1, 150,  ErrorMessage = "Age for {0} must be between {1} and {2}.")]
         public int? Age { get; set; }
-        [Range(1, 500)]
+        [Range(1, 500, ErrorMessage = "Weight for {0} must be between {1} and {2}.")]
         public double? Weight { get; set; }
-        [Range(1, 300)]
+        [Range(1, 300, ErrorMessage = "Height for {0} must be between {1} and {2}.")]
         public double? Height { get; set; }
         public string? Notes { get; set; }
         public string? SetGoals { get; set; }
