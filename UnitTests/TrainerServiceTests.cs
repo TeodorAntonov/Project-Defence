@@ -12,6 +12,7 @@ using Microsoft.Data.Sqlite;
 using System.Data.Common;
 using DataModels.Models;
 using System;
+using Microsoft.AspNetCore.Hosting;
 
 namespace UnitTests
 {
@@ -19,11 +20,13 @@ namespace UnitTests
     {
         private TrainerService service;
         ApplicationDbContext context;
+        private IWebHostEnvironment webHostEnvironment;
+
 
         public TrainerServiceTests()
         {
             context = TestDataBaseContext.GetDatabase();
-            service = new TrainerService(context);
+            service = new TrainerService(context, webHostEnvironment);
         }
 
         [Fact]

@@ -17,9 +17,8 @@ namespace DataModels.Models
         [NotMapped]
         public IFormFile? ImageFile { get; set; }
         public string? ImageUrl { get; set; }
-        [StringLength(ConstantsData.MaxDescriptionLength, MinimumLength = ConstantsData.MinDescriptionLength)]
-        public string? Description { get; set; }
-
+        [StringLength(ConstantsData.MaxDescriptionLength, MinimumLength = ConstantsData.MinPartialDescriptionLength)]
+        public string Description { get; set; }
         [StringLength(ConstantsData.MaxDescriptionLength, MinimumLength = ConstantsData.MinPartialDescriptionLength)]
         public string? PartialDescription { get; set; }
     }
