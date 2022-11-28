@@ -11,10 +11,14 @@ namespace ProjectDefence.Areas.Writer.Controllers
     public class WriterController : Controller
     {
         private readonly IPostService _postService;
-        public WriterController(IPostService postService)
+        private readonly IExerciseService _exerciseService;
+
+        public WriterController(IPostService postService, IExerciseService exerciseService)
         {
             _postService = postService;
+            _exerciseService = exerciseService;
         }
+
         [HttpGet]
         public IActionResult GetWriterScreen()
         {
@@ -48,6 +52,25 @@ namespace ProjectDefence.Areas.Writer.Controllers
             await _postService.DeletePostAsync(postId);
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult AddExercise()
+        {
+            var model = new ExerciseViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddExercise(ExerciseViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            await _exerciseService.AddExerciseAsync(model);
+            return RedirectToAction("AllExercises", "Exercise");
         }
     }
 }

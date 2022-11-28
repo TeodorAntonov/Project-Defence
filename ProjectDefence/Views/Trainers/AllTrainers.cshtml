@@ -12,7 +12,7 @@
     @foreach (var trainer in Model)
     {
         <div class="card col-4" style="width: 20rem;">
-            <img src="@trainer.ImageUrl" alt="Logo Image"  style="width:250px;height:250px;"/>
+            <img src="@trainer.ImageUrl" alt="Logo Image" style="width:250px;height:250px;" />
             <div class="card-body">
 
                 <h5 class="card-title mt-1">@trainer.Name</h5>
@@ -23,15 +23,15 @@
             </div>
             @if (@trainer.IsAvailable == "Yes")
             {
-                 <a asp-controller="Client" asp-action="ApplyForTrainer" asp-route-trainerId="@trainer.Id" class="btn btn-danger mb-3">Apply for trainer</a>
+                <a asp-controller="Client" asp-action="ApplyForTrainer" asp-route-trainerId="@trainer.Id" class="btn btn-danger mb-3">Apply for trainer</a>
             }
             <form class="input-group-sm" asp-route-trainerId="@trainer.Id" asp-controller="Trainers" method="post"> </form>
             @if (User?.IsInRole("Administrator") ?? false)
-               {
-                  <a asp-controller="Admin" asp-action="EditTrainer" asp-route-trainerId="@trainer.Id" class="btn btn-primary mb-3">Edit</a>
-                   <span></span>
-                  <a asp-controller="Admin" asp-action="DeleteTrainer" asp-route-trainerId="@trainer.Id" class="btn btn-danger mb-3">Delete</a>
-               }
+            {
+                <a asp-controller="Admin" asp-action="EditTrainer" asp-route-trainerId="@trainer.Id" class="btn btn-primary mb-3">Edit</a>
+                <span></span>
+                <a asp-controller="Admin" asp-action="DeleteTrainer" asp-route-trainerId="@trainer.Id" class="btn btn-danger mb-3">Delete</a>
+            }
         </div>
     }
 </div>

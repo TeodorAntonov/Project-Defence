@@ -11,5 +11,6 @@ namespace Interfaces
     {
         Task<IEnumerable<ExerciseViewModel>> GetAllExercisesAsync();
         Task<ExerciseViewModel> GetExerciseAsync(int exerciseId);
+        Task AddExerciseAsync(ExerciseViewModel model);
     }
 }
