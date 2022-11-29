@@ -49,6 +49,11 @@ namespace Services
         {
             var post = await _context.Posts.FindAsync(postId);
 
+            if (post == null)
+            {
+                return null;
+            }
+
             return new PostViewModel()
             {
                 Id = post.Id,

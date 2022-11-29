@@ -32,7 +32,7 @@ namespace ProjectDefence.Controllers
         {
             if (applicationId == null)
             {
-                return BadRequest("There is no such a Gym. Go Back.");
+                return RedirectToAction("BadRequest", "Error");
             }
 
             await _adminMailboxService.MoveToJunkAsync(applicationId);
@@ -56,7 +56,7 @@ namespace ProjectDefence.Controllers
         {
             if (applicationId == null)
             {
-                return BadRequest("There is no such a Gym. Go Back.");
+                return RedirectToAction("BadRequest", "Error");
             }
             await _adminMailboxService.DeleteApplicationAsync(applicationId);
 

@@ -33,8 +33,15 @@ namespace Services
                 ImageUrl = UploadedFileExercise(model),
             };
 
-            await _context.Exercises.AddAsync(Exercise);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.Exercises.AddAsync(Exercise);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidDataException("Cannot Save the new data!", ex);
+            }
         }
 
         public async Task DeleteExerciseAsync(int exerciseId)
@@ -67,6 +74,11 @@ namespace Services
         public async Task<ExerciseViewModel> GetExerciseAsync(int exerciseId)
         {
             var exercise = await _context.Exercises.FindAsync(exerciseId);
+
+            if (exercise == null)
+            {
+                return null;
+            }
 
             return new ExerciseViewModel()
             {

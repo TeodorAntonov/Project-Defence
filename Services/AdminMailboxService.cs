@@ -40,8 +40,8 @@ namespace Services
         public async Task<AdminMailboxViewModel> GetCheckedApplicationsAsync()
         {
             var applications = await _context.Applications.Include(a => a.User).Where(a => a.IsChecked).ToListAsync();
-            var mailbox = new AdminMailboxViewModel();
 
+            var mailbox = new AdminMailboxViewModel();
 
             mailbox.Applications = applications.Select(a => new ApplicationFormForTrainersViewModel()
             {

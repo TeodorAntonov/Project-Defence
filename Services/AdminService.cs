@@ -129,6 +129,11 @@ namespace Services
         {
             var trainer = await _context.Trainers.FindAsync(trainerId);
 
+            if (trainer == null)
+            {
+                return null;
+            }
+
             return new AddTrainerViewModel()
             {
                 Name = trainer.Name,
@@ -182,6 +187,11 @@ namespace Services
         {
             var gym = await _context.Gyms.FindAsync(gymId);
 
+            if (gym == null)
+            {
+                return null;
+            }
+
             return new AddGymViewModel()
             {
                 Name = gym.Name,
@@ -194,7 +204,18 @@ namespace Services
         public async Task<EditUserViewModel> GetUserById(string userId)
         {
             var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user == null)
+            {
+                return null;
+            }
+
             var client = await _context.Clients.FirstOrDefaultAsync(c => c.UserId == user.Id);
+
+            if (client == null)
+            {
+                return null;
+            }
 
             return new EditUserViewModel()
             {

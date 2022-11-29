@@ -12,10 +12,13 @@ namespace ProjectDefence.Controllers
             _postService = postService;
         }
 
-        [HttpPost]
         public async Task<IActionResult> GetFullPost(int postId)
         {
             var model = await _postService.GetFullPostAsync(postId);
+            if (model == null)
+            {
+                return RedirectToAction("NotFound", "Error");
+            }
             return View(model);
         }
 
@@ -23,6 +26,10 @@ namespace ProjectDefence.Controllers
         public async Task<IActionResult> GetAllArticles()
         {
             var model = await _postService.GetAllPosts();
+            if (model == null)
+            {
+                return RedirectToAction("NotFound", "Error");
+            }
             return View(model);
         }
     }

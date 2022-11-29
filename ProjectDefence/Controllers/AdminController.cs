@@ -60,9 +60,10 @@ namespace ProjectDefence.Controllers
         public async Task<IActionResult> EditGym(int gymId)
         {
             var model = await _adminService.GetGymById(gymId);
+
             if (model == null)
             {
-                return BadRequest();
+                return RedirectToAction("NotFound", "Error");
             }
 
             return View(model);
@@ -73,12 +74,12 @@ namespace ProjectDefence.Controllers
         {
             if (model == null)
             {
-                return BadRequest();
+                return RedirectToAction("BadRequest", "Error");
             }
 
             if (gymId == null)
             {
-                return NotFound();
+                return RedirectToAction("NotFound", "Error");
             }
 
             bool isSuccess = await _adminService.EditGymAsync(gymId, model);
@@ -95,7 +96,7 @@ namespace ProjectDefence.Controllers
         {
             if (gymId == null)
             {
-                return BadRequest("There is no such a Gym. Go Back.");
+                return RedirectToAction("BadRequest", "Error");
             }
             await _adminService.DeleteGymAsync(gymId);
 
@@ -126,9 +127,10 @@ namespace ProjectDefence.Controllers
         public async Task<IActionResult> EditTrainer(int trainerId)
         {
             var model = await _adminService.GetTrainerById(trainerId);
+
             if (model == null)
             {
-                return BadRequest();
+                return RedirectToAction("BadRequest", "Error");
             }
 
             return View(model);
@@ -139,12 +141,12 @@ namespace ProjectDefence.Controllers
         {
             if (model == null)
             {
-                return BadRequest();
+                return RedirectToAction("BadRequest", "Error");
             }
 
             if (trainerId == null)
             {
-                return NotFound();
+                return RedirectToAction("NotFound", "Error");
             }
 
             bool isSuccess = await _adminService.EditTrainerAsync(trainerId, model);
@@ -163,7 +165,7 @@ namespace ProjectDefence.Controllers
             var model = await _adminService.GetUserById(userId);
             if (model == null)
             {
-                return BadRequest();
+                return RedirectToAction("NotFound", "Error");
             }
 
             return View(model);
@@ -174,12 +176,12 @@ namespace ProjectDefence.Controllers
         {
             if (model == null)
             {
-                return BadRequest();
+                return RedirectToAction("BadRequest", "Error");
             }
 
             if (userId == null)
             {
-                return NotFound();
+                return RedirectToAction("NotFound", "Error");
             }
 
             bool isSuccess = await _adminService.EditUserAsync(userId, model);
@@ -198,12 +200,12 @@ namespace ProjectDefence.Controllers
 
             if (userId == userIdAdmin)
             {
-                return BadRequest("You Can't Delete Yourself!");
+                return RedirectToAction("BadRequestAdmin", "Error");
             }
 
             if (userId == null)
             {
-                return BadRequest("There is no such a User. Go Back.");
+                return RedirectToAction("BadRequest", "Error");
             }
 
             await _adminService.DeleteUserAsync(userId);

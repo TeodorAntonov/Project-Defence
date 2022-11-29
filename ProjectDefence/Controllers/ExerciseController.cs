@@ -15,13 +15,24 @@ namespace ProjectDefence.Controllers
         public async Task<IActionResult> AllExercises()
         {
             var model = await _exerciseService.GetAllExercisesAsync();
+
             return View(model);
         }
 
-        [HttpPost]
         public async Task<IActionResult> GetExercise(int exerciseId)
         {
+            if (exerciseId == null)
+            {
+                return RedirectToAction("BadRequest", "Error");
+            }
+
             var model = await _exerciseService.GetExerciseAsync(exerciseId);
+
+            if (model == null)
+            {
+                return RedirectToAction("NotFound", "Error");
+            }
+
             return View(model);
         }
     }
