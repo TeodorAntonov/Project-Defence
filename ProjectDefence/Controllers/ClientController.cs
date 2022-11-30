@@ -26,7 +26,7 @@ namespace ProjectDefence.Controllers
             var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
             if (user == null)
             {
-                throw new Exception("There is no such user! Go Back!");
+                 return RedirectToAction("BadRequest", "Error");
             }
             var result = await _clientService.ApplyingForTrainerAsync(user, trainerId);
 

@@ -35,7 +35,7 @@ namespace ProjectDefence.Controllers
             var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
             if (user == null)
             {
-                throw new Exception("There is no such user! Go Back!");
+                return RedirectToAction("NotFound", "Error");
             }
             var model = await _trainerService.GetClientsAsync(user);
             return View(model);
@@ -49,7 +49,7 @@ namespace ProjectDefence.Controllers
             var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
             if (user == null)
             {
-                throw new Exception("There is no such user! Go Back!");
+                return RedirectToAction("NotFound", "Error");
             }
             var model = await _trainerService.GetClientsRequestsAsync(user);
             return View(model);
@@ -68,7 +68,7 @@ namespace ProjectDefence.Controllers
 
             if (user == null)
             {
-                throw new Exception("There is no such user! Go Back!");
+                return RedirectToAction("NotFound", "Error");
             }
 
             await _trainerService.DeleteRequestAsync(user, clientId);
@@ -88,7 +88,7 @@ namespace ProjectDefence.Controllers
 
             if (user == null)
             {
-                throw new Exception("There is no such user! Go Back!");
+                return RedirectToAction("NotFound", "Error");
             }
 
             await _trainerService.AddClientAsync(user, clientId);
@@ -109,7 +109,7 @@ namespace ProjectDefence.Controllers
 
             if (user == null)
             {
-                throw new Exception("There is no such user! Go Back!");
+                return RedirectToAction("NotFound", "Error");
             }
 
             await _trainerService.DeleteClientAsync(user, clientId);
@@ -126,27 +126,11 @@ namespace ProjectDefence.Controllers
             var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
             if (user == null)
             {
-                throw new Exception("There is no such user! Go Back!");
+                return RedirectToAction("NotFound", "Error");
             }
             var model = await _trainerService.CreateWorkoutAsync(user, clientId);
             return View(model);
         }
-
-        //[Authorize(Roles = "Trainer")]
-        //public async Task<ActionResult> SaveExercise(CreateExerciseViewModel model)
-        //{
-        //    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //    var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
-        //    if (user == null)
-        //    {
-        //        throw new Exception("There is no such user! Go Back!");
-        //    }
-        //    // var program = await _repo.get(programId);
-        //    //program.exercises.add(new Exercise(viewModel));
-        //    //await _repo.update(program);
-
-        //    return View("GetClients");
-        //}
 
         //[HttpGet]
         [Authorize(Roles = "Trainer")]
@@ -156,21 +140,10 @@ namespace ProjectDefence.Controllers
             var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
             if (user == null)
             {
-                throw new Exception("There is no such user! Go Back!");
+                return RedirectToAction("NotFound", "Error");
             }
             await _trainerService.SaveWorkoutAsync(clientId, model);
             return RedirectToAction("GetClients", "Trainers");
         }
-
-        //[HttpGet]
-        //[Authorize(Roles = "Trainer")]
-        //public async Task<ActionResult> AddExercise(ClientViewModel model)
-        //{
-        //    model.WorkoutPlan.Add(new XFiles());
-        //    //return PartialView("_Exercises", model);
-
-        //    return RedirectToAction(nameof(CreateWorkout(clientId)), "Trainers");
-        //    //return RedirectToAction("GetClients", "Trainers");
-        //}
     }
 }

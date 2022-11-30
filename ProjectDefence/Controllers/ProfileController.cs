@@ -44,13 +44,13 @@ namespace ProjectDefence.Controllers
             var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
             if (user == null)
             {
-                return BadRequest();
+                 return RedirectToAction("BadRequest", "Error");
             }
 
             var client = _context.Clients.FirstOrDefault(c => c.UserId == user.Id);
             if (client == null)
             {
-                return BadRequest();
+                return RedirectToAction("BadRequest", "Error");
             }
 
             UpdateMyProfileViewModel model = new UpdateMyProfileViewModel()
@@ -70,6 +70,12 @@ namespace ProjectDefence.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
+
+            if (user == null)
+            {
+                return RedirectToAction("NotFound", "Error");
+            }
+
             await _profileService.UpdateUserProfile(user, model);
 
             return RedirectToAction("MyProfile", "Profile");
@@ -83,13 +89,13 @@ namespace ProjectDefence.Controllers
             var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
             if (user == null)
             {
-                return BadRequest();
+                return RedirectToAction("NotFound", "Error");
             }
 
             var client = _context.Clients.FirstOrDefault(c => c.UserId == user.Id);
             if (client == null)
             {
-                return BadRequest();
+                return RedirectToAction("NotFound", "Error");
             }
 
             SetMyProfileViewModel model = new SetMyProfileViewModel()
@@ -106,6 +112,12 @@ namespace ProjectDefence.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
+
+            if (user == null)
+            {
+                return RedirectToAction("NotFound", "Error");
+            }
+
             await _profileService.SetUserProfile(user, model);
 
             return RedirectToAction("MyProfile", "Profile");
@@ -115,15 +127,16 @@ namespace ProjectDefence.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
+
             if (user == null)
             {
-                return NotFound();
+                return RedirectToAction("NotFound", "Error");
             }
 
             var client = _context.Clients.FirstOrDefault(c => c.UserId == user.Id);
             if (client == null)
             {
-                return BadRequest();
+                return RedirectToAction("NotFound", "Error");
             }
             await _profileService.ClearAllNotes(client);
 
