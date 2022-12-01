@@ -12,12 +12,10 @@ namespace ProjectDefence.Controllers
     public class TrainerApplicationController : Controller
     {
         private readonly IApplicationFormService _applicationForm;
-        private readonly UserManager<User> _userManager;
 
-        public TrainerApplicationController(IApplicationFormService applicationForm, UserManager<User> userManager)
+        public TrainerApplicationController(IApplicationFormService applicationForm)
         {
             _applicationForm = applicationForm;
-            _userManager = userManager;
         }
         [HttpGet]
         public IActionResult ApplicationFormForTrainers()
@@ -34,7 +32,6 @@ namespace ProjectDefence.Controllers
         [HttpPost]
         public async Task<IActionResult> ApplicationFormForTrainers(ApplicationFormForTrainersViewModel model)
         {
-            
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             await _applicationForm.CreateApplicationAsync(model, userId);
