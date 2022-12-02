@@ -229,9 +229,10 @@ namespace Services
                 HeightCurrent = client.CurrentHeight,
                 Notes = client.ClientNotes,
                 SetGoals = client.SetGoals,
-                //Trainer = client.Trainer,
+                Trainer = client.Trainer != null ? client.Trainer.Name : "No assigned Trainer!",
                 WorkoutPlan = client.WorkoutPlan,
                 TypeOfSport = client.TypeOfSport,
+                TypeOfSports = GetSports(),
                 IsAdministrator = client.IsAdministrator,
                 IsTrainer = client.IsTrainer,
                 IsWriter = client.IsWriter,
@@ -254,7 +255,7 @@ namespace Services
                 client.SetGoals = model.SetGoals;
                 //client.Trainer = model.Trainer;
                 client.WorkoutPlan = model.WorkoutPlan;
-                client.TypeOfSport = model.TypeOfSport;
+                client.TypeOfSport = GetSports().FirstOrDefault(s => s.Id == model.TypeOfSportId).Name ?? null;
                 client.ClientNotes = model.Notes;
                 client.IsAdministrator = model.IsAdministrator;
                 client.IsTrainer = model.IsTrainer;
@@ -312,6 +313,13 @@ namespace Services
             await _userManager.DeleteAsync(user);
             await _context.SaveChangesAsync();
         }
+
+        public IEnumerable<SportViewModel> GetSports()
+        => this._context.Sports.Select(s => new SportViewModel()
+        {
+            Id = s.Id,
+            Name = s.Name,
+        });
 
         private string UploadeFileTrainer(AddTrainerViewModel trainer)
         {

@@ -18,5 +18,6 @@ namespace Interfaces
         Task<bool> EditTrainerAsync(int trainerId, AddTrainerViewModel model);
         Task<bool> EditUserAsync(string userId, EditUserViewModel model);
         Task<EditUserViewModel> GetUserById(string userId);
+        IEnumerable<SportViewModel> GetSports();
     }
 }

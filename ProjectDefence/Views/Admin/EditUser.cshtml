@@ -61,15 +61,25 @@
             </div>
             <div class="mb-3">
                 <label asp-for="@Model.Trainer" class="form-label">Trainer:</label>
-                <input asp-for="@Model.Trainer" class="form-control" aria-required="true" />
+                <p asp-for="@Model.Trainer" class="form-control" aria-required="true" style="background-color: Coral">@Model.Trainer</p> 
             </div>
             <div class="mb-3">
                 <label asp-for="@Model.WorkoutPlan" class="form-label">Workout Plan:</label>
                 <input asp-for="@Model.WorkoutPlan" class="form-control" aria-required="true" />
             </div>
             <div class="mb-3">
-                <label asp-for="@Model.TypeOfSport" class="form-label">Type Of Sport:</label>
-                <input asp-for="@Model.TypeOfSport" class="form-control" aria-required="true" />
+                <label asp-for="@Model.TypeOfSport" class="form-label">Current Type Of Sport:</label>
+                <p asp-for="@Model.TypeOfSport" class="form-control" aria-required="true" style="background-color: Gold">@Model.TypeOfSport</p> 
+                <div class="mb-3">
+                <label asp-for="@Model.TypeOfSportId" class="form-label">If The Client need new Type Of Sport, please Select:</label>
+                <select asp-for="@Model.TypeOfSportId" class="form-control">
+                    @foreach (var sport in Model.TypeOfSports)
+                    {
+                        <option value="@sport.Id">@sport.Name</option>
+                    }
+                 </select>
+                 <span asp-validation-for="TypeOfSportId" class="text-danger"></span>
+            </div>
             </div>
             <div class="mb-3">
 

@@ -29,6 +29,7 @@ namespace DataModels.Models
         public bool IsTrainer { get; set; }
         public bool IsAdministrator { get; set; }
         public bool IsWriter { get; set; }
+        public int? TypeOfSportId { get; set; }
         public IEnumerable<SportViewModel>? TypeOfSports { get; set; }
     }
 }
