@@ -32,7 +32,10 @@ namespace Services
             {
                 throw new Exception("There is no such client.");
             }
-
+            if (client.TrainerId != null)
+            {
+                return false;
+            }
             if (trainer.Clients.Contains(client))
             {
                 return false;

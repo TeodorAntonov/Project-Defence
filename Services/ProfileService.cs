@@ -47,7 +47,7 @@ namespace Services
                 HeightStarted = client.HeightStarted.HasValue ? client.HeightStarted.Value : 0,
                 TypeOfSport = client.TypeOfSport,
                 SetGoals = client.SetGoals,
-                //Trainer = client.Trainer,
+                Trainer = await GetUserTrainer(client.TrainerId),
                 WorkoutPlan = client.WorkoutPlan,
                 CurrentAge = client.CurrentAge,
                 CurrentHeight = client.CurrentHeight,
@@ -73,7 +73,7 @@ namespace Services
 
             if (!GetSports().Any(s => s.Id == model.TypeOfSportId))
             {
-                throw new Exception ("Sport does not exist.");
+                throw new Exception("Sport does not exist.");
             }
 
             client.CurrentAge = model.Age;
@@ -84,8 +84,8 @@ namespace Services
             if (model.SetGoals != null)
             {
                 client.SetGoals = model.SetGoals;
-            }         
-            client.ClientNotes = client.ClientNotes + Environment.NewLine + "|| RECORD ON " + DateTime.UtcNow.ToString("dd/mm/yyy")+ ": " + model.Notes;
+            }
+            client.ClientNotes = client.ClientNotes + Environment.NewLine + "|| RECORD ON " + DateTime.UtcNow.ToString("dd/mm/yyy") + ": " + model.Notes;
 
             await _context.SaveChangesAsync();
         }
@@ -124,6 +124,33 @@ namespace Services
         {
             client.ClientNotes = string.Empty;
             await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteTrainerWrokout(Client client)
+        {
+            var trainer = await _context.Trainers.FindAsync(client.TrainerId);
+
+            if (trainer != null)
+            {
+                trainer.Clients.Remove(client);
+            }
+
+            client.WorkoutPlan = string.Empty;
+            client.TrainerId = null;
+            client.Trainer = null;
+            await _context.SaveChangesAsync();
+        }
+
+        private async Task<string?> GetUserTrainer(int? trainerId)
+        {
+            var trainer = await _context.Trainers.FirstOrDefaultAsync(t => t.Id == trainerId);
+
+            if (trainer == null)
+            {
+                return null;
+            }
+
+            return trainer.Name;
         }
     }
 }

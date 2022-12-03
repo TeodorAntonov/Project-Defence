@@ -142,7 +142,7 @@ namespace ProjectDefence.Controllers
             {
                 return RedirectToAction("NotFound", "Error");
             }
-            await _trainerService.SaveWorkoutAsync(clientId, model);
+            await _trainerService.SaveWorkoutAsync(user, clientId, model);
             return RedirectToAction("GetClients", "Trainers");
         }
     }

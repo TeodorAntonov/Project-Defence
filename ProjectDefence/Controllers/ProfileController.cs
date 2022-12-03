@@ -44,7 +44,7 @@ namespace ProjectDefence.Controllers
             var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
             if (user == null)
             {
-                 return RedirectToAction("BadRequest", "Error");
+                return RedirectToAction("BadRequest", "Error");
             }
 
             var client = _context.Clients.FirstOrDefault(c => c.UserId == user.Id);
@@ -139,6 +139,26 @@ namespace ProjectDefence.Controllers
                 return RedirectToAction("NotFound", "Error");
             }
             await _profileService.ClearAllNotes(client);
+
+            return RedirectToAction("MyProfile", "Profile");
+        }
+
+        public async Task<ActionResult> DeleteTrainerAndWorkout(string confirm_value)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
+
+            if (user == null)
+            {
+                return RedirectToAction("NotFound", "Error");
+            }
+
+            var client = _context.Clients.FirstOrDefault(c => c.UserId == user.Id);
+            if (client == null)
+            {
+                return RedirectToAction("NotFound", "Error");
+            }
+            await _profileService.DeleteTrainerWrokout(client);
 
             return RedirectToAction("MyProfile", "Profile");
         }

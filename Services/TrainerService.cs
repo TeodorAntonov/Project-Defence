@@ -174,12 +174,20 @@ namespace Services
             return new ClientViewModel()
             {
                 Id = clientId,
-                ClientName = $"{client.User.FirstName} {client.User.LastName}"
+                ClientName = $"{client.User.FirstName} {client.User.LastName}",
             };
         }
 
-        public async Task SaveWorkoutAsync(int clientId, ClientViewModel model)
+        public async Task SaveWorkoutAsync(User user, int clientId, ClientViewModel model)
         {
+
+            var trainer = await _context.Trainers.FirstOrDefaultAsync(t => t.UserId == user.Id);
+
+            if (trainer == null)
+            {
+                throw new ArgumentException("No such trainer Id.");
+            }
+
             var client = await _context.Clients.Include(c => c.User).FirstOrDefaultAsync(c => c.Id == clientId);
 
             if (client == null)
@@ -188,6 +196,7 @@ namespace Services
             }
 
             client.WorkoutPlan = model.WorkoutPlan;
+            client.TrainerId = trainer.Id;
             await _context.SaveChangesAsync();
         }
 

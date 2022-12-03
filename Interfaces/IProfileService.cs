@@ -11,5 +11,6 @@ namespace Interfaces
         IEnumerable<SportViewModel> GetSports();
 
         Task ClearAllNotes(Client client);
+        Task DeleteTrainerWrokout(Client client);
     }
 }
