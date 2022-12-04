@@ -8,5 +8,6 @@ Tha system is very basic level of quick actions and responses between clients, t
 There is a second administrative section for writers. They are the users who write upload new articles(posts) for any fun-side zone. They can also add exercises' descriptions in a section for exercises.
 
 <h1>---------</h1>
-<h1>Project Architecture</h1>
-![Project Architecture](wwwroot/Monolith_Architecuture.png "San Juan Mountains")
+<h1>Project Overview</h1>
+<h6>Monolith Architecuture</h6>
+![Project Architecture](/wwwroot/Monolith_Architecuture.png "Monolith_Architecuture")
