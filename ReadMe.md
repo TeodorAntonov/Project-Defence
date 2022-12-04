@@ -10,4 +10,5 @@ There is a second administrative section for writers. They are the users who wri
 <h1>---------</h1>
 <h1>Project Overview</h1>
 <h6>Monolith Architecuture</h6>
-<img src="/ProjectDefence/wwwroot/Monolith_Architecuture.png" alt="MarineGEO circle logo" style="height: 600px; width:500px;"/>
+<img src="/ProjectDefence/wwwroot/Monolith_Architecuture.png" alt="Monolith Architecuture" style="height: 600px; width:500px;"/>
+<img src="/ProjectDefence/wwwroot/project-overview.jpg" alt="project-overview" style="height: 400px; width:300px;"/>
