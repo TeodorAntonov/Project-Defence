@@ -11,6 +11,6 @@ There is a second administrative section for writers. They are the users who wri
 <h1>Project Overview</h1>
 <h6>Monolith Architecuture</h6>
 <figure>
-    <img src="/wwwroot/Monolith_Architecuture.png"
+    <img src="~/wwwroot/Monolith_Architecuture.png"
          alt="Monolith Architecuture">
 </figure>
