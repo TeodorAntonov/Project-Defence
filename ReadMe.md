@@ -10,7 +10,5 @@ There is a second administrative section for writers. They are the users who wri
 <h1>---------</h1>
 <h1>Project Overview</h1>
 <h6>Monolith Architecuture</h6>
-<figure>
-    <img src="~/wwwroot/Monolith_Architecuture.png"
-         alt="Monolith Architecuture">
-</figure>
+<img src="/ProjectDefence/wwwroot/Monolith_Architecuture.png" alt="MarineGEO circle logo" style="height: 100px; width:100px;"/>
+![Monolith Architecuture](/ProjectDefence/wwwroot/Monolith_Architecuture.png "Monolith Architecuture")
