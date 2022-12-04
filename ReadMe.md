@@ -10,4 +10,7 @@ There is a second administrative section for writers. They are the users who wri
 <h1>---------</h1>
 <h1>Project Overview</h1>
 <h6>Monolith Architecuture</h6>
-![Project Architecture](/wwwroot/Monolith_Architecuture.png "Monolith_Architecuture")
+<figure>
+    <img src="/wwwroot/Monolith_Architecuture.png"
+         alt="Monolith Architecuture">
+</figure>
