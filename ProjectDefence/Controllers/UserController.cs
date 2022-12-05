@@ -119,7 +119,7 @@ namespace ProjectDefence.Controllers
 
         public async Task<IActionResult> Logout()
         {
-            _signInManager.SignOutAsync();
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
 
