@@ -31,6 +31,9 @@ This solution contains DB Context and all migrations of the project. The app is 
 #### Services
 This solution contains all services of the project
 
+#### Tests Folder
+This folder contains all unit tests of services and controlllers. The Controllers unit tests are put in a sub-folder so to be separeted and distinguished from the services unit tests.
+
 <h1>---------</h1>
 <h1>Instructions about: How to run the app</h1>
 
