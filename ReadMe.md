@@ -54,3 +54,18 @@ First execution (Example) your localhost:****/User/CreateRoles <- this is for se
 Second execution (Example) your localhost:****/User/AddAdminUser <- this is for setting the admin.
 
 The Admin is hardcoded so if you want to use the admin profile, write the following credentials: UserName: Administrator / Password: Admin1!
+
+<h1>---------</h1>
+<h1>Brief presentaion for all Roles</h1>
+#### Administrator
+The Admin Role has most of the rights in the app. He/she can add trainers and gyms to the sysmtem, also has his/her own admin mail box where the admin can see who has applied for trainer's position.
+The Admin decides to whom can be permitted to be trainer. The Admin has own panel where can delete users or edit their statuses and infos.
+Check the following pictures as example.
+-This is the Home Page and the Admin Panel's options:
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/AdminHome.jpg" alt="admin home" style="height: 200px; width:400px;"/>
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/AdminPanel.jpg" alt="admin panel" style="height: 200px; width:400px;"/>
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/AddGym.jpg" alt="add gym" style="height: 200px; width:400px;"/>
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/AddTrainer.jpg" alt="add trainer" style="height: 200px; width:400px;"/>
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/AllUsers.jpg" alt="all users" style="height: 200px; width:400px;"/>
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/userProfile1.jpg" alt="user profile" style="height: 200px; width:400px;"/>
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/userProfile2.jpg" alt="user profile part2" style="height: 200px; width:400px;"/>
