@@ -121,6 +121,11 @@ namespace Services
                 throw new ArgumentException("No such gym Id.");
             }
 
+            if (gym.ImageUrl != null)
+            {
+                File.Delete(Path.Combine(Path.Combine(_webHostEnvironment.WebRootPath, "UploadedFiles"), gym.ImageUrl));
+            }
+
             _context.Gyms.Remove(gym);
             await _context.SaveChangesAsync();
         }
@@ -177,6 +182,11 @@ namespace Services
             if (trainer == null)
             {
                 throw new ArgumentException("No such trainer Id.");
+            }
+
+            if(trainer.ImageUrl != null)
+            {
+                File.Delete(Path.Combine(Path.Combine(_webHostEnvironment.WebRootPath, "UploadedFiles"), trainer.ImageUrl));
             }
 
             _context.Trainers.Remove(trainer);

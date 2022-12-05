@@ -53,6 +53,11 @@ namespace Services
                 throw new ArgumentException("No such exercise Id.");
             }
 
+            if (exercise.ImageUrl != null)
+            {
+                File.Delete(Path.Combine(Path.Combine(_webHostEnvironment.WebRootPath, "UploadedFiles"), exercise.ImageUrl));
+            }
+
             _context.Exercises.Remove(exercise);
             await _context.SaveChangesAsync();
         }
