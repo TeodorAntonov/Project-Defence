@@ -37,15 +37,15 @@ This solution contains all services of the project
 **FIRST** - Go to **application.json** and add your server with database name ProjectDafence. Then go to Package Manager Console and on __*Default Project*__ select __*Repositories*__ and execute Update-Database command to create the base.
 Please note that there are some seed data in the tables. The data entities are **ONLY** for presentaion purpose! They are put just in case if you need to check only how it looks the design of app. 
 
-<img src="/ProjectDefence/wwwroot/adddingRoles.jpg" alt="adding roles" style="height: 200px; width:500px;"/>
-<img src="/ProjectDefence/wwwroot/addRoles.jpg" alt="add roles" style="height: 200px; width:500px;"/>
+<img src="/ProjectDefence/wwwroot/adddingRoles.jpg" alt="adding roles" style="height: 200px; width:400px;"/>
+<img src="/ProjectDefence/wwwroot/addRoles.jpg" alt="add roles" style="height: 200px; width:400px;"/>
 
 
 **SECOND** - To work the App correctly and to use all the roles and administration field you need to add parameters to following URLs (EXECUTE THEM ONCE IN THE MAIN PAGE BEFORE USING OTHER FUNCTIONS): 
 First execution (Example) your localhost:****/User/CreateRoles <- this is for setting the roles.
 
-<img src="/ProjectDefence/wwwroot/adding Admin.jpg" alt="adding admin" style="height: 200px; width:500px;"/>
-<img src="/ProjectDefence/wwwroot/addAdmin.jpg" alt="add admin" style="height: 200px; width:500px;"/>
+<img src="/ProjectDefence/wwwroot/adding Admin.jpg" alt="adding admin" style="height: 200px; width:400px;"/>
+<img src="/ProjectDefence/wwwroot/addAdmin.jpg" alt="add admin" style="height: 200px; width:400px;"/>
 
 
 Second execution (Example) your localhost:****/User/AddAdminUser <- this is for setting the admin.
