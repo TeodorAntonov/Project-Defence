@@ -14,22 +14,22 @@ There is a second administrative section for writers. They are the users who wri
 <img src="/ProjectDefence/wwwroot/project-overview.jpg" alt="project-overview" style="height: 250px; width:400px;"/>
 
 #### DataModels
-This solution contains following class folders:
+This project contains following class folders:
 - Constatns - Contants of the data ranges and user rols names 
 - Entities - All data classes which are represented as database objects
 - Models - All models which are used in the different views
 
 #### Interfaces
-This solution contains all interfaces created for Services.
+This project contains all interfaces created for Services.
 
 #### ProjectDefence
-This solution contains controllers, areas, Views, images, connections and program.cs of the project.
+This project contains controllers, areas, Views, images, connections and program.cs of the project.
 
 #### Repositories
-This solution contains DB Context and all migrations of the project. The app is Code-First approach and the database can be changed from here.
+This project contains DB Context and all migrations of the project. The app is Code-First approach and the database can be changed from here.
 
 #### Services
-This solution contains all services of the project
+This project contains all services of the project
 
 #### Tests Folder
 This folder contains all unit tests of services and controlllers. The Controllers unit tests are put in a sub-folder so to be separeted and distinguished from the services unit tests.
