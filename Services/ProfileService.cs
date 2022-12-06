@@ -42,9 +42,9 @@ namespace Services
                 Id = client.Id,
                 UserId = client.UserId,
                 Name = $"{client.User.FirstName} {client.User.LastName}",
-                AgeStarted = client.AgeStarted.HasValue ? client.AgeStarted.Value : 0,
-                WeightStarted = client.WeightStarted.HasValue ? client.WeightStarted.Value : 0,
-                HeightStarted = client.HeightStarted.HasValue ? client.HeightStarted.Value : 0,
+                AgeStarted = client.AgeStarted.HasValue && client.AgeStarted.Value > 0 ? client.AgeStarted.Value : 0,
+                WeightStarted = client.WeightStarted.HasValue && client.WeightStarted.Value > 0 ? client.WeightStarted.Value : 0,
+                HeightStarted = client.HeightStarted.HasValue && client.HeightStarted.Value > 0 ? client.HeightStarted.Value : 0,
                 TypeOfSport = client.TypeOfSport,
                 SetGoals = client.SetGoals,
                 Trainer = await GetUserTrainer(client.TrainerId, client),
@@ -85,7 +85,10 @@ namespace Services
             {
                 client.SetGoals = model.SetGoals;
             }
-            client.ClientNotes = client.ClientNotes + Environment.NewLine + "|| RECORD ON " + DateTime.UtcNow.ToString("dd/mm/yyy") + ": " + model.Notes;
+            if (model.Notes != null)
+            {
+                client.ClientNotes = client.ClientNotes + Environment.NewLine + "|| RECORD ON " + DateTime.UtcNow.ToString("dd/mm/yyy") + ": " + model.Notes;
+            }
 
             await _context.SaveChangesAsync();
         }

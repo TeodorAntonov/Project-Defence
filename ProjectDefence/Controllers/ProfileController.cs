@@ -55,9 +55,9 @@ namespace ProjectDefence.Controllers
 
             UpdateMyProfileViewModel model = new UpdateMyProfileViewModel()
             {
-                Age = client.CurrentAge,
-                Weight = client.CurrentWeight,
-                Height = client.CurrentHeight,
+                Age = client.CurrentAge.HasValue && client.CurrentAge.Value > 0 ? client.CurrentAge.Value : 0,
+                Weight = client.CurrentWeight.HasValue && client.CurrentWeight.Value > 0 ? client.CurrentWeight.Value : 0,
+                Height = client.CurrentHeight.HasValue && client.CurrentHeight.Value > 0 ? client.CurrentHeight.Value : 0,
                 SetGoals = client.SetGoals,
                 //Trainer = client.Trainer,
                 TypeOfSports = _profileService.GetSports(),

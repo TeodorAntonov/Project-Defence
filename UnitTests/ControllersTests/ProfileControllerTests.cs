@@ -85,9 +85,9 @@ namespace UnitTests.ControllersTests
 
             UpdateMyProfileViewModel model = new UpdateMyProfileViewModel()
             {
-                Age = null,
-                Weight = null,
-                Height = null,
+                Age = 1,
+                Weight = 1,
+                Height = 1,
                 SetGoals = "",
                 TypeOfSports = null,
             };
