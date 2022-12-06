@@ -124,3 +124,18 @@ Check Your Clients (light blue button in the Home Page) shows all clients who ar
 
 <img src="/ProjectDefence/wwwroot/ImagesForReadme/YourClients.jpg" alt="your clients" style="height: 200px; width:400px;"/>
 <img src="/ProjectDefence/wwwroot/ImagesForReadme/createWorkout.jpg" alt="create workout" style="height: 200px; width:400px;"/>
+
+<h5>---------</h5>
+
+#### Writer
+
+The Writer is the one who add new posts and managing the exercises. He/she can create exercises and writer new posts ( in a seperated area). The role can be given by the Admin, even though the writer is client, he/she is an administrative person who updates with posts inside the system. Not Always admins are writer and writers are not admins.
+This is the business logic idea - the system responsibilites to be separated between one big and one small role.
+
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/Writer.jpg" alt="writer" style="height: 200px; width:400px;"/>
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/New Post.jpg" alt="new post" style="height: 200px; width:400px;"/>
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/PostCreated.jpg" alt="post created" style="height: 200px; width:400px;"/>
+
+After creating new post, the post will appear first in all 4 posts. If you want to see all posts click the button on bottom of Home Page **All Posts**
+
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/NewAddedPost.jpg" alt="new add post" style="height: 200px; width:400px;"/>
