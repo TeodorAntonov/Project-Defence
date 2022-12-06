@@ -35,7 +35,10 @@ namespace ProjectDefence.Areas.Writer.Controllers
 
         public async Task<IActionResult> CreatePost(PostViewModel model)
         {
-            
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
             await _postService.AddPostAsync(model);
             return RedirectToAction("Index", "Home");
         }

@@ -268,7 +268,7 @@ namespace UnitTests
 
             var testModel = new ClientViewModel() { Id = 1, WorkoutPlan = "Test Workout" };
 
-            await service.SaveWorkoutAsync(1, testModel);
+            await service.SaveWorkoutAsync(user, 1, testModel);
 
             var result = trainer.Clients.First().WorkoutPlan;
 

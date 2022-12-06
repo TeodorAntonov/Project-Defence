@@ -33,7 +33,7 @@
         public const int MinTrainerNameLenth = 2;
 
         public const int MaxDescriptionLength = 4000;
-        public const int MinDescriptionLength = 1;
+        public const int MinDescriptionLength = 20;
 
         public const int MinPartialDescriptionLength = 15;
 

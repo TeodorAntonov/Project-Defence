@@ -40,7 +40,7 @@ namespace Services
             {
                 Id = p.Id,
                 Title = p.Title,
-                Text = p.Text,
+                Text = p.Text != null ? $"{p.Text.Substring(0, 9)}..." : null,
                 DatePublishedOn = p.DatePublishedOn.ToString("dd/MM/yyyy")
             });
         }
@@ -71,7 +71,7 @@ namespace Services
             {
                 Id = p.Id,
                 Title = p.Title,
-                Text = p.Text != null ? $"{p.Text.Substring(0, 1)}..." : null,
+                Text = p.Text != null ? $"{p.Text.Substring(0, 9)}..." : null,
                 DatePublishedOn = p.DatePublishedOn.ToString("dd/MM/yyyy")
             })
             .Take(4)
