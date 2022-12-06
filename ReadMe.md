@@ -82,3 +82,21 @@ Check the following pictures as example.
 <img src="/ProjectDefence/wwwroot/ImagesForReadme/EditGym.jpg" alt="edit gym" style="height: 200px; width:400px;"/>
 <img src="/ProjectDefence/wwwroot/ImagesForReadme/All Trainers.jpg" alt="all trainer" style="height: 200px; width:400px;"/>
 <img src="/ProjectDefence/wwwroot/ImagesForReadme/Edit Trainer.jpg" alt="edit trainer" style="height: 200px; width:400px;"/>
+
+#### Client
+
+After registrating and loging of the new client, the user will have a options like, applying to become a trainer, applying for a particular trainer and his own Clinet Profile.
+
+This is the Client's Home Page:
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/Client1.jpg" alt="all trainer" style="height: 200px; width:400px;"/>
+
+When you click on My Profile button next to Logout. You will be redirect to User's statistic, Workout Plan and Fitness Dairy.
+First You need to set your current statuses. Once You set them a button Update My profile will appear and you will be able to manage your profile.
+
+**Before Updating Profile**
+
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/emptyClientProfile.jpg" alt="all trainer" style="height: 200px; width:400px;"/>
+
+**After Updating Profile**
+
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/UpdatedProfileClient.jpg" alt="all trainer" style="height: 200px; width:400px;"/>
