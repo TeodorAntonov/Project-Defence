@@ -73,7 +73,7 @@ Check the following pictures as example.
 **The admin can give permission (roles) to clients, of course, depending of their work or need.**
 <img src="/ProjectDefence/wwwroot/ImagesForReadme/userProfile1.jpg" alt="user profile" style="height: 200px; width:400px;"/>
 <img src="/ProjectDefence/wwwroot/ImagesForReadme/userProfile2.jpg" alt="user profile part2" style="height: 200px; width:400px;"/>
-
+<h6>---------</h6>
 **The Admin can edit and delete Trainers and Gyms**
 <img src="/ProjectDefence/wwwroot/ImagesForReadme/AllGyms.jpg" alt="all gyms" style="height: 200px; width:400px;"/>
 <img src="/ProjectDefence/wwwroot/ImagesForReadme/EditGym.jpg" alt="edit gym" style="height: 200px; width:400px;"/>
