@@ -74,7 +74,7 @@ Check the following pictures as example.
 <img src="/ProjectDefence/wwwroot/ImagesForReadme/userProfile1.jpg" alt="user profile" style="height: 200px; width:400px;"/>
 <img src="/ProjectDefence/wwwroot/ImagesForReadme/userProfile2.jpg" alt="user profile part2" style="height: 200px; width:400px;"/>
 
-<h5>---------</h5>
+<h5>--</h5>
 
 **The Admin can edit and delete Trainers and Gyms**
 
@@ -83,27 +83,44 @@ Check the following pictures as example.
 <img src="/ProjectDefence/wwwroot/ImagesForReadme/All Trainers.jpg" alt="all trainer" style="height: 200px; width:400px;"/>
 <img src="/ProjectDefence/wwwroot/ImagesForReadme/Edit Trainer.jpg" alt="edit trainer" style="height: 200px; width:400px;"/>
 
+<h5>---------</h5>
+
 #### Client
 
 After registrating and loging of the new client, the user will have a options like, applying to become a trainer, applying for a particular trainer and his own Clinet Profile.
 
 This is the Client's Home Page:
-<img src="/ProjectDefence/wwwroot/ImagesForReadme/Client1.jpg" alt="all trainer" style="height: 200px; width:400px;"/>
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/Client1.jpg" alt="client" style="height: 200px; width:400px;"/>
 
 When you click on My Profile button next to Logout. You will be redirect to User's statistic, Workout Plan and Fitness Dairy.
 First You need to set your current statuses. Once You set them a button Update My profile will appear and you will be able to manage your profile.
 
 **Before Updating Profile**
 
-<img src="/ProjectDefence/wwwroot/ImagesForReadme/emptyClientProfile.jpg" alt="all trainer" style="height: 200px; width:400px;"/>
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/emptyClientProfile.jpg" alt="client profile" style="height: 200px; width:400px;"/>
 
 **After Updating Profile**
 
-<img src="/ProjectDefence/wwwroot/ImagesForReadme/UpdatedProfileClient.jpg" alt="all trainer" style="height: 200px; width:400px;"/>
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/UpdatedProfileClient.jpg" alt="update profile" style="height: 200px; width:400px;"/>
 
 A Client can apply to be become a trainer from the Button in Home Page. If the client is approved to become a trainer, the admin will set his role and the user will receive new rights and the apply button will become a notification that he is a trainer.
 This is a screenshot of the application form of what the user need to present in his application:
 
-<img src="/ProjectDefence/wwwroot/ImagesForReadme/ApplicationFrom.jpg" alt="all trainer" style="height: 200px; width:400px;"/>
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/ApplicationFrom.jpg" alt="application form" style="height: 200px; width:400px;"/>
+
+<h5>---------</h5>
 
 #### Trainer
+
+After A client beacomes a Trainer. It will appears a few options - Requests Mails and Check Your Clients:
+
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/TrainerOptions.jpg" alt="trainer options" style="height: 200px; width:400px;"/>
+
+Requests Mails are actually requests from client if the trainer wants to trainer them or not. The Trainer has 2 options - To Accept the client or to declined his/her request.
+
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/ClientsRequests.jpg" alt="trainer clients requests" style="height: 200px; width:400px;"/>
+
+Check Your Clients (light blue button in the Home Page) shows all clients who are under this trainer's guiding. The trainer is able to see the stats of his clients and has the options to Create a new workout or delete the client and not work with him anymore.
+
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/YourClients.jpg" alt="your clients" style="height: 200px; width:400px;"/>
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/createWorkout.jpg" alt="create workout" style="height: 200px; width:400px;"/>
