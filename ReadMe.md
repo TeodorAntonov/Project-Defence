@@ -100,3 +100,10 @@ First You need to set your current statuses. Once You set them a button Update M
 **After Updating Profile**
 
 <img src="/ProjectDefence/wwwroot/ImagesForReadme/UpdatedProfileClient.jpg" alt="all trainer" style="height: 200px; width:400px;"/>
+
+A Client can apply to be become a trainer from the Button in Home Page. If the client is approved to become a trainer, the admin will set his role and the user will receive new rights and the apply button will become a notification that he is a trainer.
+This is a screenshot of the application form of what the user need to present in his application:
+
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/ApplicationFrom.jpg" alt="all trainer" style="height: 200px; width:400px;"/>
+
+#### Trainer

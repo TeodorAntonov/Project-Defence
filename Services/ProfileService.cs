@@ -47,7 +47,7 @@ namespace Services
                 HeightStarted = client.HeightStarted.HasValue ? client.HeightStarted.Value : 0,
                 TypeOfSport = client.TypeOfSport,
                 SetGoals = client.SetGoals,
-                Trainer = await GetUserTrainer(client.TrainerId),
+                Trainer = await GetUserTrainer(client.TrainerId, client),
                 WorkoutPlan = client.WorkoutPlan,
                 CurrentAge = client.CurrentAge,
                 CurrentHeight = client.CurrentHeight,
@@ -141,11 +141,16 @@ namespace Services
             await _context.SaveChangesAsync();
         }
 
-        private async Task<string?> GetUserTrainer(int? trainerId)
+        private async Task<string?> GetUserTrainer(int? trainerId, Client client)
         {
             var trainer = await _context.Trainers.FirstOrDefaultAsync(t => t.Id == trainerId);
 
             if (trainer == null)
+            {
+                return null;
+            }
+
+            if (!trainer.Clients.Contains(client))
             {
                 return null;
             }

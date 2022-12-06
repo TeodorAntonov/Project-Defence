@@ -10,7 +10,7 @@
         @if (User?.IsInRole("Administrator") ?? false)
         {
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-controller="AdminMailbox" asp-action="GetAdminMailbox">Admin Mailbox</a>
+                <a class="nav-link text-dark" asp-controller="AdminMailbox" asp-action="GetAdminMailbox">Admin Mailbox <i class="material-icons">markunread_mailbox</i></a>
             </li>
         }
         @if (User?.IsInRole("Trainer") ?? false)
@@ -18,7 +18,7 @@
             @if (!User?.IsInRole("Administrator") ?? false)
             {
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-controller="Trainers" asp-action="GetClientsRequests">Requests Mails <i style='font-size:24px' class='fas'>&#xf199;</i></a>
+                    <a class="nav-link text-dark" asp-controller="Trainers" asp-action="GetClientsRequests">Requests Mails <i class="material-icons">markunread_mailbox</i></a>
                 </li>
             }
             @*  <li class="nav-item">
