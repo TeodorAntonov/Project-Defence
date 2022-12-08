@@ -20,7 +20,7 @@
         public const int MaxTitleLength = 50;
         public const int MinTitleLength = 10;
 
-        public const int MaxGymNameAndAddressLength = 50;
+        public const int MaxGymNameAndAddressLength = 200;
         public const int MinGymNameAndAddressLength = 2;
 
         public const int MaxTrainerNameLength = 30;
