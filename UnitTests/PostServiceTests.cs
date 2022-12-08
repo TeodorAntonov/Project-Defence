@@ -47,6 +47,38 @@ namespace UnitTests
         {
             PostViewModel model = new PostViewModel()
             {
+                Title = "NameTest1",
+                Text = "AddressTest1",
+            };
+
+            PostViewModel model2 = new PostViewModel()
+            {
+                Title = "NameTest2",
+                Text = "AddressTest2",
+            };
+
+            PostViewModel model3 = new PostViewModel()
+            {
+                Title = "NameTest3",
+                Text = "AddressTest3",
+            };
+
+            await service.AddPostAsync(model);
+            await service.AddPostAsync(model2);
+            await service.AddPostAsync(model3);
+
+            var posts = await context.Posts.ToListAsync();
+            var result = await service.GetAllPosts();
+
+            Assert.NotEmpty(posts);
+            Assert.Equal(result.Count(), 3);
+        }
+
+        [Fact]
+        public async Task GetAllPosts_thorwsError_About_ThePostTitle_not_enough_chars()
+        {
+            PostViewModel model = new PostViewModel()
+            {
                 Title = "Name",
                 Text = "Address",
             };
@@ -70,8 +102,38 @@ namespace UnitTests
             var posts = await context.Posts.ToListAsync();
             var result = await service.GetAllPosts();
 
-            Assert.NotEmpty(posts);
-            Assert.Equal(result.Count(), 3);
+            Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => await service.DeletePostAsync(1));
+        }
+
+        [Fact]
+        public async Task GetAllPosts_thorwsError_About_ThePostText_not_enough_chars()
+        {
+            PostViewModel model = new PostViewModel()
+            {
+                Title = "NameTest1",
+                Text = "Address",
+            };
+
+            PostViewModel model2 = new PostViewModel()
+            {
+                Title = "NameTest2",
+                Text = "Address",
+            };
+
+            PostViewModel model3 = new PostViewModel()
+            {
+                Title = "NameTest3",
+                Text = "Address",
+            };
+
+            await service.AddPostAsync(model);
+            await service.AddPostAsync(model2);
+            await service.AddPostAsync(model3);
+
+            var posts = await context.Posts.ToListAsync();
+            var result = await service.GetAllPosts();
+
+            Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => await service.DeletePostAsync(1));
         }
 
         [Fact]
@@ -139,40 +201,40 @@ namespace UnitTests
             {
                 Id = 1,
                 DatePublishedOn = DateTime.Now,
-                Title = "Test1",
-                Text = "Test1",
+                Title = "TestTitleOne",
+                Text = "TestTextOne",
             };
 
             Post post2 = new Post()
             {
                 Id = 2,
                 DatePublishedOn = DateTime.Now,
-                Title = "Test2",
-                Text = "Test2",
+                Title = "TestTitleTwo",
+                Text = "TestTextTwo",
             };
 
             Post post3 = new Post()
             {
                 Id = 3,
                 DatePublishedOn = DateTime.Now,
-                Title = "Test3",
-                Text = "Test3",
+                Title = "TestTitleThree",
+                Text = "TestTextThree",
             };
 
             Post post4 = new Post()
             {
                 Id = 4,
                 DatePublishedOn = DateTime.Now,
-                Title = "Test4",
-                Text = "Test4",
+                Title = "TestTitleFour",
+                Text = "TestTextFour",
             };
 
             Post post5 = new Post()
             {
                 Id = 5,
                 DatePublishedOn = DateTime.Now,
-                Title = "Test5",
-                Text = "Test5",
+                Title = "TestTitleFive",
+                Text = "TestTextFive",
             };
 
             context.Posts.Add(post1);
@@ -197,6 +259,8 @@ namespace UnitTests
             Post post1 = new Post()
             {
                 Id = 1,
+                Title = "test",
+                Text = "test"
             };
 
 
