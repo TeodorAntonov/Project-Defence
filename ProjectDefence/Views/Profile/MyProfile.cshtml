@@ -24,7 +24,7 @@
     </form>
 </div>
 
-@if (@Model.AgeStarted == 0 && @Model.WeightStarted == 0 && @Model.HeightStarted == 0)
+@if (@Model.AgeStarted == 0 || @Model.WeightStarted == 0 || @Model.HeightStarted == 0)
 {
     <div class="card col-4" style="width: 10rem; bottom: 50px; left: 10%">
         <a class="btn btn-primary" asp-controller="Profile" asp-action="SetMyProfile">Set Your Profile</a>
