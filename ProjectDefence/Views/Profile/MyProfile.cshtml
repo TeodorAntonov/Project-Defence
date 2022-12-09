@@ -68,6 +68,13 @@
     </form>
 </div>
 
+@if (!string.IsNullOrEmpty(@Model.Trainer))
+{
+    <div class="card col-3" style="width: 17rem; bottom: 380px; left: 60%; text-align: center; background-color: purple">
+        <p style="font-size: 20px; color:yellow">Your Trainer is @Model.Trainer</p>
+    </div>
+}
+
 <div class="card col-3" style="width: 20rem; bottom: 330px; left: 60%">
     <form>
         <div>
@@ -85,7 +92,7 @@
     </form>
     @if (!string.IsNullOrEmpty(@Model.Trainer))
     {
-       <div class="card col-4" style="width: 10rem; bottom: 2px; left: 1%">
+        <div class="card col-4" style="width: 10rem; bottom: 2px; left: 1%">
             <a class="btn btn-warning btn-sm" asp-controller="Profile" asp-action="DeleteTrainerAndWorkout">Delete Workout and Your Trainer</a>
         </div>
     }
