@@ -19,7 +19,7 @@ namespace UnitTests
     public class ProfileServiceTests
     {
         private ProfileService service;
-        ApplicationDbContext context;
+        private ApplicationDbContext context;
 
         public ProfileServiceTests()
         {

@@ -11,8 +11,7 @@ namespace Services
     public class TrainerService : ITrainerService
     {
         private readonly ApplicationDbContext _context;
-        private readonly IWebHostEnvironment _webHostEnvironment;
-        public TrainerService(ApplicationDbContext context, IWebHostEnvironment _webHostEnvironment)
+        public TrainerService(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -199,18 +198,5 @@ namespace Services
             client.TrainerId = trainer.Id;
             await _context.SaveChangesAsync();
         }
-
-        //private FormFile? GetUploadeFile(Trainer trainer)
-        //{
-
-        //    string filePath = "..\\ProjectDefence\\wwwroot\\UploadedFiles\\" + trainer.ImageUrl;
-
-        //    string webRootPath = _webHostEnvironment.WebRootPath;
-        //    string newPath = Path.Combine(webRootPath, filePath);
-                                                                 
-        //    string envpath = folderName + "/" + fileName;
-
-        //    trainer.ImageUrl = envpath;
-        //}
     }
 }

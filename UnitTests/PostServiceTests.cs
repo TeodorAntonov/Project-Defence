@@ -18,7 +18,7 @@ namespace UnitTests
     public class PostServiceTests
     {
         private PostService service;
-        ApplicationDbContext context;
+        private ApplicationDbContext context;
         public PostServiceTests()
         {
             context = TestDataBaseContext.GetDatabase();

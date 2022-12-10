@@ -21,7 +21,7 @@ namespace UnitTests.ControllersTests
     public class ProfileControllerTests
     {
         private Mock<IProfileService> serviceMock;
-        ApplicationDbContext context;
+        private ApplicationDbContext context;
         private Mock<UserManager<User>> userServiceMock;
         public ProfileControllerTests()
         {

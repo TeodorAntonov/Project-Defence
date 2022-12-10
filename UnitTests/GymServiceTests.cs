@@ -18,7 +18,7 @@ namespace UnitTests
     public class GymServiceTests
     {
         private GymService service;
-        ApplicationDbContext context;
+        private ApplicationDbContext context;
 
         public GymServiceTests()
         {

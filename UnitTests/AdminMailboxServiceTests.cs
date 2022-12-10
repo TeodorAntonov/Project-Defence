@@ -18,7 +18,7 @@ namespace UnitTests
     public class AdminMailboxServiceTests
     {
         private AdminMailboxService service;
-        ApplicationDbContext context;
+        private ApplicationDbContext context;
         public AdminMailboxServiceTests()
         {
             context = TestDataBaseContext.GetDatabase();

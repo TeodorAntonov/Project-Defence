@@ -20,7 +20,7 @@ namespace UnitTests
     {
         private ExerciseService service;
         private IWebHostEnvironment webHostEnvironment;
-        ApplicationDbContext context;
+        private ApplicationDbContext context;
         public ExerciseServiceTests()
         {
             context = TestDataBaseContext.GetDatabase();

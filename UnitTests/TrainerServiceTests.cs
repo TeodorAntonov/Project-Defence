@@ -19,14 +19,12 @@ namespace UnitTests
     public class TrainerServiceTests
     {
         private TrainerService service;
-        ApplicationDbContext context;
-        private IWebHostEnvironment webHostEnvironment;
-
+        private ApplicationDbContext context;
 
         public TrainerServiceTests()
         {
             context = TestDataBaseContext.GetDatabase();
-            service = new TrainerService(context, webHostEnvironment);
+            service = new TrainerService(context);
         }
 
         [Fact]

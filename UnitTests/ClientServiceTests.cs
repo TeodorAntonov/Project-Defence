@@ -19,7 +19,7 @@ namespace UnitTests
     public class ClientServiceTests
     {
         private ClientService service;
-        ApplicationDbContext context;
+        private ApplicationDbContext context;
         public ClientServiceTests()
         {
             context = TestDataBaseContext.GetDatabase();

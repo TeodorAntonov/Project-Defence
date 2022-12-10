@@ -20,7 +20,7 @@ namespace UnitTests
     public class AdminServiceTests
     {
         private AdminService service;
-        ApplicationDbContext context;
+        private ApplicationDbContext context;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<User> userManager;
         private readonly IWebHostEnvironment _webHostEnvironment;
