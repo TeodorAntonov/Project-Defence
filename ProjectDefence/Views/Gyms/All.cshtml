@@ -20,9 +20,6 @@
                 <p class="mb-0">Address: @gym.Address</p>
             </div>
 
-            @*<form class="input-group-sm" asp-route-gymId="@gym.Id" asp-controller="Gyms" method="post">
-                <input type="submit" value="See All Trainers Here" class="fs-6 btn btn-success mb-3 p-2" />
-            </form>*@
              @if (User?.IsInRole("Administrator") ?? false)
                {
                   <a asp-controller="Admin" asp-action="EditGym" asp-route-gymId="@gym.Id" class="btn btn-primary mb-3">Edit</a>

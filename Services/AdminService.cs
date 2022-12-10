@@ -145,7 +145,6 @@ namespace Services
                 Email = trainer.Email,
                 Experience = trainer.Experience,
                 HasImageUrl = trainer.ImageUrl == $"/UploadedFiles/no_profile_img.png" || trainer.ImageUrl == null ? true : false,
-                // ImageUrl = trainer.ImageUrl,
                 Telephone = trainer.Telephone,
                 IsAvailable = trainer.IsAvailable ? "Yes" : "No",
                 UserId = trainer.UserId ?? null,
@@ -184,7 +183,7 @@ namespace Services
                 throw new ArgumentException("No such trainer Id.");
             }
 
-            if(trainer.ImageUrl != null)
+            if (trainer.ImageUrl != null)
             {
                 File.Delete(Path.Combine(Path.Combine(_webHostEnvironment.WebRootPath, "UploadedFiles"), trainer.ImageUrl));
             }
@@ -207,7 +206,6 @@ namespace Services
                 Name = gym.Name,
                 Address = gym.Address,
                 HasImageUrl = gym.ImageUrl == $"/UploadedFiles/no_profile_img.png" || gym.ImageUrl == null ? true : false,
-                //ImageUrl = gym.ImageUrl,
             };
         }
 
@@ -239,7 +237,7 @@ namespace Services
                 HeightCurrent = client.CurrentHeight,
                 Notes = client.ClientNotes,
                 SetGoals = client.SetGoals,
-                Trainer = client.Trainer != null ? client.Trainer.Name : "No assigned Trainer!",
+                Trainer = await GetUserTrainer(client.TrainerId, client), //client.Trainer != null ? client.Trainer.Name : "No assigned Trainer!",
                 WorkoutPlan = client.WorkoutPlan,
                 TypeOfSport = client.TypeOfSport,
                 TypeOfSports = GetSports(),
@@ -263,7 +261,6 @@ namespace Services
                 client.HeightStarted = model.HeightStarted;
                 client.CurrentHeight = model.HeightCurrent;
                 client.SetGoals = model.SetGoals;
-                //client.Trainer = model.Trainer;
                 client.WorkoutPlan = model.WorkoutPlan;
                 client.TypeOfSport = GetSports().FirstOrDefault(s => s.Id == model.TypeOfSportId).Name ?? null;
                 client.ClientNotes = model.Notes;
@@ -367,6 +364,23 @@ namespace Services
             }
 
             return fileName;
+        }
+
+        private async Task<string?> GetUserTrainer(int? trainerId, Client client)
+        {
+            var trainer = await _context.Trainers.FirstOrDefaultAsync(t => t.Id == trainerId);
+
+            if (trainer == null)
+            {
+                return "No assigned Trainer!";
+            }
+
+            if (!trainer.Clients.Contains(client))
+            {
+                return "No assigned Trainer!";
+            }
+
+            return trainer.Name;
         }
     }
 }

@@ -139,3 +139,12 @@ This is the business logic idea - the system responsibilites to be separated bet
 After creating new post, the post will appear first in all 4 posts. If you want to see all posts click the button on bottom of Home Page **All Posts**
 
 <img src="/ProjectDefence/wwwroot/ImagesForReadme/NewAddedPost.jpg" alt="new add post" style="height: 200px; width:400px;"/>
+
+<h1>---------</h1>
+<h1>How to Register a Trainer</h1>
+
+After a client sent its application to the administration, The admin will review it and he will decide if the client has enough reasons to become a trainer.
+The Admin needs to get the User's info, ESCPECIALLY the user's' Id. He needs to copy it and then he needs to go Add Trainer in the Admin Panel. He puts the information and on the last field below, The admin needs to paste the user's Id. 
+
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/trainerInCreation.jpg" alt="new add post" style="height: 200px; width:400px;"/>
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/trainerInCreation2.jpg" alt="new add post" style="height: 200px; width:400px;"/>
