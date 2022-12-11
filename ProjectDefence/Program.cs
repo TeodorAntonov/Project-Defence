@@ -70,7 +70,7 @@ app.UseEndpoints(area =>
       pattern: "{area:exists}/{controller=Writer}/{action=GetWriterScreen}/{id?}"
     );
 });
-    //app.MapControllerRoute(
+    //app.MapControllerRoute(   <-- this is left just in case if I need to see the origin(default) MapController Route pattern
     //name: "default",
     //pattern: "{controller=Home}/{action=Index}/{id?}");
 

@@ -23,7 +23,7 @@
             </div>
             @if (@trainer.IsAvailable == "Yes")
             {
-                <a asp-controller="Client" asp-action="ApplyForTrainer" asp-route-trainerId="@trainer.Id" class="btn btn-danger mb-3">Apply for trainer</a>
+                <a id="clicked" onclick="alert('You are appling for this Trainer!')" asp-controller="Client" asp-action="ApplyForTrainer" asp-route-trainerId="@trainer.Id" class="btn btn-danger mb-3">Apply for trainer</a>
             }
             <form class="input-group-sm" asp-route-trainerId="@trainer.Id" asp-controller="Trainers" method="post"> </form>
             @if (User?.IsInRole("Administrator") ?? false)
@@ -35,3 +35,12 @@
         </div>
     }
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("a").click(function(){
+    $("#clicked").click();
+  });
+});
+</script>
