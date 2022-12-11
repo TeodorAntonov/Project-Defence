@@ -18,7 +18,6 @@ namespace DataModels.Models
         public string Telephone { get; set; }
         public string? Experience { get; set; }
         [NotMapped]
-       // [Required(ErrorMessage = "Please choose image")]
         public IFormFile? ImageUrl { get; set; }
         public string IsAvailable { get; set; } = "Yes";
         public string? UserId { get; set; }
