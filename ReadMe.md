@@ -148,3 +148,8 @@ The Admin needs to get the User's info, ESCPECIALLY the user's' Id. He needs to 
 
 <img src="/ProjectDefence/wwwroot/ImagesForReadme/trainerInCreation.jpg" alt="new add post" style="height: 200px; width:400px;"/>
 <img src="/ProjectDefence/wwwroot/ImagesForReadme/trainerInCreation2.jpg" alt="new add post" style="height: 200px; width:400px;"/>
+
+After creating the trainer, the admin needs to update the roles and rights of the current client as he needs to go to Admin Panel section and select All Users - there he should select the user who is now a trainer. The admin has to scroll down
+to the bottom of the page and to click/check trainer role then clicks Save. Now the user should have trainer rights.
+
+<img src="/ProjectDefence/wwwroot/ImagesForReadme/Creation of trainer.jpg" alt="new add post" style="height: 200px; width:400px;"/>
