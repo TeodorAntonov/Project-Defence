@@ -13,5 +13,6 @@ namespace Interfaces
         Task AddClientAsync(User user, int clientId);
         Task<ClientViewModel> CreateWorkoutAsync(User user, int clientId);
         Task SaveWorkoutAsync(User user, int clientId, ClientViewModel model);
+        Task ChangeAvailabilityAsync(User user);
     }
 }

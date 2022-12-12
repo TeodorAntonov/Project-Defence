@@ -1,0 +1,14 @@
+﻿@using DataModels.Entities
+@using DataModels.Models
+
+<div class="card col-0" style="width: 14rem; left: 90%; background-color: PaleTurquoise; border-color:PaleTurquoise;">
+    <a id="clicked" onclick="alert('You changed your availability!')" asp-controller="Trainers" asp-action="GetCountClients" class="btn btn-danger mb-3" >Change Your Availability</a>
+</div>
+
+<script>
+$(document).ready(function(){
+  $("a").click(function(){
+    $("#clicked").click();
+  });
+});
+</script>

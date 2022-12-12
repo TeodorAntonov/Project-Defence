@@ -145,5 +145,19 @@ namespace ProjectDefence.Controllers
             await _trainerService.SaveWorkoutAsync(user, clientId, model);
             return RedirectToAction("GetClients", "Trainers");
         }
+
+        [Authorize(Roles = "Trainer")]
+        public async Task<ActionResult> GetCountClients()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            if (user == null)
+            {
+                return RedirectToAction("NotFound", "Error");
+            }
+
+            await _trainerService.ChangeAvailabilityAsync(user);
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

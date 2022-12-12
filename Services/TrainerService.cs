@@ -198,5 +198,31 @@ namespace Services
             client.TrainerId = trainer.Id;
             await _context.SaveChangesAsync();
         }
+
+        public async Task ChangeAvailabilityAsync(User user)
+        {
+            var trainer = await _context.Trainers.FirstOrDefaultAsync(t => t.UserId == user.Id);
+
+            if (trainer == null)
+            {
+                throw new ArgumentException("No such trainer Id.");
+            }
+
+            if (trainer.IsAvailable)
+            {
+                trainer.IsAvailable = false;
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                trainer.IsAvailable = true;
+                await _context.SaveChangesAsync();
+            }
+
+            var model = new TrainerAvailableViewModel()
+            {
+                IsAvailable = trainer.IsAvailable
+            };
+        }
     }
 }
