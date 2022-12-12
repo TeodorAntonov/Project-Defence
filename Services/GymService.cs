@@ -23,7 +23,7 @@ namespace Services
                 Name = g.Name,
                 Address = g.Address,
                 ImageUrl = g.ImageUrl != null ? $"/UploadedFiles/{g.ImageUrl}" : $"/UploadedFiles/empty_fitness.png"
-            });
+            }).OrderBy(g => g.Name);
         }
     }
 }
