@@ -42,7 +42,7 @@ namespace Services
                 Title = p.Title,
                 Text = p.Text != null ? $"{p.Text.Substring(0, 9)}..." : null,
                 DatePublishedOn = p.DatePublishedOn.ToString("dd/MM/yyyy")
-            });
+            }).OrderByDescending(p => p.DatePublishedOn);
         }
 
         public async Task<PostViewModel> GetFullPostAsync(int postId)

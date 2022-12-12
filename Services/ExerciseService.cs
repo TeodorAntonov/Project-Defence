@@ -73,7 +73,7 @@ namespace Services
                 ImageUrl = e.ImageUrl != null ? $"/UploadedFiles/{e.ImageUrl}" : $"/UploadedFiles/empty_action_avatar.png",
                 Description = e.Description ?? null,
                 PartialDescription = e.Description != null ? $"{e.Description.Substring(0, ConstantsData.MinPartialDescriptionLength)}..." : null
-            }).ToList();
+            }).OrderBy(e => e.Name).ToList();
         }
 
         public async Task<ExerciseViewModel> GetExerciseAsync(int exerciseId)

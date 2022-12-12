@@ -29,7 +29,7 @@ namespace Services
                 IsAvailable = t.IsAvailable ? "Yes" : "No",
                 Experience = t.Experience,
                 ImageUrl = t.ImageUrl != null ? $"/UploadedFiles/{t.ImageUrl}" : $"/UploadedFiles/no_profile_img.png"
-            });
+            }).OrderBy(t => t.Name);
         }
 
         public async Task<IEnumerable<ClientViewModel>> GetClientsAsync(User user)
@@ -55,7 +55,7 @@ namespace Services
                 Height = c.CurrentHeight,
                 TypeOfSport = c.TypeOfSport,
                 WorkoutPlan = c.WorkoutPlan,
-            });
+            }).OrderBy(t => t.ClientName);
         }
 
         public async Task<IEnumerable<ClientViewModel>> GetClientsRequestsAsync(User user)

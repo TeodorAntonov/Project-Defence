@@ -75,7 +75,7 @@ namespace Services
                 UserName = u.UserName,
                 Email = u.Email,
                 Roles = RoleList(u).Result.ToList(),
-            });
+            }).OrderBy(u => u.FullName);
         }
 
         private async Task<List<string>> RoleList(User user)
@@ -237,7 +237,7 @@ namespace Services
                 HeightCurrent = client.CurrentHeight,
                 Notes = client.ClientNotes,
                 SetGoals = client.SetGoals,
-                Trainer = await GetUserTrainer(client.TrainerId, client), //client.Trainer != null ? client.Trainer.Name : "No assigned Trainer!",
+                Trainer = await GetUserTrainer(client.TrainerId, client), 
                 WorkoutPlan = client.WorkoutPlan,
                 TypeOfSport = client.TypeOfSport,
                 TypeOfSports = GetSports(),
