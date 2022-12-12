@@ -218,11 +218,6 @@ namespace Services
                 trainer.IsAvailable = true;
                 await _context.SaveChangesAsync();
             }
-
-            var model = new TrainerAvailableViewModel()
-            {
-                IsAvailable = trainer.IsAvailable
-            };
         }
     }
 }

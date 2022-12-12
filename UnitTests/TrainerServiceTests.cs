@@ -458,5 +458,70 @@ namespace UnitTests
 
             Assert.ThrowsAsync<ArgumentException>(async () => await service.AddClientAsync(user, 1));
         }
+
+        [Fact]
+        public async Task ChangeTheTrainerAvailavilityTo_True()
+        {
+            User user = new User() { Id = "test", FirstName = "Test", LastName = "Testov" };
+            Trainer trainer = new Trainer()
+            {
+                Id = 1,
+                Name = "Name",
+                Email = "Test@mail.com",
+                Telephone = "12321311",
+                IsAvailable = false,
+                UserId = "test",
+                User = user,
+                ClientsApplications = new List<Client>()
+            };
+
+            context.Users.Add(user);
+            context.Trainers.Add(trainer);
+            context.SaveChanges();
+
+            Assert.False(trainer.IsAvailable);
+
+            await service.ChangeAvailabilityAsync(user);
+
+            Assert.True(trainer.IsAvailable);
+        }
+
+        [Fact]
+        public async Task ChangeTheTrainerAvailavilityTo_False()
+        {
+            User user = new User() { Id = "test", FirstName = "Test", LastName = "Testov" };
+            Trainer trainer = new Trainer()
+            {
+                Id = 1,
+                Name = "Name",
+                Email = "Test@mail.com",
+                Telephone = "12321311",
+                IsAvailable = true,
+                UserId = "test",
+                User = user,
+                ClientsApplications = new List<Client>()
+            };
+
+            context.Users.Add(user);
+            context.Trainers.Add(trainer);
+            context.SaveChanges();
+
+            Assert.True(trainer.IsAvailable);
+
+            await service.ChangeAvailabilityAsync(user);
+
+            Assert.False(trainer.IsAvailable);
+        }
+
+        [Fact]
+        public async Task ThrowErrorException_ThereIsNoSuchTrainert()
+        {
+            User user = new User() { Id = "test", FirstName = "Test", LastName = "Testov" };
+
+            context.Users.Add(user);
+            context.SaveChanges();
+
+            Assert.ThrowsAsync<ArgumentException>(async () => await service.ChangeAvailabilityAsync(user));
+        }
     }
 }
